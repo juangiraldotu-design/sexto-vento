@@ -1,25 +1,26 @@
 ---
-import { Image } from 'astro:assets';
 import Logo from './Logo.astro';
 import { restaurantConfig } from '../config/restaurant.config';
-import heroImage from '../assets/images/hero-rooftop.jpg';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section id="hero" class="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-center pt-20 pb-8 sm:pt-28 sm:pb-16 px-4 sm:px-6 overflow-hidden max-w-full">
   <!-- Cinematic Rooftop Drone Background -->
   <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-    <Image 
-      src={heroImage} 
-      alt="Terraza Rooftop de Sexto Vento en Hotel Casa Volga, Roldanillo" 
-      class="w-full h-full object-cover object-center scale-105 transform brightness-[0.82]"
-      widths={[390, 768, 1200]}
-      sizes="100vw"
-      quality={75}
-      format="webp"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    />
+    <picture>
+      <source srcset={`${baseUrl}/images/hero/hero-mobile.webp`} media="(max-width: 640px)" type="image/webp" />
+      <source srcset={`${baseUrl}/images/hero/hero-mobile.jpg`} media="(max-width: 640px)" type="image/jpeg" />
+      <source srcset={`${baseUrl}/images/hero/hero-desktop.webp`} type="image/webp" />
+      <img 
+        src={`${baseUrl}/images/hero/hero-desktop.jpg`} 
+        alt="Terraza Rooftop de Sexto Vento en Hotel Casa Volga, Roldanillo" 
+        class="w-full h-full object-cover object-center scale-105 transform brightness-[0.82]"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
     <!-- Multi-Layer Vignette Gradients (Seamless blend into warm espresso) -->
     <div class="absolute inset-0 bg-gradient-to-t from-[#0B0704] via-[#0B0704]/75 to-[#0B0704]/30"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-[#0B0704]/80 via-transparent to-[#0B0704]"></div>

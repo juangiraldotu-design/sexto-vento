@@ -1,20 +1,14 @@
 ---
-import { Image } from 'astro:assets';
 import { restaurantConfig } from '../config/restaurant.config';
 
-// Import images
-import imgCroissant from '../assets/images/croissant-pistacho.jpg';
-import imgBurrata from '../assets/images/burrata-prosciutto.jpg';
-import imgPasta from '../assets/images/pasta-fettuccine.jpg';
-import imgSandwich from '../assets/images/sandwich-brisket.jpg';
-import imgCoffee from '../assets/images/caramel-coffee-cocktail.jpg';
-import imgTenders from '../assets/images/crispy-chicken.jpg';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const dishes = [
   {
     id: 'croissant',
     category: 'brunch',
-    image: imgCroissant,
+    imageWebp: `${baseUrl}/images/dishes/croissant-pistacho.webp`,
+    imageJpg: `${baseUrl}/images/dishes/croissant-pistacho.jpg`,
     badge: 'Desayuno & Brunch',
     tag: 'Especialidad',
     title: 'Croissant de Pistacho & Café 3D',
@@ -23,7 +17,8 @@ const dishes = [
   {
     id: 'burrata',
     category: 'entradas',
-    image: imgBurrata,
+    imageWebp: `${baseUrl}/images/dishes/burrata-prosciutto.webp`,
+    imageJpg: `${baseUrl}/images/dishes/burrata-prosciutto.jpg`,
     badge: 'Entrada Signature',
     tag: 'Para Iniciar',
     title: 'Bruschetta di Burrata & Prosciutto',
@@ -32,7 +27,8 @@ const dishes = [
   {
     id: 'pasta',
     category: 'fuertes',
-    image: imgPasta,
+    imageWebp: `${baseUrl}/images/dishes/pasta-fettuccine.webp`,
+    imageJpg: `${baseUrl}/images/dishes/pasta-fettuccine.jpg`,
     badge: 'Almuerzo & Cena',
     tag: 'Plato Fuerte',
     title: 'Fettuccine Alfredo & Pollo a la Brasa',
@@ -41,7 +37,8 @@ const dishes = [
   {
     id: 'sandwich',
     category: 'fuertes',
-    image: imgSandwich,
+    imageWebp: `${baseUrl}/images/dishes/sandwich-brisket.webp`,
+    imageJpg: `${baseUrl}/images/dishes/sandwich-brisket.jpg`,
     badge: 'Cocción Lenta',
     tag: 'Favorito Rooftop',
     title: 'Sándwich de Brisket en Masa Madre',
@@ -50,7 +47,8 @@ const dishes = [
   {
     id: 'coffee',
     category: 'cocteles',
-    image: imgCoffee,
+    imageWebp: `${baseUrl}/images/dishes/caramel-coffee-cocktail.webp`,
+    imageJpg: `${baseUrl}/images/dishes/caramel-coffee-cocktail.jpg`,
     badge: 'Coctelería & Café',
     tag: 'Bebida de Autor',
     title: 'Caramel Cold Brew & Cream',
@@ -59,7 +57,8 @@ const dishes = [
   {
     id: 'tenders',
     category: 'entradas',
-    image: imgTenders,
+    imageWebp: `${baseUrl}/images/dishes/crispy-chicken.webp`,
+    imageJpg: `${baseUrl}/images/dishes/crispy-chicken.jpg`,
     badge: 'Para Compartir',
     tag: 'Picadas',
     title: 'Tenders Crocantes & Chips de Plátano',
@@ -120,24 +119,25 @@ const dishes = [
 
   <!-- Cards Grid with Staggered Cascading Animation -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 w-full max-w-full" id="dishes-grid">
-    {dishes.map((dish, idx) => (
+    {dishes.map((dish) => (
       <article 
         class="dish-card liquid-card rounded-[28px] p-3.5 border border-white/12 group flex flex-col justify-between w-full min-w-0"
         data-category={dish.category}
       >
         <!-- Photo Container with Squircle Corners -->
         <div class="relative w-full aspect-[4/3] rounded-[20px] overflow-hidden mb-3.5 bg-[#1A0F09]">
-          <Image 
-            src={dish.image} 
-            alt={dish.title}
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-            width={600}
-            height={450}
-            quality={75}
-            format="webp"
-            loading="eager"
-            decoding="async"
-          />
+          <picture>
+            <source srcset={dish.imageWebp} type="image/webp" />
+            <img 
+              src={dish.imageJpg} 
+              alt={dish.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              width="600"
+              height="450"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
           <!-- 3D Frosted Glass Tag Inside Photo -->
           <div class="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-bold text-white shadow-lg tracking-wide">
             {dish.badge}
