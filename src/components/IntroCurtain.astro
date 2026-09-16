@@ -1,137 +1,132 @@
 ---
 import Logo from './Logo.astro';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<!-- Realistic Elevator Ascent & Split Door Intro Overlay -->
+<!-- ════════ REALISTIC ELEVATOR ASCENT & SPLIT DOORS INTRO ════════ -->
 <div 
   id="intro-curtain" 
   class="fixed inset-0 z-[100] pointer-events-auto overflow-hidden max-w-full select-none cursor-pointer"
   aria-hidden="true"
 >
-  <!-- ════════ LEFT ELEVATOR DOOR ════════ -->
+  <!-- ════════ LEFT ELEVATOR DOOR (Grey Brushed Stainless Steel) ════════ -->
   <div 
     id="curtain-left" 
-    class="absolute top-0 left-0 w-1/2 h-full overflow-hidden border-r border-[#6B543E]/60 shadow-[4px_0_35px_rgba(0,0,0,0.9)]"
-    style="background: linear-gradient(105deg, #150F0B 0%, #221811 35%, #2B1E16 70%, #1A120D 100%); transition: transform 1150ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease-out 700ms;"
+    class="absolute top-0 left-0 w-1/2 h-full overflow-hidden border-r border-[#2C2E33] shadow-[3px_0_25px_rgba(0,0,0,0.95)]"
+    style="transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease-out 750ms;"
   >
-    <!-- Metallic door vertical brushed texture line -->
-    <div class="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-amber-400/20 via-amber-300/40 to-amber-500/20 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+    <!-- Background realistic grey elevator door texture -->
+    <img 
+      src={`${baseUrl}/images/elevator-door-left.webp`} 
+      alt="Puerta izquierda de ascensor metálico"
+      class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none brightness-[0.92] contrast-[1.05]"
+      loading="eager"
+      decoding="async"
+    />
 
-    <!-- 100vw container positioned at left: 0 so its center aligns with the door seam -->
+    <!-- Vertical door seam bevel & dark rubber seal -->
+    <div class="absolute inset-y-0 right-0 w-[2px] bg-gradient-to-b from-black via-[#18191B] to-black shadow-[0_0_6px_rgba(0,0,0,0.8)]"></div>
+
+    <!-- 100vw container positioned at left: 0 so its center aligns with the seam -->
+    <!-- In the center: ONLY the Sexto Vento vector white logo -->
     <div class="absolute top-0 left-0 w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
-      
-      <!-- Elevator Floor Digital Display (Inspired by Reference Graphic) -->
-      <div class="elevator-panel mb-5 sm:mb-7 flex flex-col items-center">
-        
-        <!-- Brushed Metal Bezel Frame -->
-        <div class="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-b from-[#4A443E] via-[#26211C] to-[#16120E] border border-amber-400/30 shadow-[0_15px_35px_rgba(0,0,0,0.9),inset_0_1px_2px_rgba(255,255,255,0.2)]">
-          <!-- Dark Screen Display -->
-          <div class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl bg-[#080B08] border border-black/80 flex items-center gap-3 sm:gap-5 shadow-[inset_0_2px_10px_rgba(0,0,0,0.95)]">
-            <!-- Green Glowing UP Arrow -->
-            <span class="elevator-arrow text-emerald-400 font-black text-xl sm:text-2xl drop-shadow-[0_0_10px_rgba(52,211,153,0.9)] animate-pulse">
-              ▲
-            </span>
-            
-            <!-- Retro Digital Counter -->
-            <span class="elevator-num font-mono text-3xl sm:text-4xl font-black text-emerald-400 tracking-widest drop-shadow-[0_0_14px_rgba(52,211,153,0.9)]">
-              01
-            </span>
-
-            <!-- Floor Destination Tag -->
-            <div class="border-l border-white/10 pl-2.5 sm:pl-3 flex flex-col items-start">
-              <span class="text-[8px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-widest">Ascensor</span>
-              <span class="text-[10px] sm:text-xs font-black text-amber-300 tracking-wide">PISO 4</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Floor 4 Glowing Button (from reference) -->
-        <div class="mt-3 flex items-center gap-2.5">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-emerald-400 bg-[#0E1A11] text-emerald-300 font-black text-sm sm:text-base flex items-center justify-center shadow-[0_0_16px_rgba(52,211,153,0.8),inset_0_0_8px_rgba(52,211,153,0.3)]">
-            4
-          </div>
-          <div class="flex flex-col">
-            <span class="elevator-status text-[10px] sm:text-xs font-bold text-emerald-300/90 tracking-wide uppercase">Subiendo al Rooftop</span>
-            <span class="text-[9px] text-slate-400">Hotel Casa Volga</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Sexto Vento White Vector Logo Centered Across Doors -->
-      <div class="w-56 sm:w-72 md:w-80 lg:w-96 text-white filter drop-shadow-[0_0_30px_rgba(245,158,11,0.35)] drop-shadow-[0_12px_40px_rgba(0,0,0,0.95)]">
+      <div class="w-48 sm:w-64 md:w-80 lg:w-96 text-white filter drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
         <Logo class="w-full h-auto text-white" />
       </div>
 
-      <!-- Tap to skip hint -->
-      <div class="mt-8 text-[10px] sm:text-xs font-medium text-slate-400/70 tracking-widest uppercase">
+      <!-- Subtle skip text -->
+      <div class="mt-8 sm:mt-12 text-[10px] sm:text-xs font-semibold tracking-widest text-slate-300/80 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
         Toca para abrir
       </div>
-
     </div>
   </div>
 
-  <!-- ════════ RIGHT ELEVATOR DOOR ════════ -->
+  <!-- ════════ RIGHT ELEVATOR DOOR (Grey Brushed Stainless Steel + Lateral Panel) ════════ -->
   <div 
     id="curtain-right" 
-    class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden border-l border-[#6B543E]/60 shadow-[-4px_0_35px_rgba(0,0,0,0.9)]"
-    style="background: linear-gradient(255deg, #150F0B 0%, #221811 35%, #2B1E16 70%, #1A120D 100%); transition: transform 1150ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease-out 700ms;"
+    class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden border-l border-[#2C2E33] shadow-[-3px_0_25px_rgba(0,0,0,0.95)]"
+    style="transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease-out 750ms;"
   >
-    <!-- Metallic door vertical brushed texture line -->
-    <div class="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-amber-400/20 via-amber-300/40 to-amber-500/20 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+    <!-- Background realistic grey elevator door texture -->
+    <img 
+      src={`${baseUrl}/images/elevator-door-right.webp`} 
+      alt="Puerta derecha de ascensor metálico"
+      class="absolute inset-0 w-full h-full object-cover object-left pointer-events-none brightness-[0.92] contrast-[1.05]"
+      loading="eager"
+      decoding="async"
+    />
 
-    <!-- 100vw container offset by -50vw so its center aligns with the door seam -->
+    <!-- Vertical door seam bevel & dark rubber seal -->
+    <div class="absolute inset-y-0 left-0 w-[2px] bg-gradient-to-b from-black via-[#18191B] to-black shadow-[0_0_6px_rgba(0,0,0,0.8)]"></div>
+
+    <!-- 100vw container offset by -50vw so its center aligns with the seam -->
+    <!-- In the center: ONLY the Sexto Vento vector white logo -->
     <div class="absolute top-0 -left-[50vw] w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
-      
-      <!-- Elevator Floor Digital Display (Identical right copy for seamless split) -->
-      <div class="elevator-panel mb-5 sm:mb-7 flex flex-col items-center">
-        
-        <!-- Brushed Metal Bezel Frame -->
-        <div class="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-b from-[#4A443E] via-[#26211C] to-[#16120E] border border-amber-400/30 shadow-[0_15px_35px_rgba(0,0,0,0.9),inset_0_1px_2px_rgba(255,255,255,0.2)]">
-          <!-- Dark Screen Display -->
-          <div class="px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl bg-[#080B08] border border-black/80 flex items-center gap-3 sm:gap-5 shadow-[inset_0_2px_10px_rgba(0,0,0,0.95)]">
-            <!-- Green Glowing UP Arrow -->
-            <span class="elevator-arrow text-emerald-400 font-black text-xl sm:text-2xl drop-shadow-[0_0_10px_rgba(52,211,153,0.9)] animate-pulse">
-              ▲
-            </span>
-            
-            <!-- Retro Digital Counter -->
-            <span class="elevator-num font-mono text-3xl sm:text-4xl font-black text-emerald-400 tracking-widest drop-shadow-[0_0_14px_rgba(52,211,153,0.9)]">
-              01
-            </span>
-
-            <!-- Floor Destination Tag -->
-            <div class="border-l border-white/10 pl-2.5 sm:pl-3 flex flex-col items-start">
-              <span class="text-[8px] sm:text-[9px] font-bold text-slate-400 uppercase tracking-widest">Ascensor</span>
-              <span class="text-[10px] sm:text-xs font-black text-amber-300 tracking-wide">PISO 4</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Floor 4 Glowing Button -->
-        <div class="mt-3 flex items-center gap-2.5">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-emerald-400 bg-[#0E1A11] text-emerald-300 font-black text-sm sm:text-base flex items-center justify-center shadow-[0_0_16px_rgba(52,211,153,0.8),inset_0_0_8px_rgba(52,211,153,0.3)]">
-            4
-          </div>
-          <div class="flex flex-col">
-            <span class="elevator-status text-[10px] sm:text-xs font-bold text-emerald-300/90 tracking-wide uppercase">Subiendo al Rooftop</span>
-            <span class="text-[9px] text-slate-400">Hotel Casa Volga</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Sexto Vento White Vector Logo Centered Across Doors -->
-      <div class="w-56 sm:w-72 md:w-80 lg:w-96 text-white filter drop-shadow-[0_0_30px_rgba(245,158,11,0.35)] drop-shadow-[0_12px_40px_rgba(0,0,0,0.95)]">
+      <div class="w-48 sm:w-64 md:w-80 lg:w-96 text-white filter drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
         <Logo class="w-full h-auto text-white" />
       </div>
 
-      <!-- Tap to skip hint -->
-      <div class="mt-8 text-[10px] sm:text-xs font-medium text-slate-400/70 tracking-widest uppercase">
+      <!-- Subtle skip text -->
+      <div class="mt-8 sm:mt-12 text-[10px] sm:text-xs font-semibold tracking-widest text-slate-300/80 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
         Toca para abrir
+      </div>
+    </div>
+
+    <!-- ════════ ULTRA-REALISTIC LATERAL ELEVATOR CONTROL PANEL ════════ -->
+    <!-- Positioned on the lateral right side of the elevator, moving along with the right door -->
+    <div class="absolute right-2.5 sm:right-6 md:right-12 top-1/2 -translate-y-1/2 w-[72px] sm:w-[92px] md:w-[110px] pointer-events-none select-none filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.95)]">
+      
+      <div class="relative w-full aspect-[330/1220] rounded-lg overflow-hidden border border-white/20 shadow-2xl">
+        <!-- Photorealistic brushed stainless steel panel image -->
+        <img 
+          src={`${baseUrl}/images/elevator-panel-clean.webp`} 
+          alt="Panel de control realista de ascensor con botones del 1 al 4 y alarma"
+          class="w-full h-full object-fill"
+          loading="eager"
+          decoding="async"
+        />
+
+        <!-- ─── Retro Red LED Screen Overlay (Screen Area: Top 5.9%, Left 18.2%, Width 69.7%, Height 16.4%) ─── -->
+        <div class="absolute top-[5.9%] left-[18.2%] w-[69.7%] h-[16.4%] flex flex-col items-center justify-center bg-[#070907] px-1 overflow-hidden">
+          
+          <div class="flex items-center justify-center gap-1 sm:gap-1.5">
+            <!-- Digital 7-Segment Floor Number -->
+            <span 
+              id="led-floor-num" 
+              class="font-mono text-base sm:text-xl md:text-2xl font-black text-red-500 tracking-tighter drop-shadow-[0_0_8px_rgba(239,68,68,0.9)]"
+            >
+              1
+            </span>
+            <!-- Red Up Arrow -->
+            <span 
+              id="led-floor-arrow" 
+              class="font-mono text-sm sm:text-base md:text-lg font-black text-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] animate-pulse"
+            >
+              ↑
+            </span>
+          </div>
+
+          <!-- Small subtext in display -->
+          <span 
+            id="led-subtext"
+            class="text-[5px] sm:text-[7px] font-mono uppercase text-red-400/80 tracking-widest mt-0.5"
+          >
+            ROOFTOP
+          </span>
+        </div>
+
+        <!-- ─── Button 4 Glowing Active Ring Overlay (Center: Left 53.5%, Top 33.1%) ─── -->
+        <div 
+          id="btn-4-glow"
+          class="absolute top-[33.1%] left-[53.5%] -translate-x-1/2 -translate-y-1/2 w-[34%] aspect-square rounded-full border border-emerald-400 shadow-[0_0_12px_#22c55e,inset_0_0_6px_#22c55e] animate-pulse"
+        >
+        </div>
+
       </div>
 
     </div>
+
   </div>
 </div>
 
@@ -140,9 +135,10 @@ import Logo from './Logo.astro';
     const curtain = document.getElementById('intro-curtain');
     const left = document.getElementById('curtain-left');
     const right = document.getElementById('curtain-right');
-    const numDisplays = document.querySelectorAll('.elevator-num');
-    const arrowDisplays = document.querySelectorAll('.elevator-arrow');
-    const statusDisplays = document.querySelectorAll('.elevator-status');
+    const ledNum = document.getElementById('led-floor-num');
+    const ledArrow = document.getElementById('led-floor-arrow');
+    const ledSub = document.getElementById('led-subtext');
+    const btn4Glow = document.getElementById('btn-4-glow');
 
     if (!curtain || !left || !right) return;
 
@@ -153,41 +149,47 @@ import Logo from './Logo.astro';
       hasOpened = true;
       curtain.style.pointerEvents = 'none';
 
-      // Smooth split of the metallic elevator doors
+      // Split open the grey metallic elevator doors to left and right
       left.style.transform = 'translate3d(-100%, 0, 0)';
       left.style.opacity = '0';
       right.style.transform = 'translate3d(100%, 0, 0)';
       right.style.opacity = '0';
 
-      // Clean up from DOM to ensure zero GPU/layout overhead
+      // Clean up from DOM to ensure zero memory or scroll interference
       setTimeout(() => {
         curtain.remove();
-      }, 1200);
+      }, 1250);
     }
 
-    // Sequence of floors: 01 -> 02 -> 03 -> 04
-    function updateFloor(floorStr) {
-      numDisplays.forEach(el => { el.textContent = floorStr; });
-    }
+    // Sequence of floors: 1 -> 2 -> 3 -> 4
+    setTimeout(() => {
+      if (ledNum) ledNum.textContent = '2';
+    }, 320);
 
-    // Floor ascent sequence: fast and fluid (approx 1.2s total before opening)
-    setTimeout(() => { updateFloor('02'); }, 320);
-    setTimeout(() => { updateFloor('03'); }, 640);
-    setTimeout(() => { 
-      updateFloor('04'); 
-      statusDisplays.forEach(el => { 
-        el.textContent = '¡Llegamos al Piso 4!';
-        el.classList.add('text-amber-300');
-      });
-      arrowDisplays.forEach(el => {
-        el.textContent = '★';
-        el.classList.remove('animate-pulse');
-        el.classList.add('text-amber-400');
-      });
-    }, 960);
+    setTimeout(() => {
+      if (ledNum) ledNum.textContent = '3';
+    }, 650);
 
-    // When floor 4 is reached, automatically open the elevator doors
-    setTimeout(openDoors, 1350);
+    setTimeout(() => {
+      if (ledNum) {
+        ledNum.textContent = '4';
+        ledNum.className = 'font-mono text-base sm:text-xl md:text-2xl font-black text-amber-300 tracking-tighter drop-shadow-[0_0_10px_rgba(252,211,77,0.95)]';
+      }
+      if (ledArrow) {
+        ledArrow.textContent = '★';
+        ledArrow.className = 'font-mono text-sm sm:text-base md:text-lg font-black text-amber-300 drop-shadow-[0_0_10px_rgba(252,211,77,0.95)]';
+      }
+      if (ledSub) {
+        ledSub.textContent = 'PISO 4';
+        ledSub.className = 'text-[5px] sm:text-[7px] font-mono uppercase text-amber-300 tracking-widest mt-0.5';
+      }
+      if (btn4Glow) {
+        btn4Glow.className = 'absolute top-[33.1%] left-[53.5%] -translate-x-1/2 -translate-y-1/2 w-[34%] aspect-square rounded-full border-2 border-amber-300 shadow-[0_0_18px_#f59e0b,inset_0_0_8px_#f59e0b]';
+      }
+    }, 980);
+
+    // Automatic smooth door opening when floor 4 is reached
+    setTimeout(openDoors, 1400);
 
     // Instant skip on tap, click, or scroll
     curtain.addEventListener('click', openDoors, { once: true });
