@@ -4,9 +4,9 @@ import { restaurantConfig } from '../config/restaurant.config';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="video" class="max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-6 lg:py-10 reveal-on-scroll">
-  <div class="liquid-card rounded-[32px] p-6 sm:p-8 lg:p-12 border border-white/12 relative overflow-hidden">
-    <!-- Ambient Sunset Glow behind video card (Pure Radial Gradient - Zero Blur Filter) -->
+<section id="video" class="max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-6 lg:py-10">
+  <div class="liquid-card rounded-[32px] p-6 sm:p-8 lg:p-12 border border-amber-400/20 relative overflow-hidden">
+    <!-- Ambient Sunset Glow (Pure Radial Gradient - Zero Blur Filter) -->
     <div class="absolute -left-16 -top-16 w-56 h-56 lg:w-80 lg:h-80 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.22)_0%,transparent_70%)] pointer-events-none"></div>
     <div class="absolute -right-16 -bottom-16 w-60 h-60 lg:w-96 lg:h-96 rounded-full bg-[radial-gradient(circle,rgba(234,88,12,0.20)_0%,transparent_70%)] pointer-events-none"></div>
 
@@ -15,61 +15,119 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <!-- Text Description Column -->
       <div class="lg:col-span-6 mb-8 lg:mb-0">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-pill text-xs sm:text-sm font-semibold text-amber-300 border border-amber-500/30 mb-3.5">
-          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-          <span>Experiencia Audiovisual</span>
+          <span class="text-sm">🛗</span>
+          <span>Acceso Exclusivo • 4to Piso</span>
         </div>
 
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-3 lg:mb-4">
-          Conoce Sexto Vento en Video
+          Sube a Nuestro Rooftop en Ascensor
         </h2>
 
         <p class="text-xs sm:text-sm lg:text-base text-slate-300/90 leading-relaxed mb-6">
-          Un adelanto vertical de la atmósfera que te espera en el 4to piso: atardecer con vista panorámica a la cordillera, coctelería de autor y la mejor gastronomía de Roldanillo.
+          Un adelanto vertical de la atmósfera que te espera en las alturas. Conoce cómo llegar y acceder de manera fácil y directa desde la plaza principal de Roldanillo.
         </p>
 
-        <!-- Feature highlights -->
-        <div class="space-y-2.5 mb-6 text-xs sm:text-sm text-slate-300">
-          <div class="flex items-center gap-3">
-            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
-            <span>Formato vertical optimizado para celular</span>
+        <!-- Access Steps Guide Card (Hotel Casa Volga -> Elevator -> Rooftop) -->
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.04] border border-amber-500/25 mb-6 space-y-3.5">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-sm shrink-0 border border-amber-500/30">
+              1
+            </div>
+            <div>
+              <h4 class="text-xs sm:text-sm font-bold text-white">
+                Entrada por Hotel Casa Volga
+              </h4>
+              <p class="text-[11px] sm:text-xs text-slate-300/80 leading-relaxed">
+                Ingresa por la puerta principal del hotel sobre la plaza central de Roldanillo.
+              </p>
+            </div>
           </div>
-          <div class="flex items-center gap-3">
-            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
-            <span>Tomas aéreas de la terraza y la plaza principal</span>
+
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-sm shrink-0 border border-amber-500/30">
+              2
+            </div>
+            <div>
+              <h4 class="text-xs sm:text-sm font-bold text-white">
+                Toma el Ascensor del Edificio
+              </h4>
+              <p class="text-[11px] sm:text-xs text-slate-300/80 leading-relaxed">
+                En el lobby, dirígete al ascensor y presiona el botón del <strong>Piso 4</strong>.
+              </p>
+            </div>
           </div>
-          <div class="flex items-center gap-3">
-            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
-            <span>Presentación de platos insignia y cócteles</span>
+
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-sm shrink-0 border border-amber-500/30">
+              3
+            </div>
+            <div>
+              <h4 class="text-xs sm:text-sm font-bold text-white">
+                Bienvenido a Sexto Vento
+              </h4>
+              <p class="text-[11px] sm:text-xs text-slate-300/80 leading-relaxed">
+                Las puertas se abren directamente a nuestra terraza panorámica con vista 360°.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Social link pill -->
         <a 
-          href={restaurantConfig.instagramUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-amber-300/80 hover:text-amber-200 transition-colors"
+          href={restaurantConfig.instagramUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-amber-300/90 hover:text-amber-200 transition-colors"
         >
-          <span>Síguenos en Instagram para ver stories diarios</span>
+          <span>Síguenos en Instagram para ver historias y adelantos</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
           </svg>
         </a>
       </div>
 
-      <!-- Vertical 9:16 Video Player Container -->
-      <div class="lg:col-span-6 flex justify-center">
+      <!-- Vertical 9:16 Video Player Container with Elevator Animation -->
+      <div class="lg:col-span-6 flex flex-col items-center">
+        
+        <!-- Elevator Floor Indicator Header -->
+        <div class="w-full max-w-[280px] sm:max-w-[310px] mb-2.5 px-3 py-2 rounded-2xl bg-[#140C07] border border-amber-400/30 flex items-center justify-between shadow-md">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-wider">Ascensor</span>
+          </div>
+          
+          <!-- Digital Floor Badges -->
+          <div class="flex items-center gap-1.5" id="elevator-floors">
+            <span class="floor-num px-2 py-0.5 rounded text-[11px] font-bold transition-all text-slate-500 bg-white/5" data-floor="1">P1</span>
+            <span class="floor-num px-2 py-0.5 rounded text-[11px] font-bold transition-all text-slate-500 bg-white/5" data-floor="2">P2</span>
+            <span class="floor-num px-2 py-0.5 rounded text-[11px] font-bold transition-all text-slate-500 bg-white/5" data-floor="3">P3</span>
+            <span class="floor-num px-2 py-0.5 rounded text-[11px] font-bold transition-all bg-amber-500 text-black shadow-[0_0_10px_rgba(245,158,11,0.6)]" data-floor="4">P4</span>
+          </div>
+
+          <!-- Re-play Doors Button -->
+          <button 
+            type="button" 
+            id="toggle-elevator-btn"
+            class="text-[10px] font-bold text-amber-300 hover:text-amber-200 transition-colors flex items-center gap-1"
+            title="Simular apertura de ascensor"
+          >
+            <span>Subir</span>
+            <span class="text-xs">↑</span>
+          </button>
+        </div>
+
+        <!-- The 9:16 Video Container -->
         <div 
           id="video-player-card"
-          class="w-full max-w-[280px] sm:max-w-[310px] aspect-[9/16] rounded-[32px] overflow-hidden relative border border-amber-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.85)] group cursor-pointer select-none transform transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
+          class="w-full max-w-[280px] sm:max-w-[310px] aspect-[9/16] rounded-[32px] overflow-hidden relative border border-amber-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.85)] group cursor-pointer select-none"
         >
-          <!-- Background Poster Image -->
+          <!-- Background Poster Image (Rooftop Drone View) -->
           <picture>
             <source srcset={`${baseUrl}/images/hero/hero-mobile.webp`} type="image/webp" />
             <img 
               src={`${baseUrl}/images/hero/hero-mobile.jpg`} 
-              alt="Vista de la terraza de Sexto Vento" 
-              class="absolute inset-0 w-full h-full object-cover brightness-[0.7] group-hover:brightness-[0.8] transition duration-500 scale-105 group-hover:scale-110"
+              alt="Vista de la terraza de Sexto Vento al abrir el ascensor" 
+              class="absolute inset-0 w-full h-full object-cover brightness-[0.75] group-hover:brightness-[0.85] transition duration-500"
               width="400"
               height="710"
               loading="eager"
@@ -77,13 +135,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
             />
           </picture>
 
-          <!-- Dark Gradient & Glass Vignette -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/60 pointer-events-none"></div>
+          <!-- Dark Gradient Vignette -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/60 pointer-events-none"></div>
 
           <!-- Top Overlay Badges -->
           <div class="absolute top-4 inset-x-4 flex items-center justify-between z-10 pointer-events-none">
             <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-black/80 text-slate-200 border border-white/15">
-              4to Piso • Rooftop
+              Piso 4 • Hotel Casa Volga
             </span>
             <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#1A0F09]/95 text-amber-300 border border-amber-400/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
@@ -94,17 +152,14 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           <!-- Centered Play Button & Halo -->
           <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
             <div class="relative flex items-center justify-center">
-              <!-- Ripple halo -->
               <div class="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-amber-400/40 animate-ping opacity-30 pointer-events-none"></div>
               
-              <!-- Frosted Play Button -->
               <button 
                 type="button" 
                 id="play-button" 
                 aria-label="Reproducir video de presentación"
                 class="w-16 h-16 sm:w-20 sm:h-20 rounded-full liquid-pill flex items-center justify-center text-amber-300 border border-amber-400/50 shadow-[0_10px_35px_rgba(245,158,11,0.4)] group-hover:scale-110 transition-transform duration-300 relative z-20"
               >
-                <!-- Play triangle SVG -->
                 <svg class="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-amber-300 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
@@ -134,6 +189,27 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
               </div>
             </div>
           </div>
+
+          <!-- ─── Elevator Doors Overlay (Smooth GPU translate) ─── -->
+          <div id="elevator-doors" class="absolute inset-0 z-30 pointer-events-none flex overflow-hidden">
+            <!-- Left Door -->
+            <div 
+              id="door-left" 
+              class="w-1/2 h-full bg-gradient-to-r from-[#1A1009] to-[#25170E] border-r border-amber-400/50 shadow-[2px_0_15px_rgba(0,0,0,0.9)] flex items-center justify-end pr-2 transition-transform duration-1000 ease-out"
+              style="transform: translateX(-100%);"
+            >
+              <div class="h-16 w-1 rounded-full bg-amber-400/40"></div>
+            </div>
+            <!-- Right Door -->
+            <div 
+              id="door-right" 
+              class="w-1/2 h-full bg-gradient-to-l from-[#1A1009] to-[#25170E] border-l border-amber-400/50 shadow-[-2px_0_15px_rgba(0,0,0,0.9)] flex items-center justify-start pl-2 transition-transform duration-1000 ease-out"
+              style="transform: translateX(100%);"
+            >
+              <div class="h-16 w-1 rounded-full bg-amber-400/40"></div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -201,9 +277,14 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     const card = document.getElementById('video-player-card');
     const modal = document.getElementById('video-modal');
     const closeBtn = document.getElementById('close-video-modal');
+    const doorLeft = document.getElementById('door-left');
+    const doorRight = document.getElementById('door-right');
+    const toggleBtn = document.getElementById('toggle-elevator-btn');
+    const floorBadges = document.querySelectorAll('#elevator-floors .floor-num');
 
     if (!card || !modal || !closeBtn) return;
 
+    // Open & Close Video Modal
     function openModal() {
       modal.classList.remove('hidden');
       modal.classList.add('flex');
@@ -227,5 +308,48 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
+
+    // Elevator Simulation Animation (Floor count P1 -> P2 -> P3 -> P4 and door slide)
+    let isElevatorRunning = false;
+    function runElevatorSequence() {
+      if (isElevatorRunning || !doorLeft || !doorRight) return;
+      isElevatorRunning = true;
+
+      // Close doors
+      doorLeft.style.transform = 'translateX(0)';
+      doorRight.style.transform = 'translateX(0)';
+
+      let currentFloor = 1;
+      function setFloorHighlight(f) {
+        floorBadges.forEach(b => {
+          if (parseInt(b.getAttribute('data-floor'), 10) === f) {
+            b.className = 'floor-num px-2 py-0.5 rounded text-[11px] font-bold transition-all bg-amber-500 text-black shadow-[0_0_10px_rgba(245,158,11,0.6)]';
+          } else {
+            b.className = 'floor-num px-2 py-0.5 rounded text-[11px] font-bold transition-all text-slate-500 bg-white/5';
+          }
+        });
+      }
+
+      setFloorHighlight(1);
+
+      const interval = setInterval(() => {
+        currentFloor++;
+        setFloorHighlight(currentFloor);
+
+        if (currentFloor === 4) {
+          clearInterval(interval);
+          setTimeout(() => {
+            // Open doors smoothly
+            doorLeft.style.transform = 'translateX(-100%)';
+            doorRight.style.transform = 'translateX(100%)';
+            isElevatorRunning = false;
+          }, 450);
+        }
+      }, 400);
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', runElevatorSequence);
+    }
   })();
 </script>
