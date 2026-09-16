@@ -1,0 +1,73 @@
+---
+import Logo from './Logo.astro';
+---
+
+<!-- Cinematic Split Curtain Intro Overlay -->
+<div 
+  id="intro-curtain" 
+  class="fixed inset-0 z-[100] pointer-events-auto overflow-hidden max-w-full"
+  aria-hidden="true"
+>
+  <!-- Left Panel: slides to the left -->
+  <div 
+    id="curtain-left" 
+    class="absolute top-0 left-0 w-1/2 h-full overflow-hidden bg-[#0B0704]/95 backdrop-blur-2xl border-r border-amber-400/40 shadow-[4px_0_35px_rgba(245,158,11,0.35)] will-change-transform"
+    style="transition: transform 1850ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms ease-out 1150ms;"
+  >
+    <!-- 100vw container positioned at left: 0 so its center aligns with the seam -->
+    <div class="absolute top-0 left-0 w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
+      <div class="w-56 sm:w-72 md:w-80 lg:w-96 text-white filter drop-shadow-[0_0_30px_rgba(245,158,11,0.3)] drop-shadow-[0_10px_35px_rgba(0,0,0,0.9)]">
+        <Logo class="w-full h-auto text-white" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Panel: slides to the right -->
+  <div 
+    id="curtain-right" 
+    class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden bg-[#0B0704]/95 backdrop-blur-2xl border-l border-amber-400/40 shadow-[-4px_0_35px_rgba(245,158,11,0.35)] will-change-transform"
+    style="transition: transform 1850ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms ease-out 1150ms;"
+  >
+    <!-- 100vw container offset by -50vw so its center aligns with the seam -->
+    <div class="absolute top-0 -left-[50vw] w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
+      <div class="w-56 sm:w-72 md:w-80 lg:w-96 text-white filter drop-shadow-[0_0_30px_rgba(245,158,11,0.3)] drop-shadow-[0_10px_35px_rgba(0,0,0,0.9)]">
+        <Logo class="w-full h-auto text-white" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const curtain = document.getElementById('intro-curtain');
+    const left = document.getElementById('curtain-left');
+    const right = document.getElementById('curtain-right');
+
+    if (!curtain || !left || !right) return;
+
+    let hasSplit = false;
+
+    function startSplit() {
+      if (hasSplit) return;
+      hasSplit = true;
+
+      left.style.transform = 'translate3d(-100%, 0, 0)';
+      left.style.opacity = '0';
+      right.style.transform = 'translate3d(100%, 0, 0)';
+      right.style.opacity = '0';
+
+      // Remove from DOM once animation completes to free memory and prevent blocking
+      setTimeout(() => {
+        curtain.style.display = 'none';
+        curtain.remove();
+      }, 1900);
+    }
+
+    // Allow user to tap/click to split immediately if preferred
+    curtain.addEventListener('click', startSplit, { once: true });
+    curtain.addEventListener('touchstart', startSplit, { once: true, passive: true });
+
+    // Hold the logo steady and clear for ~1300ms so it is completely visible and readable
+    setTimeout(startSplit, 1300);
+  })();
+</script>

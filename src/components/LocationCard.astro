@@ -1,0 +1,114 @@
+---
+import { restaurantConfig } from '../config/restaurant.config';
+---
+
+<section id="ubicacion" class="max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto px-4 sm:px-6 py-8 lg:py-12 reveal-on-scroll">
+  <div class="liquid-card rounded-3xl p-6 sm:p-7 lg:p-10 border border-white/10 relative overflow-hidden">
+    <!-- Glow -->
+    <div class="absolute -left-10 bottom-0 w-36 h-36 lg:w-48 lg:h-48 rounded-full bg-amber-500/15 blur-[50px] pointer-events-none"></div>
+
+    <div class="relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 lg:py-1.5 rounded-full liquid-pill text-xs lg:text-sm font-semibold text-amber-300 border border-amber-500/25 mb-3 lg:mb-4">
+        <span>Cómo Llegar</span>
+      </div>
+
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight mb-1.5 lg:mb-2">
+        Ubicación en Roldanillo
+      </h2>
+      <p class="text-xs sm:text-sm lg:text-base text-slate-300/80 mb-6 lg:mb-8">
+        En pleno corazón de Roldanillo, sobre la plaza principal.
+      </p>
+
+      <!-- Address Box with One-Tap Copy -->
+      <div class="p-4 rounded-2xl bg-white/[0.04] border border-amber-500/15 mb-6 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs sm:text-sm font-bold text-white truncate">
+              {restaurantConfig.location.address}
+            </p>
+            <p class="text-[11px] text-slate-400">
+              {restaurantConfig.location.placeName} • {restaurantConfig.location.city}
+            </p>
+          </div>
+        </div>
+
+        <button 
+          id="copy-address-btn"
+          data-address={`${restaurantConfig.location.address}, ${restaurantConfig.location.placeName}, ${restaurantConfig.location.city}`}
+          class="shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full liquid-pill text-xs md:text-sm font-semibold text-slate-200 hover:text-white transition-all btn-press flex items-center gap-1.5"
+          title="Copiar dirección"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+          </svg>
+          <span id="copy-btn-text">Copiar</span>
+        </button>
+      </div>
+
+      <!-- Native Navigation Buttons -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- Google Maps -->
+        <a 
+          href={restaurantConfig.location.googleMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between px-4 py-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white font-semibold text-xs transition-all duration-200 group btn-press"
+        >
+          <span class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px] font-bold">G</span>
+            Abrir en Google Maps
+          </span>
+          <svg class="w-3.5 h-3.5 text-slate-400 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </a>
+
+        <!-- Waze -->
+        <a 
+          href={restaurantConfig.location.wazeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between px-4 py-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white font-semibold text-xs transition-all duration-200 group btn-press"
+        >
+          <span class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px] font-bold">W</span>
+            Navegar con Waze
+          </span>
+          <svg class="w-3.5 h-3.5 text-slate-400 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const copyBtn = document.getElementById('copy-address-btn');
+  const copyText = document.getElementById('copy-btn-text');
+
+  if (copyBtn && copyText) {
+    copyBtn.addEventListener('click', async () => {
+      const address = copyBtn.getAttribute('data-address') || '';
+      try {
+        await navigator.clipboard.writeText(address);
+        copyText.textContent = '¡Copiado!';
+        copyBtn.classList.add('bg-emerald-500/20', 'text-emerald-300');
+        setTimeout(() => {
+          copyText.textContent = 'Copiar';
+          copyBtn.classList.remove('bg-emerald-500/20', 'text-emerald-300');
+        }, 2200);
+      } catch (err) {
+        console.error('Error al copiar dirección', err);
+      }
+    });
+  }
+</script>
+

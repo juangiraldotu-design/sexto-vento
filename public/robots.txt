@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sextovento.com/sitemap.xml
+

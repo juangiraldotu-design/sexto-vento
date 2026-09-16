@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import LiveStatus from '../components/LiveStatus.astro';
+import RooftopExperience from '../components/RooftopExperience.astro';
+import VideoShowcase from '../components/VideoShowcase.astro';
+import DishesShowcase from '../components/DishesShowcase.astro';
+import LocationCard from '../components/LocationCard.astro';
+import Footer from '../components/Footer.astro';
+import FloatingDock from '../components/FloatingDock.astro';
+---
+
+<BaseLayout>
+  <Header />
+  
+  <main class="relative z-10 flex flex-col">
+    <Hero />
+    <LiveStatus />
+    <RooftopExperience />
+    <VideoShowcase />
+    <DishesShowcase />
+    <LocationCard />
+  </main>
+
+  <Footer />
+  <FloatingDock />
+</BaseLayout>
+

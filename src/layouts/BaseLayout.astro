@@ -1,0 +1,142 @@
+---
+import '../styles/global.css';
+import { restaurantConfig } from '../config/restaurant.config';
+import IntroCurtain from '../components/IntroCurtain.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${restaurantConfig.name} • Rooftop & Experiencia Gastronómica en Roldanillo`,
+  description = restaurantConfig.description,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0B0704" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/assets/hero-rooftop.jpg" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content={restaurantConfig.name} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/assets/hero-rooftop.jpg" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": restaurantConfig.name,
+      "description": restaurantConfig.description,
+      "telephone": restaurantConfig.whatsappDisplay,
+      "url": "https://instagram.com/sexto_vento",
+      "hasMenu": restaurantConfig.menuUrl,
+      "servesCuisine": "Gastronomía contemporánea, Brunch, Parrilla, Coctelería de autor",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": restaurantConfig.location.address,
+        "addressLocality": restaurantConfig.location.city,
+        "addressRegion": restaurantConfig.location.department,
+        "addressCountry": "CO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": restaurantConfig.location.coordinates.lat,
+        "longitude": restaurantConfig.location.coordinates.lng
+      }
+    })} />
+  </head>
+  <body class="bg-[#0B0704] text-[#FDF8F3] min-h-screen relative overflow-x-hidden antialiased selection:bg-amber-500/30 selection:text-amber-200 max-w-full">
+
+    <!-- Cinematic Split Curtain Intro -->
+    <IntroCurtain />
+
+    <!-- Atmospheric background sunset glow container strictly contained to prevent any horizontal overflow -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[550px] h-[380px] rounded-full bg-amber-500/22 blur-[110px] -mt-32"></div>
+      <div class="absolute top-[35%] -right-24 w-[380px] h-[380px] rounded-full bg-orange-600/18 blur-[95px]"></div>
+      <div class="absolute top-[75%] -left-24 w-[340px] h-[340px] rounded-full bg-amber-600/15 blur-[85px]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-full">
+      <slot />
+    </div>
+
+    <!-- Lightweight scroll reveal + dock hide/show -->
+    <script is:inline>
+      // IntersectionObserver for reveal animations — fires once per element
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        }
+      }, { rootMargin: '0px 0px -30px 0px', threshold: 0.1 });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => io.observe(el));
+
+      // Dock auto-hide: visible once scrolled past Hero, hides on scroll down, shows on scroll up
+      const dock = document.getElementById('floating-dock');
+      if (dock) {
+        let prev = scrollY;
+        let raf = false;
+
+        function updateDock() {
+          const y = scrollY;
+          if (y < 260) {
+            // At top (Hero CTA buttons are visible), hide dock to avoid clutter & duplicate CTAs
+            dock.style.transform = 'translateY(120%)';
+            dock.style.opacity = '0';
+          } else if (y > prev + 8) {
+            // Scrolling down: hide dock for full content immersion
+            dock.style.transform = 'translateY(120%)';
+            dock.style.opacity = '0';
+          } else {
+            // Scrolling up or stationary: show dock smoothly
+            dock.style.transform = 'translateY(0)';
+            dock.style.opacity = '1';
+          }
+          prev = y;
+          raf = false;
+        }
+
+        addEventListener('scroll', () => {
+          if (raf) return;
+          raf = true;
+          requestAnimationFrame(updateDock);
+        }, { passive: true });
+
+        // Initial evaluation
+        updateDock();
+      }
+    </script>
+  </body>
+</html>

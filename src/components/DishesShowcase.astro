@@ -1,0 +1,240 @@
+---
+import { Image } from 'astro:assets';
+import { restaurantConfig } from '../config/restaurant.config';
+
+// Import images
+import imgCroissant from '../assets/images/croissant-pistacho.jpg';
+import imgBurrata from '../assets/images/burrata-prosciutto.jpg';
+import imgPasta from '../assets/images/pasta-fettuccine.jpg';
+import imgSandwich from '../assets/images/sandwich-brisket.jpg';
+import imgCoffee from '../assets/images/caramel-coffee-cocktail.jpg';
+import imgTenders from '../assets/images/crispy-chicken.jpg';
+
+const dishes = [
+  {
+    id: 'croissant',
+    category: 'brunch',
+    image: imgCroissant,
+    badge: 'Desayuno & Brunch',
+    tag: 'Especialidad',
+    title: 'Croissant de Pistacho & Café 3D',
+    desc: 'Hojaldre artesanal de mantequilla con crema de pistacho tostado y latte art tridimensional de autor.',
+  },
+  {
+    id: 'burrata',
+    category: 'entradas',
+    image: imgBurrata,
+    badge: 'Entrada Signature',
+    tag: 'Para Iniciar',
+    title: 'Bruschetta di Burrata & Prosciutto',
+    desc: 'Masa madre tostada al horno con pesto fresco, burrata cremosa y rosas de prosciutto di Parma.',
+  },
+  {
+    id: 'pasta',
+    category: 'fuertes',
+    image: imgPasta,
+    badge: 'Almuerzo & Cena',
+    tag: 'Plato Fuerte',
+    title: 'Fettuccine Alfredo & Pollo a la Brasa',
+    desc: 'Pasta fresca en suave crema de quesos madurados, pechuga a la brasa y finas tostadas de la casa.',
+  },
+  {
+    id: 'sandwich',
+    category: 'fuertes',
+    image: imgSandwich,
+    badge: 'Cocción Lenta',
+    tag: 'Favorito Rooftop',
+    title: 'Sándwich de Brisket en Masa Madre',
+    desc: 'Carne desmechada en cocción lenta de 12 horas, queso fundido y chips artesanales crocantes.',
+  },
+  {
+    id: 'coffee',
+    category: 'cocteles',
+    image: imgCoffee,
+    badge: 'Coctelería & Café',
+    tag: 'Bebida de Autor',
+    title: 'Caramel Cold Brew & Cream',
+    desc: 'Concentrado de café especial de altura sobre granos seleccionados con caramelo y espuma de leche sedosa.',
+  },
+  {
+    id: 'tenders',
+    category: 'entradas',
+    image: imgTenders,
+    badge: 'Para Compartir',
+    tag: 'Picadas',
+    title: 'Tenders Crocantes & Chips de Plátano',
+    desc: 'Supremas apanadas en panko con plátano fino verde crujiente, pétalos comestibles y dip especial.',
+  }
+];
+---
+
+<section id="platos" class="relative max-w-xl md:max-w-3xl lg:max-w-6xl mx-auto px-4 sm:px-6 py-12 lg:py-20 w-full max-w-full overflow-hidden">
+  <!-- Section Header -->
+  <div class="mb-6 md:mb-10 lg:mb-12 text-center lg:text-left reveal-on-scroll flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 w-full min-w-0 max-w-full">
+    <div class="max-w-2xl min-w-0">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full liquid-pill text-xs font-semibold text-gold mb-3 lg:mb-4 border border-white/10">
+        <span>Carta Curada</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-2 lg:mb-4 break-words">
+        Platos & Cócteles Insignia
+      </h2>
+      <p class="text-xs sm:text-sm md:text-base text-slate-300/80 font-normal leading-relaxed">
+        Una selección visual de nuestra propuesta en el 4to piso. Precios y carta completa disponibles en el menú digital.
+      </p>
+    </div>
+    
+    <!-- Category Filter Pills (Fluid Tab Switcher) -->
+    <div class="flex items-center justify-start sm:justify-center lg:justify-end gap-2 overflow-x-auto pb-2 sm:pb-3 lg:pb-0 no-scrollbar w-full min-w-0 max-w-full" id="dish-filters">
+      <button 
+        class="filter-btn active px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold transition-all duration-200 bg-white text-black shadow-md shrink-0"
+        data-filter="all"
+      >
+        Todo
+      </button>
+      <button 
+        class="filter-btn px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 liquid-pill text-white/80 hover:text-white shrink-0"
+        data-filter="brunch"
+      >
+        Brunch
+      </button>
+      <button 
+        class="filter-btn px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 liquid-pill text-white/80 hover:text-white shrink-0"
+        data-filter="fuertes"
+      >
+        Fuertes
+      </button>
+      <button 
+        class="filter-btn px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 liquid-pill text-white/80 hover:text-white shrink-0"
+        data-filter="entradas"
+      >
+        Entradas
+      </button>
+      <button 
+        class="filter-btn px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 liquid-pill text-white/80 hover:text-white shrink-0"
+        data-filter="cocteles"
+      >
+        Coctelería
+      </button>
+    </div>
+  </div>
+
+  <!-- Cards Grid with Staggered Cascading Animation -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 w-full max-w-full" id="dishes-grid">
+    {dishes.map((dish, idx) => (
+      <article 
+        class="dish-card liquid-card rounded-[28px] p-3.5 border border-white/12 group flex flex-col justify-between reveal-on-scroll w-full min-w-0"
+        data-category={dish.category}
+        style={`transition-delay: ${idx * 60}ms;`}
+      >
+        <!-- Photo Container with Squircle Corners -->
+        <div class="relative w-full aspect-[4/3] rounded-[20px] overflow-hidden mb-3.5 bg-midnight">
+          <Image 
+            src={dish.image} 
+            alt={dish.title}
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+            width={600}
+            height={450}
+            quality={75}
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+          <!-- 3D Frosted Glass Tag Inside Photo -->
+          <div class="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-bold text-white shadow-lg tracking-wide">
+            {dish.badge}
+          </div>
+          <div class="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-[#0B0704]/85 to-transparent"></div>
+        </div>
+
+        <!-- Typography & Content -->
+        <div class="px-1 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="text-[10px] font-extrabold tracking-wider uppercase text-amber-300 mb-1">
+              {dish.tag}
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-white tracking-tight leading-snug group-hover:text-amber-200 transition-colors mb-1.5">
+              {dish.title}
+            </h3>
+            <p class="text-xs text-slate-300/80 leading-relaxed line-clamp-2 mb-4">
+              {dish.desc}
+            </p>
+          </div>
+
+          <!-- Apple Signature Action Pill: White Pill + Black Arrow Circle -->
+          <a 
+            href={restaurantConfig.menuUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="apple-cta-primary w-full inline-flex items-center justify-between pl-4 pr-1.5 py-1.5 text-xs font-bold btn-press shadow-sm group/btn"
+          >
+            <span class="tracking-tight">Ver en Menú</span>
+            <span class="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-[10px] font-bold group-hover/btn:rotate-45 transition-transform duration-200">
+              ↗
+            </span>
+          </a>
+        </div>
+
+      </article>
+    ))}
+  </div>
+
+  <!-- Full Digital Menu Callout Banner -->
+  <div class="mt-8 md:mt-12 lg:mt-16 liquid-card rounded-[28px] p-6 md:p-10 text-center border border-amber-400/30 relative overflow-hidden reveal-on-scroll">
+    <div class="relative z-10">
+      <h3 class="text-base sm:text-lg md:text-2xl font-extrabold text-white mb-2 md:mb-3 tracking-tight">
+        ¿Deseas consultar la carta completa con precios?
+      </h3>
+      <p class="text-xs text-slate-300/85 mb-5 max-w-sm mx-auto leading-relaxed">
+        Explora todos los desayunos, platos fuertes, cócteles de autor y postres actualizados en nuestra plataforma Unglo.
+      </p>
+      <a 
+        href={restaurantConfig.menuUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="apple-cta-primary inline-flex items-center justify-between gap-4 pl-6 pr-2 py-2.5 text-xs sm:text-sm font-bold shadow-xl btn-press group"
+      >
+        <span>Abrir Menú Digital en Unglo</span>
+        <span class="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold group-hover:rotate-45 transition-transform duration-200">
+          ↗
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Filter Interactivity Script with Fluid Transitions -->
+<script is:inline>
+  const filterBtns = document.querySelectorAll('#dish-filters .filter-btn');
+  const dishCards = document.querySelectorAll('#dishes-grid .dish-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-white', 'text-black', 'shadow-md', 'active');
+        b.classList.add('liquid-pill', 'text-white/80');
+      });
+
+      btn.classList.add('bg-white', 'text-black', 'shadow-md', 'active');
+      btn.classList.remove('liquid-pill', 'text-white/80');
+
+      const filter = btn.getAttribute('data-filter');
+
+      dishCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'flex';
+          window.requestAnimationFrame(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translate3d(0, 0, 0)';
+          });
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translate3d(0, 10px, 0)';
+          setTimeout(() => {
+            if (card.style.opacity === '0') card.style.display = 'none';
+          }, 200);
+        }
+      });
+    });
+  });
+</script>
