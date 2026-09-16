@@ -6,9 +6,9 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <section id="video" class="max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-6 lg:py-10 reveal-on-scroll">
   <div class="liquid-card rounded-[32px] p-6 sm:p-8 lg:p-12 border border-white/12 relative overflow-hidden">
-    <!-- Ambient Sunset Glow behind video card -->
-    <div class="absolute -left-16 -top-16 w-56 h-56 lg:w-80 lg:h-80 rounded-full bg-amber-500/15 blur-[80px] pointer-events-none"></div>
-    <div class="absolute -right-16 -bottom-16 w-60 h-60 lg:w-96 lg:h-96 rounded-full bg-orange-600/15 blur-[90px] pointer-events-none"></div>
+    <!-- Ambient Sunset Glow behind video card (Pure Radial Gradient - Zero Blur Filter) -->
+    <div class="absolute -left-16 -top-16 w-56 h-56 lg:w-80 lg:h-80 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.22)_0%,transparent_70%)] pointer-events-none"></div>
+    <div class="absolute -right-16 -bottom-16 w-60 h-60 lg:w-96 lg:h-96 rounded-full bg-[radial-gradient(circle,rgba(234,88,12,0.20)_0%,transparent_70%)] pointer-events-none"></div>
 
     <div class="relative z-10 flex flex-col lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
       
@@ -82,10 +82,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
           <!-- Top Overlay Badges -->
           <div class="absolute top-4 inset-x-4 flex items-center justify-between z-10 pointer-events-none">
-            <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-black/60 backdrop-blur-md text-slate-200 border border-white/15">
+            <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-black/80 text-slate-200 border border-white/15">
               4to Piso • Rooftop
             </span>
-            <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-amber-500/25 backdrop-blur-md text-amber-300 border border-amber-400/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] flex items-center gap-1.5">
+            <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#1A0F09]/95 text-amber-300 border border-amber-400/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
               Próximamente
             </span>
@@ -99,8 +99,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
               
               <!-- Frosted Play Button -->
               <button 
-                type="button"
-                id="play-button"
+                type="button" 
+                id="play-button" 
                 aria-label="Reproducir video de presentación"
                 class="w-16 h-16 sm:w-20 sm:h-20 rounded-full liquid-pill flex items-center justify-center text-amber-300 border border-amber-400/50 shadow-[0_10px_35px_rgba(245,158,11,0.4)] group-hover:scale-110 transition-transform duration-300 relative z-20"
               >
@@ -118,7 +118,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
           <!-- Bottom Overlay: Title & Duration Badge -->
           <div class="absolute bottom-4 inset-x-4 z-10 pointer-events-none">
-            <div class="liquid-card rounded-2xl p-3 border border-white/15 backdrop-blur-xl bg-black/60 shadow-lg">
+            <div class="liquid-card rounded-2xl p-3 border border-amber-400/25 bg-[#140C07]/95 shadow-lg">
               <div class="flex items-center justify-between gap-2">
                 <div>
                   <h3 class="text-xs sm:text-sm font-bold text-white leading-tight">
@@ -144,7 +144,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 <!-- Modal: Video Próximamente -->
 <div 
   id="video-modal" 
-  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 opacity-0 pointer-events-none transition-opacity duration-300"
   role="dialog"
   aria-modal="true"
   aria-labelledby="modal-title"
@@ -176,7 +176,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <a 
         href={restaurantConfig.instagramUrl} 
         target="_blank" 
-        rel="noopener noreferrer"
+        rel="noopener noreferrer" 
         class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-espresso font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity"
       >
         <span>Ver Adelantos en Instagram</span>
@@ -205,13 +205,21 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     if (!card || !modal || !closeBtn) return;
 
     function openModal() {
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-      modal.classList.add('opacity-100', 'pointer-events-auto');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      window.requestAnimationFrame(() => {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100', 'pointer-events-auto');
+      });
     }
 
     function closeModal() {
       modal.classList.remove('opacity-100', 'pointer-events-auto');
       modal.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+      }, 300);
     }
 
     card.addEventListener('click', openModal);

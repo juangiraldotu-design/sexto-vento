@@ -5,7 +5,7 @@ import { restaurantConfig } from '../config/restaurant.config';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="hero" class="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-center pt-20 pb-8 sm:pt-28 sm:pb-16 px-4 sm:px-6 overflow-hidden max-w-full">
+<section id="hero" class="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-center pt-20 pb-8 sm:pt-28 sm:pb-16 px-4 sm:px-6 max-w-full">
   <!-- Cinematic Rooftop Drone Background -->
   <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
     <picture>
@@ -15,7 +15,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <img 
         src={`${baseUrl}/images/hero/hero-desktop.jpg`} 
         alt="Terraza Rooftop de Sexto Vento en Hotel Casa Volga, Roldanillo" 
-        class="w-full h-full object-cover object-center scale-105 transform brightness-[0.82]"
+        class="w-full h-full object-cover object-center brightness-[0.82]"
         loading="eager"
         fetchpriority="high"
         decoding="async"
@@ -35,8 +35,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <span class="tracking-wide font-medium">Rooftop 4to Piso • Hotel Casa Volga</span>
     </div>
 
-    <!-- Official Pure Vector SVG Logo with Specular Depth -->
-    <div class="w-40 sm:w-56 md:w-72 lg:w-80 mb-3 sm:mb-5 flex items-center justify-center filter drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)] group">
+    <!-- Official Pure Vector SVG Logo -->
+    <div class="w-40 sm:w-56 md:w-72 lg:w-80 mb-3 sm:mb-5 flex items-center justify-center group">
       <Logo class="w-full h-auto text-white group-hover:text-amber-200 transition-colors duration-300" />
     </div>
 

@@ -11,8 +11,8 @@ import Logo from './Logo.astro';
   <!-- Left Panel: slides to the left -->
   <div 
     id="curtain-left" 
-    class="absolute top-0 left-0 w-1/2 h-full overflow-hidden bg-[#0B0704]/95 backdrop-blur-2xl border-r border-amber-400/40 shadow-[4px_0_35px_rgba(245,158,11,0.35)] will-change-transform"
-    style="transition: transform 1250ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms ease-out 750ms;"
+    class="absolute top-0 left-0 w-1/2 h-full overflow-hidden bg-[#0B0704] border-r border-amber-400/40 shadow-[4px_0_35px_rgba(245,158,11,0.35)]"
+    style="transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease-out 650ms;"
   >
     <!-- 100vw container positioned at left: 0 so its center aligns with the seam -->
     <div class="absolute top-0 left-0 w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
@@ -25,8 +25,8 @@ import Logo from './Logo.astro';
   <!-- Right Panel: slides to the right -->
   <div 
     id="curtain-right" 
-    class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden bg-[#0B0704]/95 backdrop-blur-2xl border-l border-amber-400/40 shadow-[-4px_0_35px_rgba(245,158,11,0.35)] will-change-transform"
-    style="transition: transform 1250ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms ease-out 750ms;"
+    class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden bg-[#0B0704] border-l border-amber-400/40 shadow-[-4px_0_35px_rgba(245,158,11,0.35)]"
+    style="transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease-out 650ms;"
   >
     <!-- 100vw container offset by -50vw so its center aligns with the seam -->
     <div class="absolute top-0 -left-[50vw] w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
@@ -50,17 +50,17 @@ import Logo from './Logo.astro';
     function startSplit() {
       if (hasSplit) return;
       hasSplit = true;
+      curtain.style.pointerEvents = 'none';
 
       left.style.transform = 'translate3d(-100%, 0, 0)';
       left.style.opacity = '0';
       right.style.transform = 'translate3d(100%, 0, 0)';
       right.style.opacity = '0';
 
-      // Remove from DOM once animation completes to free memory and prevent blocking
+      // Remove from DOM once animation completes to free memory
       setTimeout(() => {
-        curtain.style.display = 'none';
         curtain.remove();
-      }, 1300);
+      }, 1150);
     }
 
     // Allow user to tap, click, or scroll to split immediately

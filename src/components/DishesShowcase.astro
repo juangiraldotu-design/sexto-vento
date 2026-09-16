@@ -67,9 +67,9 @@ const dishes = [
 ];
 ---
 
-<section id="platos" class="relative max-w-xl md:max-w-3xl lg:max-w-6xl mx-auto px-4 sm:px-6 py-12 lg:py-20 w-full max-w-full overflow-hidden">
+<section id="platos" class="relative max-w-xl md:max-w-3xl lg:max-w-6xl mx-auto px-4 sm:px-6 py-12 lg:py-20 w-full max-w-full">
   <!-- Section Header -->
-  <div class="mb-6 md:mb-10 lg:mb-12 text-center lg:text-left reveal-on-scroll flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 w-full min-w-0 max-w-full">
+  <div class="mb-6 md:mb-10 lg:mb-12 text-center lg:text-left flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 w-full min-w-0 max-w-full">
     <div class="max-w-2xl min-w-0">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full liquid-pill text-xs font-semibold text-gold mb-3 lg:mb-4 border border-white/10">
         <span>Carta Curada</span>
@@ -138,8 +138,8 @@ const dishes = [
               decoding="async"
             />
           </picture>
-          <!-- 3D Frosted Glass Tag Inside Photo -->
-          <div class="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-bold text-white shadow-lg tracking-wide">
+          <!-- Badge Inside Photo -->
+          <div class="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-black/80 border border-white/20 text-[10px] font-bold text-white shadow-lg tracking-wide">
             {dish.badge}
           </div>
           <div class="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-[#0B0704]/85 to-transparent"></div>
@@ -178,7 +178,7 @@ const dishes = [
   </div>
 
   <!-- Full Digital Menu Callout Banner -->
-  <div class="mt-8 md:mt-12 lg:mt-16 liquid-card rounded-[28px] p-6 md:p-10 text-center border border-amber-400/30 relative overflow-hidden reveal-on-scroll">
+  <div class="mt-8 md:mt-12 lg:mt-16 liquid-card rounded-[28px] p-6 md:p-10 text-center border border-amber-400/30 relative overflow-hidden">
     <div class="relative z-10">
       <h3 class="text-base sm:text-lg md:text-2xl font-extrabold text-white mb-2 md:mb-3 tracking-tight">
         ¿Deseas consultar la carta completa con precios?
