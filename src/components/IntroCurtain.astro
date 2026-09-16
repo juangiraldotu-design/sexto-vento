@@ -12,7 +12,7 @@ import Logo from './Logo.astro';
   <div 
     id="curtain-left" 
     class="absolute top-0 left-0 w-1/2 h-full overflow-hidden bg-[#0B0704]/95 backdrop-blur-2xl border-r border-amber-400/40 shadow-[4px_0_35px_rgba(245,158,11,0.35)] will-change-transform"
-    style="transition: transform 1850ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms ease-out 1150ms;"
+    style="transition: transform 750ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease-out 350ms;"
   >
     <!-- 100vw container positioned at left: 0 so its center aligns with the seam -->
     <div class="absolute top-0 left-0 w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
@@ -26,7 +26,7 @@ import Logo from './Logo.astro';
   <div 
     id="curtain-right" 
     class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden bg-[#0B0704]/95 backdrop-blur-2xl border-l border-amber-400/40 shadow-[-4px_0_35px_rgba(245,158,11,0.35)] will-change-transform"
-    style="transition: transform 1850ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms ease-out 1150ms;"
+    style="transition: transform 750ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease-out 350ms;"
   >
     <!-- 100vw container offset by -50vw so its center aligns with the seam -->
     <div class="absolute top-0 -left-[50vw] w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
@@ -60,14 +60,15 @@ import Logo from './Logo.astro';
       setTimeout(() => {
         curtain.style.display = 'none';
         curtain.remove();
-      }, 1900);
+      }, 800);
     }
 
-    // Allow user to tap/click to split immediately if preferred
+    // Allow user to tap, click, or scroll to split immediately
     curtain.addEventListener('click', startSplit, { once: true });
     curtain.addEventListener('touchstart', startSplit, { once: true, passive: true });
+    window.addEventListener('scroll', startSplit, { once: true, passive: true });
 
-    // Hold the logo steady and clear for ~1300ms so it is completely visible and readable
-    setTimeout(startSplit, 1300);
+    // Quick subtle hold of 200ms then auto-split smoothly
+    setTimeout(startSplit, 200);
   })();
 </script>

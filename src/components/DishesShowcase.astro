@@ -122,12 +122,11 @@ const dishes = [
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 w-full max-w-full" id="dishes-grid">
     {dishes.map((dish, idx) => (
       <article 
-        class="dish-card liquid-card rounded-[28px] p-3.5 border border-white/12 group flex flex-col justify-between reveal-on-scroll w-full min-w-0"
+        class="dish-card liquid-card rounded-[28px] p-3.5 border border-white/12 group flex flex-col justify-between w-full min-w-0"
         data-category={dish.category}
-        style={`transition-delay: ${idx * 60}ms;`}
       >
         <!-- Photo Container with Squircle Corners -->
-        <div class="relative w-full aspect-[4/3] rounded-[20px] overflow-hidden mb-3.5 bg-midnight">
+        <div class="relative w-full aspect-[4/3] rounded-[20px] overflow-hidden mb-3.5 bg-[#1A0F09]">
           <Image 
             src={dish.image} 
             alt={dish.title}
@@ -136,7 +135,7 @@ const dishes = [
             height={450}
             quality={75}
             format="webp"
-            loading="lazy"
+            loading="eager"
             decoding="async"
           />
           <!-- 3D Frosted Glass Tag Inside Photo -->
