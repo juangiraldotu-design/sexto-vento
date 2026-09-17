@@ -13,8 +13,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   <!-- ════════ LEFT ELEVATOR DOOR ════════ -->
   <div 
     id="curtain-left" 
-    class="absolute top-0 left-0 w-1/2 h-full overflow-hidden border-r border-[#2C2E33] shadow-[3px_0_25px_rgba(0,0,0,0.95)]"
-    style="transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease-out 750ms;"
+    class="absolute top-0 left-0 w-1/2 h-full overflow-hidden"
+    style="transition: transform 1350ms cubic-bezier(0.2, 1, 0.3, 1), opacity 450ms ease-out 850ms;"
   >
     <!-- Background realistic grey elevator door texture -->
     <img 
@@ -25,11 +25,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       decoding="async"
     />
 
-    <!-- Vertical door seam bevel & dark rubber seal -->
-    <div class="absolute inset-y-0 right-0 w-[2px] bg-gradient-to-b from-black via-[#18191B] to-black shadow-[0_0_6px_rgba(0,0,0,0.8)]"></div>
-
-    <!-- 100vw container positioned at left: 0 so its center aligns with the seam -->
-    <div class="absolute top-0 left-0 w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
+    <!-- 200% width container aligned at left: 0 so its center is exactly at the seam -->
+    <div class="absolute top-0 left-0 w-[200%] h-full flex flex-col items-center justify-center pointer-events-none">
       <div class="w-48 sm:w-64 md:w-80 lg:w-96 text-white filter drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
         <Logo class="w-full h-auto text-white" />
       </div>
@@ -44,8 +41,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   <!-- ════════ RIGHT ELEVATOR DOOR ════════ -->
   <div 
     id="curtain-right" 
-    class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden border-l border-[#2C2E33] shadow-[-3px_0_25px_rgba(0,0,0,0.95)]"
-    style="transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 450ms ease-out 750ms;"
+    class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden"
+    style="transition: transform 1350ms cubic-bezier(0.2, 1, 0.3, 1), opacity 450ms ease-out 850ms;"
   >
     <!-- Background realistic grey elevator door texture -->
     <img 
@@ -56,11 +53,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       decoding="async"
     />
 
-    <!-- Vertical door seam bevel & dark rubber seal -->
-    <div class="absolute inset-y-0 left-0 w-[2px] bg-gradient-to-b from-black via-[#18191B] to-black shadow-[0_0_6px_rgba(0,0,0,0.8)]"></div>
-
-    <!-- 100vw container offset by -50vw so its center aligns with the seam -->
-    <div class="absolute top-0 -left-[50vw] w-[100vw] h-full flex flex-col items-center justify-center pointer-events-none px-4">
+    <!-- 200% width container offset by -100% so its center aligns with 0px (the seam) with subpixel precision -->
+    <div class="absolute top-0 -left-[100%] w-[200%] h-full flex flex-col items-center justify-center pointer-events-none">
       <div class="w-48 sm:w-64 md:w-80 lg:w-96 text-white filter drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
         <Logo class="w-full h-auto text-white" />
       </div>
@@ -71,30 +65,29 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
     </div>
 
-    <!-- ─── Retro Green LED Screen Overlay (Screen Area: Left 76.2%, Top 27.75%, Width 15.6%, Height 4.4%) ─── -->
-    <div class="absolute left-[76.2%] top-[27.75%] w-[15.6%] h-[4.4%] flex flex-col items-center justify-center pointer-events-none select-none overflow-hidden">
-      <div class="flex items-center justify-center gap-0.5 sm:gap-1 leading-none">
+    <!-- ─── Retro Green LED Screen Overlay (Exact Screen Area: Left 76.55%, Top 27.75%, Width 15.31%, Height 4.24%) ─── -->
+    <div class="absolute left-[76.55%] top-[27.75%] w-[15.31%] h-[4.24%] flex flex-col items-center justify-center pointer-events-none select-none overflow-hidden bg-[#070a07] rounded-[2px] shadow-[inset_0_1px_4px_rgba(0,0,0,0.95)]">
+      <div class="flex flex-col items-center justify-center leading-none">
         <span 
           id="led-arrow" 
-          class="font-mono text-[10px] sm:text-xs md:text-sm font-black text-emerald-400 drop-shadow-[0_0_6px_#34d399] animate-pulse"
+          class="text-[9px] sm:text-[11px] md:text-xs font-black text-emerald-400 drop-shadow-[0_0_8px_#34d399] leading-none mb-[1px] animate-pulse"
         >
           ▲
         </span>
         <span 
           id="led-digit" 
-          class="font-mono text-xs sm:text-sm md:text-base font-black text-emerald-400 tracking-tighter drop-shadow-[0_0_8px_#34d399]"
+          class="font-mono text-xs sm:text-sm md:text-base font-black text-emerald-400 tracking-tighter drop-shadow-[0_0_10px_#34d399] leading-none"
         >
           1
         </span>
       </div>
     </div>
 
-    <!-- ─── Button 4 Glowing Active Ring Overlay (Center: Left 85.66%, Top 47.89%) ─── -->
+    <!-- ─── Button 4 Glowing Active Ring Overlay (Exact Center: Left 83.9%, Top 47.5%, Diameter 10.75%) ─── -->
     <div 
       id="btn-4-glow"
-      class="absolute left-[85.66%] top-[47.89%] -translate-x-1/2 -translate-y-1/2 w-[7.8%] aspect-square rounded-full border border-emerald-400 shadow-[0_0_12px_#22c55e,inset_0_0_6px_#22c55e] animate-pulse pointer-events-none"
-    >
-    </div>
+      class="absolute left-[83.9%] top-[47.5%] -translate-x-1/2 -translate-y-1/2 w-[10.75%] aspect-square rounded-full border-2 border-emerald-400 shadow-[0_0_16px_#22c55e,0_0_30px_rgba(34,197,94,0.7),inset_0_0_8px_#22c55e] bg-emerald-500/20 animate-pulse pointer-events-none"
+    ></div>
 
   </div>
 </div>
@@ -126,34 +119,36 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       // Clean up from DOM to ensure zero memory or scroll interference
       setTimeout(() => {
         curtain.remove();
-      }, 1250);
+      }, 1400);
     }
 
-    // Sequence of floors: 1 -> 2 -> 3 -> 4
+    // Ascent sequence of floors: 1 -> 2 -> 3 -> 4
+    // Gives users plenty of time to appreciate the animation
     setTimeout(() => {
       if (ledDigit) ledDigit.textContent = '2';
-    }, 320);
+    }, 750);
 
     setTimeout(() => {
       if (ledDigit) ledDigit.textContent = '3';
-    }, 650);
+    }, 1500);
 
+    // Reached Floor 4!
     setTimeout(() => {
       if (ledDigit) {
         ledDigit.textContent = '4';
-        ledDigit.className = 'font-mono text-xs sm:text-sm md:text-base font-black text-amber-300 tracking-tighter drop-shadow-[0_0_12px_#f59e0b]';
+        ledDigit.className = 'font-mono text-xs sm:text-sm md:text-base font-black text-amber-300 tracking-tighter drop-shadow-[0_0_14px_#f59e0b] leading-none';
       }
       if (ledArrow) {
         ledArrow.textContent = '★';
-        ledArrow.className = 'font-mono text-[10px] sm:text-xs md:text-sm font-black text-amber-300 drop-shadow-[0_0_12px_#f59e0b]';
+        ledArrow.className = 'text-[9px] sm:text-[11px] md:text-xs font-black text-amber-300 drop-shadow-[0_0_14px_#f59e0b] leading-none mb-[1px]';
       }
       if (btn4Glow) {
-        btn4Glow.className = 'absolute left-[85.66%] top-[47.89%] -translate-x-1/2 -translate-y-1/2 w-[7.8%] aspect-square rounded-full border-2 border-amber-300 shadow-[0_0_18px_#f59e0b,inset_0_0_8px_#f59e0b] pointer-events-none';
+        btn4Glow.className = 'absolute left-[83.9%] top-[47.5%] -translate-x-1/2 -translate-y-1/2 w-[10.75%] aspect-square rounded-full border-2 border-amber-300 shadow-[0_0_24px_#f59e0b,0_0_40px_rgba(245,158,11,0.8),inset_0_0_12px_#f59e0b] bg-amber-500/25 pointer-events-none';
       }
-    }, 980);
+    }, 2250);
 
-    // Automatic smooth door opening when floor 4 is reached
-    setTimeout(openDoors, 1400);
+    // Hold at Floor 4 for 800ms so arrival is appreciated, then open the doors smoothly
+    setTimeout(openDoors, 3050);
 
     // Instant skip on tap, click, or scroll
     curtain.addEventListener('click', openDoors, { once: true });
