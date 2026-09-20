@@ -67,49 +67,49 @@ const dishes = [
 ];
 ---
 
-<section id="platos" class="relative max-w-xl md:max-w-3xl lg:max-w-6xl mx-auto px-4 sm:px-6 py-12 lg:py-20 w-full max-w-full">
+<section id="platos" class="relative mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:py-24">
   <!-- Section Header -->
-  <div class="mb-6 md:mb-10 lg:mb-12 text-center lg:text-left flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 w-full min-w-0 max-w-full">
+  <div class="mb-8 flex w-full min-w-0 max-w-full flex-col gap-6 border-b border-amber-100/25 pb-7 text-left md:mb-10 lg:mb-12 lg:flex-row lg:items-end lg:justify-between">
     <div class="max-w-2xl min-w-0">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full liquid-pill text-xs font-semibold text-amber-300 mb-3 lg:mb-4 border border-amber-500/25">
+      <div class="editorial-kicker mb-3 inline-flex items-center gap-2 lg:mb-4">
         <span>Selección Especial</span>
       </div>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-2 lg:mb-4 break-words">
+      <h2 class="mb-3 break-words text-4xl font-black leading-[0.92] tracking-[-0.055em] text-white sm:text-5xl lg:text-7xl">
         Nuestros Recomendados
       </h2>
       <p class="text-xs sm:text-sm md:text-base text-slate-300/85 font-normal leading-relaxed">
-        Una selección de nuestras especialidades recomendadas en el 4to piso: brunch, cocina italiana a la carta, platos fuertes y coctelería de autor. Carta completa disponible en el menú digital.
+        Una selección de nuestras especialidades recomendadas en el piso 4: brunch, cocina italiana a la carta, platos fuertes y coctelería de autor. Carta completa disponible en el menú digital.
       </p>
     </div>
     
     <!-- Category Filter Pills (Fluid Tab Switcher) -->
-    <div class="flex items-center justify-start sm:justify-center lg:justify-end gap-2 overflow-x-auto pb-2 sm:pb-3 lg:pb-0 no-scrollbar w-full min-w-0 max-w-full" id="dish-filters">
+    <div class="no-scrollbar flex w-full min-w-0 max-w-full items-center justify-start gap-1 overflow-x-auto pb-2 lg:w-auto lg:justify-end lg:pb-0" id="dish-filters">
       <button 
-        class="filter-btn active px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold transition-all duration-200 bg-white text-black shadow-md shrink-0"
+        class="filter-btn active shrink-0 bg-white px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.11em] text-black shadow-md transition-all duration-200 sm:px-5"
         data-filter="all"
       >
         Todo
       </button>
       <button 
-        class="filter-btn px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 liquid-pill text-white/80 hover:text-white shrink-0"
+        class="filter-btn liquid-pill shrink-0 px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.11em] text-white/80 transition-all duration-200 hover:text-white sm:px-5"
         data-filter="brunch"
       >
         Brunch
       </button>
       <button 
-        class="filter-btn px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 liquid-pill text-white/80 hover:text-white shrink-0"
+        class="filter-btn liquid-pill shrink-0 px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.11em] text-white/80 transition-all duration-200 hover:text-white sm:px-5"
         data-filter="fuertes"
       >
         Fuertes
       </button>
       <button 
-        class="filter-btn px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 liquid-pill text-white/80 hover:text-white shrink-0"
+        class="filter-btn liquid-pill shrink-0 px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.11em] text-white/80 transition-all duration-200 hover:text-white sm:px-5"
         data-filter="entradas"
       >
         Entradas
       </button>
       <button 
-        class="filter-btn px-3.5 sm:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 liquid-pill text-white/80 hover:text-white shrink-0"
+        class="filter-btn liquid-pill shrink-0 px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.11em] text-white/80 transition-all duration-200 hover:text-white sm:px-5"
         data-filter="cocteles"
       >
         Coctelería
@@ -118,14 +118,14 @@ const dishes = [
   </div>
 
   <!-- Cards Grid with Staggered Cascading Animation -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 w-full max-w-full" id="dishes-grid">
+  <div class="grid w-full max-w-full grid-cols-1 gap-px overflow-hidden border border-amber-100/20 bg-amber-100/20 sm:grid-cols-2 lg:grid-cols-3" id="dishes-grid">
     {dishes.map((dish) => (
       <article 
-        class="dish-card liquid-card rounded-[28px] p-3.5 border border-white/12 group flex flex-col justify-between w-full min-w-0"
+        class="dish-card editorial-dish-card group flex w-full min-w-0 flex-col justify-between bg-[#110a06] p-0"
         data-category={dish.category}
       >
         <!-- Photo Container with Squircle Corners -->
-        <div class="relative w-full aspect-[4/3] rounded-[20px] overflow-hidden mb-3.5 bg-[#1A0F09]">
+        <div class="relative mb-0 aspect-[4/3] w-full overflow-hidden bg-[#1A0F09]">
           <picture>
             <source srcset={dish.imageWebp} type="image/webp" />
             <img 
@@ -134,19 +134,19 @@ const dishes = [
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               width="600"
               height="450"
-              loading="eager"
+              loading="lazy"
               decoding="async"
             />
           </picture>
           <!-- Badge Inside Photo -->
-          <div class="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-black/80 border border-white/20 text-[10px] font-bold text-white shadow-lg tracking-wide">
+          <div class="absolute left-2.5 top-2.5 border border-white/20 bg-black/80 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.12em] text-white shadow-lg">
             {dish.badge}
           </div>
           <div class="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-[#0B0704]/85 to-transparent"></div>
         </div>
 
         <!-- Typography & Content -->
-        <div class="px-1 flex-1 flex flex-col justify-between">
+        <div class="flex flex-1 flex-col justify-between p-4 sm:p-5">
           <div>
             <div class="text-[10px] font-extrabold tracking-wider uppercase text-amber-300 mb-1">
               {dish.tag}
@@ -154,7 +154,7 @@ const dishes = [
             <h3 class="text-sm sm:text-base font-bold text-white tracking-tight leading-snug group-hover:text-amber-200 transition-colors mb-1.5">
               {dish.title}
             </h3>
-            <p class="text-xs text-slate-300/80 leading-relaxed line-clamp-2 mb-4">
+            <p class="mb-5 line-clamp-2 text-xs leading-relaxed text-slate-300/80">
               {dish.desc}
             </p>
           </div>
@@ -164,10 +164,10 @@ const dishes = [
             href={restaurantConfig.menuUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="apple-cta-primary w-full inline-flex items-center justify-between pl-4 pr-1.5 py-1.5 text-xs font-bold btn-press shadow-sm group/btn"
+            class="dish-menu-link group/btn inline-flex w-full items-center justify-between border-t border-amber-100/20 pt-3 text-[10px] font-black uppercase tracking-[0.12em] text-amber-100 transition-colors hover:text-amber-300"
           >
             <span class="tracking-tight">Ver en Menú</span>
-            <span class="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-[10px] font-bold group-hover/btn:rotate-45 transition-transform duration-200">
+            <span class="grid h-6 w-6 place-items-center border border-current text-[10px] font-bold transition-transform duration-200 group-hover/btn:rotate-45">
               ↗
             </span>
           </a>
@@ -178,7 +178,7 @@ const dishes = [
   </div>
 
   <!-- Full Digital Menu Callout Banner -->
-  <div class="mt-8 md:mt-12 lg:mt-16 liquid-card rounded-[28px] p-6 md:p-10 text-center border border-amber-400/30 relative overflow-hidden">
+  <div class="editorial-section relative mt-8 overflow-hidden border-y border-amber-400/30 p-6 text-center md:mt-12 md:p-10 lg:mt-16">
     <div class="relative z-10">
       <h3 class="text-base sm:text-lg md:text-2xl font-extrabold text-white mb-2 md:mb-3 tracking-tight">
         ¿Deseas consultar la carta completa con precios?

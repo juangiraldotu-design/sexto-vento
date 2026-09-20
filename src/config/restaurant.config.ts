@@ -11,7 +11,7 @@ export const restaurantConfig = {
   name: 'GastroBar Sexto Vento',
   shortName: 'Sexto Vento',
   headline: 'Sabor, música, vista panorámica & experiencias memorables',
-  description: 'Un gastrobar en el 4to piso donde puedes disfrutar desde un exquisito brunch, cocina italiana con platos a la carta, coctelería de autor y una increíble vista 360°.',
+  description: 'Un gastrobar en el piso 4 donde puedes disfrutar desde un exquisito brunch, cocina italiana con platos a la carta, coctelería de autor y una increíble vista 360°.',
   rooftopNote: '✨ Cuarto Piso • Hotel Casa Volga • Vista 360°',
   city: 'Roldanillo, Valle del Cauca',
   
@@ -105,4 +105,3 @@ export const restaurantConfig = {
     },
   ] as SignatureDish[],
 };
-

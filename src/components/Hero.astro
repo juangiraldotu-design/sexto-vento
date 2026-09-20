@@ -5,85 +5,82 @@ import { restaurantConfig } from '../config/restaurant.config';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="hero" class="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-center pt-20 pb-8 sm:pt-28 sm:pb-16 px-4 sm:px-6 max-w-full">
-  <!-- Cinematic Rooftop Drone Background -->
-  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<section id="hero" class="hero-editorial relative isolate flex min-h-[100svh] items-end overflow-hidden px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-32">
+  <div class="absolute inset-0 -z-30">
     <picture>
       <source srcset={`${baseUrl}/images/hero/hero-mobile.webp`} media="(max-width: 640px)" type="image/webp" />
       <source srcset={`${baseUrl}/images/hero/hero-mobile.jpg`} media="(max-width: 640px)" type="image/jpeg" />
       <source srcset={`${baseUrl}/images/hero/hero-desktop.webp`} type="image/webp" />
-      <img 
-        src={`${baseUrl}/images/hero/hero-desktop.jpg`} 
-        alt="Terraza Rooftop de Sexto Vento en Hotel Casa Volga, Roldanillo" 
-        class="w-full h-full object-cover object-center brightness-[0.82]"
+      <img
+        src={`${baseUrl}/images/hero/hero-desktop.jpg`}
+        alt="Terraza Rooftop de Sexto Vento en Hotel Casa Volga, Roldanillo"
+        class="hero-photo h-full w-full object-cover object-center"
         loading="eager"
         fetchpriority="high"
         decoding="async"
       />
     </picture>
-    <!-- Multi-Layer Vignette Gradients (Seamless blend into warm espresso) -->
-    <div class="absolute inset-0 bg-gradient-to-t from-[#0B0704] via-[#0B0704]/75 to-[#0B0704]/30"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0B0704]/80 via-transparent to-[#0B0704]"></div>
   </div>
 
-  <!-- Hero Content Container -->
-  <div class="relative z-10 max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto w-full flex flex-col items-center text-center">
-    
-    <!-- Floating Eyebrow Pill -->
-    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full liquid-pill text-[11px] sm:text-xs font-semibold text-white/90 mb-3 sm:mb-5 border border-white/15 shadow-lg">
-      <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
-      <span class="tracking-wide font-medium">Rooftop 4to Piso • Hotel Casa Volga</span>
-    </div>
+  <div class="hero-atmosphere absolute inset-0 -z-20"></div>
+  <div class="editorial-grid absolute inset-0 -z-10 opacity-60"></div>
 
-    <!-- Official Pure Vector SVG Logo -->
-    <div class="w-40 sm:w-56 md:w-72 lg:w-80 mb-3 sm:mb-5 flex items-center justify-center group">
-      <Logo class="w-full h-auto text-white group-hover:text-amber-200 transition-colors duration-300" />
-    </div>
+  <div class="hero-stage relative mx-auto flex w-full max-w-6xl flex-col justify-between">
+    <div class="hero-brand mx-auto flex w-full max-w-2xl flex-col items-center text-center">
+      <p class="mb-4 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.26em] text-amber-100/80 sm:text-xs">
+        <span class="h-px w-8 bg-amber-400/70"></span>
+        Hotel Casa Volga · Roldanillo
+        <span class="h-px w-8 bg-amber-400/70"></span>
+      </p>
 
-    <!-- Main Headline with Modern Apple Contrast -->
-    <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-2.5 sm:mb-4 px-2 text-balance leading-tight max-w-lg sm:max-w-2xl">
-      Sabor, música, vista panorámica & <span class="bg-gradient-to-r from-amber-200 via-amber-400 to-orange-400 bg-clip-text text-transparent">experiencias memorables</span>
-    </h1>
-
-    <p class="text-xs sm:text-sm md:text-base text-slate-300/90 font-normal max-w-sm sm:max-w-md md:max-w-xl mx-auto mb-6 sm:mb-9 px-2 text-balance leading-relaxed">
-      {restaurantConfig.description}
-    </p>
-
-    <!-- Apple Signature Action Buttons (High-contrast white pill + liquid glass) -->
-    <div class="w-full max-w-[320px] sm:max-w-none flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-4 mb-2 sm:mb-4">
-      
-      <!-- Primary Action: White Pill CTA with Black Arrow Circle -->
-      <a 
-        href={restaurantConfig.menuUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="apple-cta-primary w-full sm:w-auto inline-flex items-center justify-between gap-3 pl-5 pr-1.5 py-2 sm:pl-6 sm:pr-2 sm:py-2.5 text-xs sm:text-base font-bold shadow-xl btn-press group"
-      >
-        <span class="tracking-tight">Ver Menú Digital</span>
-        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold group-hover:rotate-45 transition-transform duration-300 shrink-0">
-          ↗
-        </span>
+      <a href="#hero" aria-label="Sexto Vento — inicio" class="hero-logo block w-[min(76vw,29rem)] text-white">
+        <Logo class="h-auto w-full text-white" />
       </a>
-
-      <!-- Secondary Action: Liquid Glass Pill CTA with WhatsApp status -->
-      <a 
-        href={restaurantConfig.whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="apple-cta-glass w-full sm:w-auto inline-flex items-center justify-between gap-3 pl-5 pr-2 py-2 sm:pl-6 sm:pr-2.5 sm:py-2.5 text-xs sm:text-base font-semibold btn-press group"
-      >
-        <span class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Reservar Mesa</span>
-        </span>
-        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs font-bold group-hover:scale-110 transition-transform shrink-0">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
-          </svg>
-        </span>
-      </a>
-
     </div>
 
+    <div class="hero-floor-lockup my-5 flex select-none items-end justify-center sm:my-8" aria-label="Piso 4">
+      <span class="hero-floor-word">PISO</span>
+      <strong class="hero-floor-number">4</strong>
+    </div>
+
+    <div class="hero-bottom-grid border-y border-amber-100/25 bg-[#0b0704]/55 backdrop-blur-md">
+      <div class="hero-copy px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
+        <p class="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-amber-300 sm:text-xs">Roldanillo desde arriba</p>
+        <h1 class="max-w-2xl text-balance text-2xl font-black leading-[0.98] tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">
+          Sabor, música, vista panorámica &amp; experiencias memorables
+        </h1>
+        <p class="mt-3 max-w-2xl text-pretty text-xs leading-relaxed text-stone-200/75 sm:text-sm">
+          {restaurantConfig.description}
+        </p>
+      </div>
+
+      <div class="hero-actions grid border-t border-amber-100/20 sm:grid-cols-2 lg:border-l lg:border-t-0">
+        <a
+          href={restaurantConfig.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="editorial-cta editorial-cta--primary group"
+        >
+          <span>
+            <small>Tu mesa en el rooftop</small>
+            Reservar
+          </span>
+          <span class="editorial-cta__arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a
+          href={restaurantConfig.menuUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="editorial-cta group border-t border-amber-100/20 sm:border-l sm:border-t-0"
+        >
+          <span>
+            <small>Conoce la propuesta</small>
+            Ver menú
+          </span>
+          <span class="editorial-cta__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
