@@ -165,8 +165,20 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     will-change: transform;
-    -webkit-transition: -webkit-transform 1100ms cubic-bezier(0.72, 0, 0.2, 1);
-    transition: transform 1100ms cubic-bezier(0.72, 0, 0.2, 1);
+    -webkit-transition: -webkit-transform 1450ms cubic-bezier(0.34, 0, 0.16, 1);
+    transition: transform 1450ms cubic-bezier(0.34, 0, 0.16, 1);
+  }
+
+  .intro-door::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 4;
+    width: clamp(12px, 3.5vw, 34px);
+    content: '';
+    pointer-events: none;
+    opacity: 0;
+    will-change: opacity;
   }
 
   .intro-door--left {
@@ -174,9 +186,21 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     z-index: 1;
   }
 
+  .intro-door--left::after {
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2) 58%, rgba(254, 243, 199, 0.92));
+    box-shadow: 7px 0 18px rgba(245, 158, 11, 0.48);
+  }
+
   .intro-door--right {
     right: 0;
     z-index: 1;
+  }
+
+  .intro-door--right::after {
+    left: 0;
+    background: linear-gradient(90deg, rgba(254, 243, 199, 0.92), rgba(251, 191, 36, 0.2) 42%, transparent);
+    box-shadow: -7px 0 18px rgba(245, 158, 11, 0.48);
   }
 
   .intro-picture {
@@ -315,12 +339,21 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     bottom: 0;
     left: 50%;
     z-index: 3;
-    width: 1px;
+    width: clamp(5rem, 34vw, 20rem);
     pointer-events: none;
-    background: rgba(254, 243, 199, 0.88);
-    box-shadow: 0 0 15px 3px rgba(245, 158, 11, 0.34);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(245, 158, 11, 0.08) 20%,
+      rgba(251, 191, 36, 0.44) 43%,
+      rgba(255, 251, 235, 0.96) 50%,
+      rgba(251, 191, 36, 0.44) 57%,
+      rgba(245, 158, 11, 0.08) 80%,
+      transparent 100%
+    );
+    box-shadow: 0 0 24px 5px rgba(245, 158, 11, 0.24);
     opacity: 0.55;
-    transform: translate3d(-50%, 0, 0) scaleX(1);
+    transform: translate3d(-50%, 0, 0) scaleX(0.012);
     transform-origin: center;
     will-change: transform, opacity;
   }
@@ -507,7 +540,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .intro-curtain.is-arriving .intro-seam {
     opacity: 0.95;
-    box-shadow: 0 0 24px 5px rgba(251, 191, 36, 0.55);
+    box-shadow: 0 0 34px 7px rgba(251, 191, 36, 0.58);
   }
 
   .intro-curtain.is-opening {
@@ -517,12 +550,16 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .intro-curtain.is-opening .intro-door--left {
     transform: translate3d(-100%, 0, 0);
-    animation: intro-door-left-open 1100ms cubic-bezier(0.72, 0, 0.2, 1) both;
+    animation: intro-door-left-open 1450ms cubic-bezier(0.34, 0, 0.16, 1) both;
   }
 
   .intro-curtain.is-opening .intro-door--right {
     transform: translate3d(100%, 0, 0);
-    animation: intro-door-right-open 1100ms cubic-bezier(0.72, 0, 0.2, 1) both;
+    animation: intro-door-right-open 1450ms cubic-bezier(0.34, 0, 0.16, 1) both;
+  }
+
+  .intro-curtain.is-opening .intro-door::after {
+    animation: intro-door-edge-glow 1120ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .intro-curtain.is-opening .intro-hud {
@@ -540,7 +577,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .intro-curtain.is-opening .intro-seam {
-    animation: intro-seam-release 720ms ease-out both;
+    box-shadow: 0 0 54px 14px rgba(251, 191, 36, 0.58);
+    animation: intro-seam-release 1180ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   @keyframes intro-ride {
@@ -559,6 +597,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   @keyframes intro-door-right-open {
     0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(100%, 0, 0); }
+  }
+
+  @keyframes intro-door-edge-glow {
+    0% { opacity: 0; }
+    12% { opacity: 1; }
+    52% { opacity: 0.88; }
+    100% { opacity: 0; }
   }
 
   @keyframes intro-arrival-blink {
@@ -591,16 +636,19 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   @keyframes intro-seam-release {
     0% {
       opacity: 0.95;
-      transform: translate3d(-50%, 0, 0) scaleX(1);
+      transform: translate3d(-50%, 0, 0) scaleX(0.012);
     }
-    42% {
+    18% {
       opacity: 1;
-      transform: translate3d(-50%, 0, 0) scaleX(30);
-      box-shadow: 0 0 44px 11px rgba(251, 191, 36, 0.64);
+      transform: translate3d(-50%, 0, 0) scaleX(0.12);
+    }
+    58% {
+      opacity: 0.72;
+      transform: translate3d(-50%, 0, 0) scaleX(0.82);
     }
     100% {
       opacity: 0;
-      transform: translate3d(-50%, 0, 0) scaleX(72);
+      transform: translate3d(-50%, 0, 0) scaleX(1.45);
     }
   }
 
@@ -657,16 +705,25 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     .intro-floor-button-label,
     .intro-hud,
     .intro-shade,
-    .intro-skip,
-    .intro-seam {
+    .intro-skip {
       animation: none !important;
       transition-duration: 0.01ms !important;
     }
 
     .intro-curtain.is-opening .intro-door--left,
     .intro-curtain.is-opening .intro-door--right {
-      animation-duration: 650ms !important;
-      animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1) !important;
+      animation-duration: 900ms !important;
+      animation-timing-function: cubic-bezier(0.3, 0, 0.2, 1) !important;
+      animation-iteration-count: 1 !important;
+    }
+
+    .intro-curtain.is-opening .intro-door::after {
+      animation-duration: 760ms !important;
+      animation-iteration-count: 1 !important;
+    }
+
+    .intro-curtain.is-opening .intro-seam {
+      animation-duration: 820ms !important;
       animation-iteration-count: 1 !important;
     }
   }
@@ -863,7 +920,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       skipButton.disabled = true;
 
       const currentRun = runId;
-      later(() => finishOpening(currentRun), reducedMotion.matches ? 740 : 1220);
+      later(() => finishOpening(currentRun), reducedMotion.matches ? 1020 : 1580);
     };
 
     const runSequence = (currentRun) => {
