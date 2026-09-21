@@ -18,9 +18,17 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 <style>
   .brand-logo {
     display: block;
+    width: 100%;
     aspect-ratio: 622 / 452;
     background-color: currentColor;
     -webkit-mask: var(--brand-logo-url) center / contain no-repeat;
     mask: var(--brand-logo-url) center / contain no-repeat;
+  }
+
+  @supports not (aspect-ratio: 1 / 1) {
+    .brand-logo {
+      height: 0 !important;
+      padding-top: 72.6688%;
+    }
   }
 </style>

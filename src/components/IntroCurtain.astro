@@ -19,11 +19,21 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <picture class="intro-picture">
         <source
           media="(min-aspect-ratio: 1/1)"
+          type="image/webp"
           srcset={`${baseUrl}/images/elevator-desktop-left.webp`}
+        />
+        <source
+          media="(min-aspect-ratio: 1/1)"
+          type="image/jpeg"
+          srcset={`${baseUrl}/images/elevator-desktop-left.jpg`}
+        />
+        <source
+          type="image/webp"
+          srcset={`${baseUrl}/images/elevator-door-left.webp`}
         />
         <img
           class="intro-door-image"
-          src={`${baseUrl}/images/elevator-door-left.webp`}
+          src={`${baseUrl}/images/elevator-door-left.jpg`}
           width="309"
           height="1374"
           alt=""
@@ -39,11 +49,21 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <picture class="intro-picture">
         <source
           media="(min-aspect-ratio: 1/1)"
+          type="image/webp"
           srcset={`${baseUrl}/images/elevator-desktop-right.webp`}
+        />
+        <source
+          media="(min-aspect-ratio: 1/1)"
+          type="image/jpeg"
+          srcset={`${baseUrl}/images/elevator-desktop-right.jpg`}
+        />
+        <source
+          type="image/webp"
+          srcset={`${baseUrl}/images/elevator-door-right.webp`}
         />
         <img
           class="intro-door-image"
-          src={`${baseUrl}/images/elevator-door-right.webp`}
+          src={`${baseUrl}/images/elevator-door-right.jpg`}
           width="309"
           height="1374"
           alt=""
@@ -54,33 +74,15 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
         />
       </picture>
 
-      <svg
-        class="intro-panel-overlay intro-panel-overlay--portrait"
-        viewBox="0 0 309 1374"
-        preserveAspectRatio="xMinYMid slice"
-        aria-hidden="true"
-      >
-        <text class="intro-panel-arrow" x="259.5" y="412" text-anchor="middle">▲</text>
-        <text class="intro-panel-floor" x="259.5" y="440" text-anchor="middle">1</text>
-        <circle class="intro-floor-button-dimmer" cx="259.6" cy="653.1" r="14" />
-        <circle class="intro-floor-button-halo" cx="259.6" cy="653.1" r="19" />
-        <circle class="intro-floor-button-glow" cx="259.6" cy="653.1" r="13.5" />
-        <text class="intro-floor-button-label intro-floor-button-label--portrait" x="259.6" y="658.1" text-anchor="middle">4</text>
-      </svg>
-
-      <svg
-        class="intro-panel-overlay intro-panel-overlay--desktop"
-        viewBox="0 0 688 768"
-        preserveAspectRatio="xMinYMid slice"
-        aria-hidden="true"
-      >
-        <text class="intro-panel-arrow" x="196" y="174" text-anchor="middle">▲</text>
-        <text class="intro-panel-floor" x="196" y="198" text-anchor="middle">1</text>
-        <circle class="intro-floor-button-dimmer" cx="196" cy="358" r="12.5" />
-        <circle class="intro-floor-button-halo" cx="196" cy="358" r="17" />
-        <circle class="intro-floor-button-glow" cx="196" cy="358" r="12" />
-        <text class="intro-floor-button-label intro-floor-button-label--desktop" x="196" y="362.5" text-anchor="middle">4</text>
-      </svg>
+      <div class="intro-panel-overlay" aria-hidden="true">
+        <span class="intro-panel-arrow">▲</span>
+        <span class="intro-panel-floor">1</span>
+        <span class="intro-floor-button">
+          <span class="intro-floor-button-core">
+            <span class="intro-floor-button-label">4</span>
+          </span>
+        </span>
+      </div>
     </div>
 
     <div class="intro-shade"></div>
@@ -111,12 +113,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 <style>
   .intro-curtain {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
     z-index: 9999;
-    width: 100%;
+    width: 100vw;
+    width: var(--intro-width, 100vw);
     height: 100vh;
-    height: 100svh;
-    height: 100dvh;
+    height: var(--intro-height, 100vh);
     overflow: hidden;
     isolation: isolate;
     overscroll-behavior: none;
@@ -124,7 +127,6 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     background: #0b0c0d;
     opacity: 1;
     visibility: visible;
-    contain: strict;
     transition: background-color 180ms ease-out, opacity 160ms ease-out 760ms,
       visibility 0s linear 940ms;
   }
@@ -139,13 +141,15 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   .intro-shade,
   .intro-hud {
     position: absolute;
-    inset-block: 0;
+    top: 0;
+    bottom: 0;
   }
 
   .intro-stage,
   .intro-shade,
   .intro-hud {
-    inset-inline: 0;
+    left: 0;
+    right: 0;
   }
 
   .intro-stage {
@@ -161,6 +165,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     will-change: transform;
+    -webkit-transition: -webkit-transform 1040ms cubic-bezier(0.72, 0, 0.2, 1);
     transition: transform 1040ms cubic-bezier(0.72, 0, 0.2, 1);
   }
 
@@ -175,7 +180,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .intro-picture {
-    inset-inline: 0;
+    left: 0;
+    right: 0;
     display: block;
     width: 100%;
     height: 100%;
@@ -191,8 +197,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     pointer-events: none;
     backface-visibility: hidden;
     transform: translate3d(0, 0, 0) scale(1.002);
-    will-change: transform, filter;
-    filter: saturate(0.78) contrast(1.08) brightness(0.8);
+    will-change: transform;
   }
 
   .intro-door--left .intro-door-image {
@@ -205,93 +210,93 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .intro-panel-overlay {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 2;
     display: block;
     width: 100%;
     height: 100%;
-    overflow: visible;
+    overflow: hidden;
     pointer-events: none;
     backface-visibility: hidden;
     will-change: transform;
+    transform: translate3d(0, 0, 0) scale(1.002);
+    opacity: 0;
   }
 
-  .intro-panel-overlay--desktop {
-    display: none;
+  .intro-curtain.is-panel-ready .intro-panel-overlay {
+    opacity: 1;
   }
 
   .intro-panel-arrow,
   .intro-panel-floor {
-    fill: #86efac;
+    position: absolute;
+    display: block;
+    left: var(--panel-x, 0px);
+    color: #86efac;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-weight: 900;
-    filter: drop-shadow(0 0 7px #22c55e);
+    line-height: 1;
+    text-align: center;
+    text-shadow: 0 0 7px #22c55e;
+    transform: translate3d(-50%, -50%, 0);
   }
 
-  .intro-panel-overlay--portrait .intro-panel-arrow {
-    font-size: 13px;
+  .intro-panel-arrow {
+    top: var(--panel-arrow-y, 0px);
+    font-size: var(--panel-arrow-size, 10px);
   }
 
-  .intro-panel-overlay--portrait .intro-panel-floor {
-    font-size: 22px;
+  .intro-panel-floor {
+    top: var(--panel-floor-y, 0px);
+    font-size: var(--panel-floor-size, 14px);
   }
 
-  .intro-panel-overlay--desktop .intro-panel-arrow {
-    font-size: 12px;
+  .intro-floor-button {
+    position: absolute;
+    left: var(--panel-button-x, 0px);
+    top: var(--panel-button-y, 0px);
+    width: var(--panel-button-size, 17px);
+    height: var(--panel-button-size, 17px);
+    transform: translate3d(-50%, -50%, 0);
   }
 
-  .intro-panel-overlay--desktop .intro-panel-floor {
-    font-size: 20px;
-  }
-
-  .intro-floor-button-dimmer,
-  .intro-floor-button-halo,
-  .intro-floor-button-glow {
-    transform-box: fill-box;
-    transform-origin: center;
-  }
-
-  .intro-floor-button-dimmer {
-    opacity: 1;
-    fill: rgba(8, 12, 10, 0.7);
-    stroke: rgba(203, 213, 225, 0.62);
-    stroke-width: 1.2;
-    transition: opacity 160ms ease-out;
-  }
-
-  .intro-floor-button-halo,
-  .intro-floor-button-glow {
+  .intro-floor-button::before {
+    position: absolute;
+    top: -28%;
+    right: -28%;
+    bottom: -28%;
+    left: -28%;
+    content: '';
+    border: 1px solid rgba(253, 230, 138, 0);
+    border-radius: 50%;
     opacity: 0;
+    transform: scale(0.82);
+  }
+
+  .intro-floor-button-core {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: rgba(226, 232, 240, 0.82);
+    background: rgba(8, 12, 10, 0.72);
+    border: 1px solid rgba(203, 213, 225, 0.68);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.12);
+    transition: color 160ms ease-out, background-color 160ms ease-out,
+      border-color 160ms ease-out, box-shadow 160ms ease-out;
   }
 
   .intro-floor-button-label {
-    fill: rgba(226, 232, 240, 0.82);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: var(--panel-button-font-size, 11px);
     font-weight: 900;
+    line-height: 1;
     pointer-events: none;
-    transition: fill 160ms ease-out, filter 160ms ease-out;
-  }
-
-  .intro-floor-button-label--portrait {
-    font-size: 15px;
-  }
-
-  .intro-floor-button-label--desktop {
-    font-size: 13px;
-  }
-
-  .intro-floor-button-halo {
-    fill: rgba(251, 191, 36, 0.08);
-    stroke: rgba(253, 230, 138, 0.82);
-    stroke-width: 1.5;
-    filter: drop-shadow(0 0 9px #f59e0b);
-  }
-
-  .intro-floor-button-glow {
-    fill: rgba(245, 158, 11, 0.2);
-    stroke: #fde68a;
-    stroke-width: 2.4;
-    filter: drop-shadow(0 0 12px #f59e0b);
   }
 
   .intro-shade {
@@ -299,14 +304,15 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     pointer-events: none;
     background:
       radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.03), transparent 34%),
-      linear-gradient(180deg, rgba(3, 4, 5, 0.04), rgba(3, 4, 5, 0.18));
+      linear-gradient(180deg, rgba(3, 4, 5, 0.16), rgba(3, 4, 5, 0.3));
     opacity: 1;
     transition: opacity 240ms ease-out;
   }
 
   .intro-seam {
     position: absolute;
-    inset-block: 0;
+    top: 0;
+    bottom: 0;
     left: 50%;
     z-index: 3;
     width: 1px;
@@ -324,6 +330,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: grid;
     grid-template-rows: auto 1fr;
     justify-items: center;
+    padding: 1rem 1rem 5rem;
     padding:
       max(1rem, env(safe-area-inset-top))
       max(1rem, env(safe-area-inset-right))
@@ -384,21 +391,23 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: min(82vw, 28rem);
+    width: 82vw;
+    max-width: 28rem;
     transform: translateY(-2vh);
   }
 
   .intro-logo {
+    width: 9.5rem;
     width: clamp(9.5rem, 34vmin, 23rem);
     color: #fff;
-    filter:
-      drop-shadow(0 6px 24px rgba(0, 0, 0, 0.92))
-      drop-shadow(0 0 24px rgba(255, 255, 255, 0.18));
+    filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.86));
   }
 
   .intro-kicker {
+    margin: 1rem 0 0;
     margin: clamp(1rem, 2.8vmin, 1.6rem) 0 0;
     color: rgba(255, 255, 255, 0.82);
+    font-size: 0.68rem;
     font-size: clamp(0.65rem, 1.4vmin, 0.78rem);
     line-height: 1;
     font-weight: 700;
@@ -410,6 +419,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   .intro-skip {
     position: absolute;
     left: 50%;
+    bottom: 1rem;
     bottom: max(1rem, env(safe-area-inset-bottom));
     z-index: 5;
     min-height: 2.75rem;
@@ -421,8 +431,6 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.12),
       0 8px 24px rgba(0, 0, 0, 0.45);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
     font: inherit;
     font-size: 0.69rem;
     font-weight: 750;
@@ -450,12 +458,15 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .intro-curtain.is-riding .intro-door-image,
   .intro-curtain.is-riding .intro-panel-overlay {
-    animation: intro-ride 2300ms cubic-bezier(0.42, 0, 0.22, 1) both;
+    animation: intro-ride 1950ms cubic-bezier(0.42, 0, 0.22, 1) both;
   }
 
-  .intro-curtain.is-floor-step .intro-floor-number,
-  .intro-curtain.is-floor-step .intro-panel-floor {
+  .intro-curtain.is-floor-step .intro-floor-number {
     animation: intro-floor-step 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .intro-curtain.is-floor-step .intro-panel-floor {
+    animation: intro-panel-floor-step 280ms ease-out both;
   }
 
   .intro-curtain.is-arriving .intro-floor-display {
@@ -473,26 +484,24 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .intro-curtain.is-arriving .intro-panel-arrow,
   .intro-curtain.is-arriving .intro-panel-floor {
-    fill: #fde68a;
-    filter: drop-shadow(0 0 10px #f59e0b);
+    color: #fde68a;
+    text-shadow: 0 0 10px #f59e0b;
   }
 
-  .intro-curtain.is-arriving .intro-floor-button-dimmer {
-    opacity: 0;
-  }
-
-  .intro-curtain.is-arriving .intro-floor-button-label {
-    fill: #fff7d6;
-    filter: drop-shadow(0 0 7px #f59e0b);
-  }
-
-  .intro-curtain.is-arriving .intro-floor-button-halo {
+  .intro-curtain.is-arriving .intro-floor-button::before {
     opacity: 1;
+    border-color: rgba(253, 230, 138, 0.86);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.92);
     animation: intro-button-halo 900ms ease-out infinite;
   }
 
-  .intro-curtain.is-arriving .intro-floor-button-glow {
-    opacity: 1;
+  .intro-curtain.is-arriving .intro-floor-button-core {
+    color: #fff7d6;
+    background: rgba(245, 158, 11, 0.34);
+    border-color: #fde68a;
+    box-shadow:
+      inset 0 1px 2px rgba(255, 255, 255, 0.32),
+      0 0 13px rgba(245, 158, 11, 0.96);
     animation: intro-button-glow 720ms ease-in-out infinite alternate;
   }
 
@@ -551,14 +560,20 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
   }
 
+  @keyframes intro-panel-floor-step {
+    0% { opacity: 0.2; }
+    55% { opacity: 1; text-shadow: 0 0 13px currentColor; }
+    100% { opacity: 1; }
+  }
+
   @keyframes intro-button-halo {
     0% { opacity: 0.9; transform: scale(0.82); }
     100% { opacity: 0; transform: scale(1.5); }
   }
 
   @keyframes intro-button-glow {
-    0% { opacity: 0.72; transform: scale(0.94); }
-    100% { opacity: 1; transform: scale(1.08); }
+    0% { opacity: 0.78; transform: scale(0.96); }
+    100% { opacity: 1; transform: scale(1.06); }
   }
 
   @keyframes intro-seam-release {
@@ -587,16 +602,6 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
   }
 
-  @media (min-aspect-ratio: 1/1) {
-    .intro-panel-overlay--portrait {
-      display: none;
-    }
-
-    .intro-panel-overlay--desktop {
-      display: block;
-    }
-  }
-
   @media (max-height: 520px) {
     .intro-hud {
       padding-top: max(0.65rem, env(safe-area-inset-top));
@@ -604,6 +609,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
 
     .intro-floor-display {
+      padding-top: 0.45rem;
+      padding-bottom: 0.45rem;
       padding-block: 0.45rem;
     }
 
@@ -621,6 +628,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     .intro-skip {
       min-height: 2.35rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
       padding-block: 0.5rem;
     }
   }
@@ -628,12 +637,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   @media (prefers-reduced-motion: reduce) {
     .intro-door,
     .intro-door-image,
+    .intro-panel-overlay,
     .intro-panel-arrow,
     .intro-panel-floor,
-    .intro-floor-button-dimmer,
+    .intro-floor-button,
+    .intro-floor-button::before,
+    .intro-floor-button-core,
     .intro-floor-button-label,
-    .intro-floor-button-halo,
-    .intro-floor-button-glow,
     .intro-hud,
     .intro-shade,
     .intro-skip,
@@ -649,18 +659,27 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     const curtain = document.getElementById('intro-curtain');
     const skipButton = document.getElementById('intro-skip');
     const status = document.getElementById('intro-status');
-    const floorNumber = curtain?.querySelector('.intro-floor-number');
-    const floorArrow = curtain?.querySelector('.intro-floor-arrow');
-    const panelFloors = Array.from(curtain?.querySelectorAll('.intro-panel-floor') ?? []);
-    const panelArrows = Array.from(curtain?.querySelectorAll('.intro-panel-arrow') ?? []);
-    const images = Array.from(curtain?.querySelectorAll('[data-intro-image]') ?? []);
 
-    if (!curtain || !skipButton || !floorNumber || !floorArrow) return;
+    if (!curtain || !skipButton) return;
+
+    const floorNumber = curtain.querySelector('.intro-floor-number');
+    const floorArrow = curtain.querySelector('.intro-floor-arrow');
+    const panelOverlay = curtain.querySelector('.intro-panel-overlay');
+    const panelFloors = Array.from(curtain.querySelectorAll('.intro-panel-floor'));
+    const panelArrows = Array.from(curtain.querySelectorAll('.intro-panel-arrow'));
+    const images = Array.from(curtain.querySelectorAll('[data-intro-image]'));
+
+    if (!floorNumber || !floorArrow || !panelOverlay) return;
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const finePointer = window.matchMedia('(pointer: fine)');
+    const landscapeViewport = window.matchMedia('(min-aspect-ratio: 1/1)');
     const timers = [];
+    let animationFrame = 0;
+    let viewportFrame = 0;
     let runId = 0;
     let hasOpened = false;
+    let scrollLocked = false;
     let previousBodyOverflow = '';
     let previousHtmlOverflow = '';
 
@@ -674,7 +693,91 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       while (timers.length) window.clearTimeout(timers.pop());
     };
 
+    const stopTimeline = () => {
+      if (!animationFrame) return;
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    };
+
+    const readViewport = () => {
+      const visualViewport = window.visualViewport;
+      const width = visualViewport && visualViewport.width
+        ? visualViewport.width
+        : (document.documentElement.clientWidth || window.innerWidth);
+      const height = visualViewport && visualViewport.height
+        ? visualViewport.height
+        : (document.documentElement.clientHeight || window.innerHeight);
+
+      return {
+        width: Math.max(1, Math.round(width * 100) / 100),
+        height: Math.max(1, Math.round(height * 100) / 100),
+      };
+    };
+
+    const setPanelPixel = (name, value) => {
+      panelOverlay.style.setProperty(name, `${Math.round(value * 100) / 100}px`);
+    };
+
+    const syncViewport = () => {
+      const viewport = readViewport();
+      curtain.style.setProperty('--intro-width', `${viewport.width}px`);
+      curtain.style.setProperty('--intro-height', `${viewport.height}px`);
+
+      const profile = landscapeViewport.matches
+        ? {
+            width: 688,
+            height: 768,
+            panelX: 196,
+            arrowY: 169,
+            floorY: 191,
+            arrowSize: 12,
+            floorSize: 20,
+            buttonX: 196,
+            buttonY: 358,
+            buttonSize: 24,
+            buttonFontSize: 13,
+          }
+        : {
+            width: 309,
+            height: 1374,
+            panelX: 259.5,
+            arrowY: 407,
+            floorY: 432,
+            arrowSize: 13,
+            floorSize: 22,
+            buttonX: 259.6,
+            buttonY: 653.1,
+            buttonSize: 27,
+            buttonFontSize: 15,
+          };
+
+      const doorWidth = viewport.width / 2 + 1;
+      const scale = Math.max(doorWidth / profile.width, viewport.height / profile.height);
+      const offsetY = (viewport.height - profile.height * scale) / 2;
+
+      setPanelPixel('--panel-x', profile.panelX * scale);
+      setPanelPixel('--panel-arrow-y', profile.arrowY * scale + offsetY);
+      setPanelPixel('--panel-floor-y', profile.floorY * scale + offsetY);
+      setPanelPixel('--panel-arrow-size', Math.max(9, profile.arrowSize * scale));
+      setPanelPixel('--panel-floor-size', Math.max(13, profile.floorSize * scale));
+      setPanelPixel('--panel-button-x', profile.buttonX * scale);
+      setPanelPixel('--panel-button-y', profile.buttonY * scale + offsetY);
+      setPanelPixel('--panel-button-size', Math.max(16, profile.buttonSize * scale));
+      setPanelPixel('--panel-button-font-size', Math.max(10, profile.buttonFontSize * scale));
+      curtain.classList.add('is-panel-ready');
+    };
+
+    const requestViewportSync = () => {
+      if (viewportFrame) window.cancelAnimationFrame(viewportFrame);
+      viewportFrame = window.requestAnimationFrame(() => {
+        viewportFrame = 0;
+        syncViewport();
+      });
+    };
+
     const lockScroll = () => {
+      if (scrollLocked) return;
+      scrollLocked = true;
       previousBodyOverflow = document.body.style.overflow;
       previousHtmlOverflow = document.documentElement.style.overflow;
       document.body.style.overflow = 'hidden';
@@ -682,8 +785,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     };
 
     const restoreScroll = () => {
+      if (!scrollLocked) return;
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
+      scrollLocked = false;
     };
 
     const setDirectionIcon = (icon) => {
@@ -716,52 +821,91 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       if (currentRun !== runId) return;
       curtain.hidden = true;
       curtain.setAttribute('aria-hidden', 'true');
-      curtain.classList.remove('is-riding', 'is-arriving', 'is-opening', 'is-floor-step');
+      curtain.classList.remove(
+        'is-riding',
+        'is-arriving',
+        'is-opening',
+        'is-floor-step',
+      );
+      restoreScroll();
     };
 
     const openDoors = () => {
       if (hasOpened) return;
       hasOpened = true;
       runId += 1;
+      stopTimeline();
       clearTimers();
       setFloor(4);
       setDirectionIcon('◆');
       curtain.classList.remove('is-riding', 'is-floor-step');
       curtain.classList.add('is-arriving', 'is-opening');
       skipButton.disabled = true;
-      restoreScroll();
 
       const currentRun = runId;
-      later(() => finishOpening(currentRun), reducedMotion.matches ? 80 : 1120);
+      later(() => finishOpening(currentRun), reducedMotion.matches ? 100 : 1200);
     };
 
     const runSequence = (currentRun) => {
       if (currentRun !== runId || hasOpened) return;
 
-      if (reducedMotion.matches) {
-        setFloor(4);
-        setDirectionIcon('◆');
-        curtain.classList.add('is-arriving');
-        later(openDoors, 320);
-        return;
-      }
+      const reduced = reducedMotion.matches;
+      const floor2At = reduced ? 400 : 650;
+      const floor3At = reduced ? 800 : 1300;
+      const floor4At = reduced ? 1200 : 1950;
+      const openAt = reduced ? 1900 : 3000;
+      let elapsed = 0;
+      let lastTimestamp = 0;
+      let stage = 1;
 
-      curtain.classList.add('is-riding');
-      later(() => advanceToFloor(2), 650);
-      later(() => advanceToFloor(3), 1300);
-      later(() => {
-        advanceToFloor(4);
-        setDirectionIcon('◆');
-        curtain.classList.remove('is-riding');
-        curtain.classList.add('is-arriving');
-      }, 1950);
-      later(openDoors, 3000);
+      if (!reduced) curtain.classList.add('is-riding');
+
+      const tick = (timestamp) => {
+        if (currentRun !== runId || hasOpened) return;
+
+        if (document.visibilityState !== 'visible') {
+          lastTimestamp = 0;
+          animationFrame = window.requestAnimationFrame(tick);
+          return;
+        }
+
+        if (lastTimestamp) {
+          elapsed += Math.min(timestamp - lastTimestamp, 250);
+        }
+        lastTimestamp = timestamp;
+
+        if (stage === 1 && elapsed >= floor2At) {
+          stage = 2;
+          advanceToFloor(2);
+        }
+        if (stage === 2 && elapsed >= floor3At) {
+          stage = 3;
+          advanceToFloor(3);
+        }
+        if (stage === 3 && elapsed >= floor4At) {
+          stage = 4;
+          advanceToFloor(4);
+          setDirectionIcon('◆');
+          curtain.classList.remove('is-riding');
+          curtain.classList.add('is-arriving');
+        }
+        if (elapsed >= openAt) {
+          openDoors();
+          return;
+        }
+
+        animationFrame = window.requestAnimationFrame(tick);
+      };
+
+      animationFrame = window.requestAnimationFrame(tick);
     };
 
     const waitForVisibleImages = () => {
       const decodeTasks = images.map((image) => {
         if (image.complete && image.naturalWidth > 0) return Promise.resolve();
-        if (typeof image.decode === 'function') return image.decode().catch(() => undefined);
+        if (typeof image.decode === 'function') {
+          return image.decode().catch(() => undefined);
+        }
         return new Promise((resolve) => {
           image.addEventListener('load', resolve, { once: true });
           image.addEventListener('error', resolve, { once: true });
@@ -769,16 +913,18 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       });
 
       return Promise.race([
-        Promise.allSettled(decodeTasks),
-        new Promise((resolve) => window.setTimeout(resolve, 550)),
+        Promise.all(decodeTasks),
+        new Promise((resolve) => window.setTimeout(resolve, 1600)),
       ]);
     };
 
     const beginWhenVisible = (currentRun) => {
       const begin = async () => {
         if (currentRun !== runId || hasOpened) return;
+        syncViewport();
         await waitForVisibleImages();
         if (currentRun !== runId || hasOpened) return;
+        syncViewport();
         window.requestAnimationFrame(() => {
           window.requestAnimationFrame(() => runSequence(currentRun));
         });
@@ -799,36 +945,63 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     const resetAndPlay = () => {
       runId += 1;
+      stopTimeline();
       clearTimers();
       hasOpened = false;
       curtain.hidden = false;
       curtain.removeAttribute('aria-hidden');
-      curtain.classList.remove('is-riding', 'is-arriving', 'is-opening', 'is-floor-step');
+      curtain.classList.remove(
+        'is-riding',
+        'is-arriving',
+        'is-opening',
+        'is-floor-step',
+      );
       skipButton.disabled = false;
       setDirectionIcon('▲');
       setFloor(1);
+      syncViewport();
       lockScroll();
 
       const currentRun = runId;
       beginWhenVisible(currentRun);
-      window.requestAnimationFrame(() => skipButton.focus({ preventScroll: true }));
+      later(() => {
+        if (currentRun === runId && !hasOpened) openDoors();
+      }, 8000);
+
+      if (finePointer.matches) {
+        window.requestAnimationFrame(() => skipButton.focus({ preventScroll: true }));
+      }
     };
 
     skipButton.addEventListener('click', openDoors);
-    curtain.addEventListener('click', (event) => {
-      if (event.target === skipButton || skipButton.contains(event.target)) return;
-      openDoors();
-    });
+    curtain.addEventListener('touchmove', (event) => {
+      event.preventDefault();
+    }, { passive: false });
     document.addEventListener('keydown', (event) => {
       if (!curtain.hidden && event.key === 'Escape') openDoors();
     });
-    window.addEventListener('pagehide', restoreScroll);
+    window.addEventListener('resize', requestViewportSync, { passive: true });
+    window.addEventListener('orientationchange', requestViewportSync, { passive: true });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', requestViewportSync, { passive: true });
+    }
+    window.addEventListener('pagehide', () => {
+      stopTimeline();
+      restoreScroll();
+    });
     window.addEventListener('pageshow', (event) => {
+      syncViewport();
       if (event.persisted) resetAndPlay();
     });
-    reducedMotion.addEventListener?.('change', (event) => {
-      if (event.matches && !curtain.hidden) openDoors();
-    });
+
+    const handleReducedMotionChange = (event) => {
+      if (event.matches && !curtain.hidden) resetAndPlay();
+    };
+    if (typeof reducedMotion.addEventListener === 'function') {
+      reducedMotion.addEventListener('change', handleReducedMotionChange);
+    } else if (typeof reducedMotion.addListener === 'function') {
+      reducedMotion.addListener(handleReducedMotionChange);
+    }
 
     resetAndPlay();
   })();
