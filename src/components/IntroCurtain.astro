@@ -245,27 +245,11 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     if (!curtain || !left || !right) return;
 
-    const storageKey = 'sexto-vento-intro-seen';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function hasSeenIntro() {
-      try {
-        return window.sessionStorage.getItem(storageKey) === 'true';
-      } catch {
-        return false;
-      }
-    }
-
-    function rememberIntro() {
-      try {
-        window.sessionStorage.setItem(storageKey, 'true');
-      } catch {
-        // Storage can be unavailable in private browsing; the intro still works.
-      }
-    }
-
-    if (hasSeenIntro() || prefersReducedMotion) {
-      rememberIntro();
+    // Show the elevator on every page load. Visitors who prefer reduced motion
+    // enter directly without the ascent or door-opening animation.
+    if (prefersReducedMotion) {
       curtain.remove();
       return;
     }
@@ -280,7 +264,6 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     function openDoors() {
       if (hasOpened) return;
       hasOpened = true;
-      rememberIntro();
       curtain.style.pointerEvents = 'none';
       curtain.classList.remove('is-arriving');
       curtain.classList.add('is-opening');
