@@ -1,10 +1,13 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+const productionSite = process.env.PUBLIC_SITE_URL || 'https://sextovento.com';
+
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.GITHUB_PAGES ? 'https://juangiraldotu-design.github.io' : undefined,
-  base: process.env.GITHUB_PAGES ? '/sexto-vento' : '/',
+  site: isGitHubPages ? 'https://juangiraldotu-design.github.io' : productionSite,
+  base: isGitHubPages ? '/sexto-vento' : '/',
   integrations: [tailwind()],
   image: {
     service: {
@@ -12,4 +15,3 @@ export default defineConfig({
     }
   }
 });
-
