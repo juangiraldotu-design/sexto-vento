@@ -1,41 +1,42 @@
-<section class="reveal-on-scroll mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:py-20">
-  <div class="editorial-section relative overflow-hidden border-y border-amber-100/25">
-    <div class="editorial-grid pointer-events-none absolute inset-0 opacity-30"></div>
-    <div class="relative grid lg:grid-cols-12">
-      <div class="border-b border-amber-100/20 px-5 py-7 sm:px-8 lg:col-span-7 lg:border-b-0 lg:border-r lg:py-12">
-        <p class="editorial-kicker">Terraza &amp; atmósfera · Piso 4</p>
-        <h2 class="mt-4 max-w-2xl text-balance text-4xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-5xl lg:text-7xl">
-          El mirador gastronómico de Roldanillo
+---
+import { restaurantConfig } from '../config/restaurant.config';
+---
+
+<section class="max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-4 lg:py-8 reveal-on-scroll">
+  <div class="liquid-card rounded-[28px] p-6 sm:p-7 lg:p-10 border border-white/12 relative overflow-hidden">
+    <!-- Ambient Sunset Glow (Zero Blur Filter) -->
+    <div class="absolute -right-12 top-0 w-44 h-44 lg:w-72 lg:h-72 rounded-full bg-[radial-gradient(circle,rgba(234,88,12,0.22)_0%,transparent_70%)] pointer-events-none"></div>
+
+    <div class="relative z-10 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 lg:py-1.5 rounded-full liquid-pill text-xs lg:text-sm font-semibold text-amber-300 border border-amber-500/25 mb-3 lg:mb-4">
+          <span>Terraza & Atmósfera</span>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl lg:text-4xl font-extrabold text-white tracking-tight mb-2.5 lg:mb-4">
+          El Mirador Gastronómico de Roldanillo
         </h2>
-        <p class="mt-6 max-w-xl text-sm leading-relaxed text-stone-300/80 sm:text-base">
-          En el piso 4 del <strong class="font-bold text-amber-100">Hotel Casa Volga</strong>, Sexto Vento domina la plaza principal con una vista privilegiada a la cordillera. Brisa del atardecer, coctelería de autor, música selecta y cocina artesanal en el punto más alto del pueblo mágico.
+
+        <p class="text-xs sm:text-sm lg:text-base text-slate-300/85 leading-relaxed mb-6 lg:mb-0">
+          En el piso 4 del <strong>Hotel Casa Volga</strong>, Sexto Vento domina la plaza principal con una vista privilegiada a la cordillera. Brisa del atardecer, coctelería de autor, música selecta y cocina artesanal en el punto más alto del pueblo mágico.
         </p>
       </div>
 
-      <div class="relative flex min-h-72 flex-col justify-between overflow-hidden px-5 py-7 sm:px-8 lg:col-span-5 lg:min-h-full lg:py-12">
-        <div class="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.34)_0%,transparent_68%)]"></div>
-        <p class="relative text-[10px] font-bold uppercase tracking-[0.24em] text-amber-200/65">La vista completa</p>
-        <div class="relative flex items-end text-white">
-          <strong class="text-[7rem] font-black leading-[0.72] tracking-[-0.1em] text-transparent [background:linear-gradient(145deg,#fff8e7_5%,#fbbf24_45%,#ea580c_95%)] bg-clip-text sm:text-[9rem] lg:text-[10rem]">360</strong>
-          <span class="mb-2 text-5xl font-black text-amber-200 sm:text-6xl">°</span>
+      <!-- Apple Spec Stats Grid -->
+      <div class="grid grid-cols-3 gap-2.5 lg:gap-4 text-center">
+        <div class="p-3.5 rounded-[20px] bg-white/[0.04] border border-amber-500/15 hover:bg-white/[0.07] transition-colors">
+          <span class="block text-lg sm:text-xl font-extrabold text-amber-300 tracking-tight">Piso 4</span>
+          <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Piso Mirador</span>
         </div>
-        <p class="relative max-w-xs text-xl font-bold leading-tight tracking-tight text-white">Del centro histórico a la cordillera, sin salir de la mesa.</p>
+        <div class="p-3.5 rounded-[20px] bg-white/[0.04] border border-amber-500/15 hover:bg-white/[0.07] transition-colors">
+          <span class="block text-lg sm:text-xl font-extrabold text-orange-400 tracking-tight">360°</span>
+          <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Vista</span>
+        </div>
+        <div class="p-3.5 rounded-[20px] bg-white/[0.04] border border-amber-500/15 hover:bg-white/[0.07] transition-colors">
+          <span class="block text-lg sm:text-xl font-extrabold text-amber-400 tracking-tight">Jue-Dom</span>
+          <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Servicio</span>
+        </div>
       </div>
     </div>
-
-    <dl class="relative grid grid-cols-3 border-t border-amber-100/20">
-      <div class="px-3 py-5 sm:px-6">
-        <dt class="text-[9px] font-bold uppercase tracking-[0.18em] text-stone-400">Altura</dt>
-        <dd class="mt-1 text-lg font-black tracking-tight text-amber-200 sm:text-2xl">Piso 4</dd>
-      </div>
-      <div class="border-x border-amber-100/20 px-3 py-5 sm:px-6">
-        <dt class="text-[9px] font-bold uppercase tracking-[0.18em] text-stone-400">Panorama</dt>
-        <dd class="mt-1 text-lg font-black tracking-tight text-orange-400 sm:text-2xl">Vista 360°</dd>
-      </div>
-      <div class="px-3 py-5 sm:px-6">
-        <dt class="text-[9px] font-bold uppercase tracking-[0.18em] text-stone-400">Servicio</dt>
-        <dd class="mt-1 text-lg font-black tracking-tight text-amber-200 sm:text-2xl">Jue–Dom</dd>
-      </div>
-    </dl>
   </div>
 </section>

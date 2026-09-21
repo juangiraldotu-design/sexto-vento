@@ -4,23 +4,23 @@ import { restaurantConfig } from '../config/restaurant.config';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="video" class="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:py-20">
-  <div class="editorial-section relative overflow-hidden border-y border-amber-100/25 p-5 sm:p-8 lg:p-12">
+<section id="video" class="max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-6 lg:py-10">
+  <div class="liquid-card rounded-[32px] p-6 sm:p-8 lg:p-12 border border-amber-400/20 relative overflow-hidden">
     <!-- Ambient Sunset Glow (Pure Radial Gradient - Zero Blur Filter) -->
     <div class="absolute -left-16 -top-16 w-56 h-56 lg:w-80 lg:h-80 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.22)_0%,transparent_70%)] pointer-events-none"></div>
     <div class="absolute -right-16 -bottom-16 w-60 h-60 lg:w-96 lg:h-96 rounded-full bg-[radial-gradient(circle,rgba(234,88,12,0.20)_0%,transparent_70%)] pointer-events-none"></div>
 
     <div class="relative z-10 flex flex-col lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
-      
+
       <!-- Text Description Column -->
-      <div class="mb-8 lg:col-span-6 lg:mb-0">
-        <div class="editorial-kicker mb-4 inline-flex items-center gap-2">
+      <div class="lg:col-span-6 mb-8 lg:mb-0">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-pill text-xs sm:text-sm font-semibold text-amber-300 border border-amber-500/30 mb-3.5">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
           <span>Experiencia Audiovisual</span>
         </div>
 
-        <h2 class="mb-4 text-balance text-4xl font-black leading-[0.92] tracking-[-0.055em] text-white sm:text-5xl lg:text-7xl">
-          Conoce Sexto Vento<br /><span class="text-amber-300">en video</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-3 lg:mb-4">
+          Conoce Sexto Vento en Video
         </h2>
 
         <p class="text-xs sm:text-sm lg:text-base text-slate-300/90 leading-relaxed mb-6">
@@ -28,27 +28,27 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
         </p>
 
         <!-- Feature highlights -->
-        <div class="mb-6 border-y border-amber-100/20 text-xs text-stone-300 sm:text-sm">
-          <div class="flex items-center gap-3 py-3">
-            <span class="text-[10px] font-black tracking-[0.16em] text-amber-300">01</span>
+        <div class="space-y-3 mb-6 text-xs sm:text-sm text-slate-300">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
             <span>Formato vertical interactivo para celular</span>
           </div>
-          <div class="flex items-center gap-3 border-y border-amber-100/15 py-3">
-            <span class="text-[10px] font-black tracking-[0.16em] text-amber-300">02</span>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
             <span>Tomas aéreas de la terraza sobre el Hotel Casa Volga</span>
           </div>
-          <div class="flex items-center gap-3 py-3">
-            <span class="text-[10px] font-black tracking-[0.16em] text-amber-300">03</span>
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
             <span>Presentación de platos estrella y coctelería de autor</span>
           </div>
         </div>
 
         <!-- Social link pill -->
-        <a 
-          href={restaurantConfig.instagramUrl} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 border-b border-amber-300/35 pb-1 text-xs font-bold uppercase tracking-[0.08em] text-amber-300/90 transition-colors hover:text-amber-100 sm:text-sm"
+        <a
+          href={restaurantConfig.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-amber-300/90 hover:text-amber-200 transition-colors"
         >
           <span>Síguenos en Instagram para ver historias y adelantos</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,18 +59,16 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
       <!-- Vertical 9:16 Video Player Container -->
       <div class="lg:col-span-6 flex justify-center">
-        <button
-          type="button"
+        <div
           id="video-player-card"
-          aria-label="Abrir presentación en video de Sexto Vento"
-          class="group relative aspect-[9/16] w-full max-w-[280px] cursor-pointer select-none overflow-hidden border border-amber-200/35 shadow-[0_25px_60px_rgba(0,0,0,0.85)] transition-transform duration-300 hover:-translate-y-1 active:scale-[0.99] sm:max-w-[310px]"
+          class="w-full max-w-[280px] sm:max-w-[310px] aspect-[9/16] rounded-[32px] overflow-hidden relative border border-amber-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.85)] group cursor-pointer select-none transform transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
         >
           <!-- Background Poster Image (Rooftop Drone View) -->
           <picture>
             <source srcset={`${baseUrl}/images/hero/hero-mobile.webp`} type="image/webp" />
-            <img 
-              src={`${baseUrl}/images/hero/hero-mobile.jpg`} 
-              alt="Vista de la terraza de Sexto Vento en Hotel Casa Volga" 
+            <img
+              src={`${baseUrl}/images/hero/hero-mobile.jpg`}
+              alt="Vista de la terraza de Sexto Vento en Hotel Casa Volga"
               class="absolute inset-0 w-full h-full object-cover brightness-[0.75] group-hover:brightness-[0.85] transition duration-500 scale-105 group-hover:scale-110"
               width="400"
               height="710"
@@ -84,10 +82,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
           <!-- Top Overlay Badges -->
           <div class="absolute top-4 inset-x-4 flex items-center justify-between z-10 pointer-events-none">
-              <span class="border border-white/15 bg-black/80 px-2.5 py-1 text-[10px] font-semibold text-slate-200 sm:text-xs">
+            <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-black/80 text-slate-200 border border-white/15">
               Piso 4 • Rooftop
             </span>
-              <span class="flex items-center gap-1.5 border border-amber-400/40 bg-[#1A0F09]/95 px-3 py-1 text-[10px] font-bold text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.3)] sm:text-xs">
+            <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#1A0F09]/95 text-amber-300 border border-amber-400/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
               Próximamente
             </span>
@@ -97,17 +95,19 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
             <div class="relative flex items-center justify-center">
               <div class="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-amber-400/40 animate-ping opacity-30 pointer-events-none"></div>
-              
-              <span
-                id="play-button" 
+
+              <button
+                type="button"
+                id="play-button"
+                aria-label="Reproducir video de presentación"
                 class="w-16 h-16 sm:w-20 sm:h-20 rounded-full liquid-pill flex items-center justify-center text-amber-300 border border-amber-400/50 shadow-[0_10px_35px_rgba(245,158,11,0.4)] group-hover:scale-110 transition-transform duration-300 relative z-20"
               >
                 <svg class="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-amber-300 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
-              </span>
+              </button>
             </div>
-            
+
             <span class="mt-4 text-xs font-medium text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] tracking-wide">
               Toca para reproducir
             </span>
@@ -115,7 +115,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
           <!-- Bottom Overlay: Title & Duration Badge -->
           <div class="absolute bottom-4 inset-x-4 z-10 pointer-events-none">
-            <div class="border border-amber-400/25 bg-[#140C07]/95 p-3 shadow-lg">
+            <div class="liquid-card rounded-2xl p-3 border border-amber-400/25 bg-[#140C07]/95 shadow-lg">
               <div class="flex items-center justify-between gap-2">
                 <div>
                   <h3 class="text-xs sm:text-sm font-bold text-white leading-tight">
@@ -131,7 +131,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
               </div>
             </div>
           </div>
-        </button>
+        </div>
       </div>
 
     </div>
@@ -139,8 +139,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 </section>
 
 <!-- Modal: Video Próximamente -->
-<div 
-  id="video-modal" 
+<div
+  id="video-modal"
   class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 opacity-0 pointer-events-none transition-opacity duration-300"
   role="dialog"
   aria-modal="true"
@@ -170,10 +170,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <!-- Buttons -->
     <div class="flex flex-col gap-2.5">
-      <a 
-        href={restaurantConfig.instagramUrl} 
-        target="_blank" 
-        rel="noopener noreferrer" 
+      <a
+        href={restaurantConfig.instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-espresso font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity"
       >
         <span>Ver Adelantos en Instagram</span>
@@ -182,8 +182,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
         </svg>
       </a>
 
-      <button 
-        type="button" 
+      <button
+        type="button"
         id="close-video-modal"
         class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-semibold text-xs transition-colors border border-white/10"
       >
