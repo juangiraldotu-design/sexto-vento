@@ -4,347 +4,629 @@ import Logo from './Logo.astro';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<!-- ════════ ULTRA-REALISTIC ELEVATOR ASCENT & SPLIT DOORS INTRO ════════ -->
-<button
-  type="button"
-  id="intro-curtain" 
-  class="fixed inset-0 z-[9999] w-screen h-screen h-[100dvh] overflow-hidden select-none cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-amber-300"
-  style="touch-action: manipulation;"
-  aria-label="Abrir las puertas y entrar a Sexto Vento"
+<div
+  id="intro-curtain"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="intro-title"
+  class="intro-curtain"
 >
-  <!-- ════════ LEFT ELEVATOR DOOR (Left 50% of Screen + 1px overlap) ════════ -->
-  <div 
-    id="curtain-left" 
-    class="absolute top-0 left-0 w-[calc(50%+1px)] h-full overflow-hidden bg-[#18191B] flex justify-end"
-    style="transition: transform 700ms cubic-bezier(0.2, 1, 0.3, 1), opacity 300ms ease-out 400ms;"
-  >
-    <!-- Left door graphic container: perfectly preserves 309/1374 proportion -->
-    <div class="relative h-full aspect-[309/1374] min-w-full sm:min-w-0 max-w-none flex-shrink-0">
-      <!-- Stainless steel left door SVG (locked to 309x1374 coordinate space) -->
-    <!-- Portrait Mode (Mobile / Vertical Viewports: 309x1374) -->
-    <div class="door-portrait w-full h-full">
-      <svg viewBox="0 0 309 1374" class="w-full h-full block pointer-events-none brightness-[0.98]" preserveAspectRatio="xMaxYMid slice">
-        <image href={`${baseUrl}/images/elevator-door-left.webp`} x="0" y="0" width="309" height="1374" />
-      </svg>
-    </div>
+  <h2 id="intro-title" class="sr-only">Llegando a Sexto Vento, piso 4</h2>
+  <p id="intro-status" class="sr-only" aria-live="polite">Ascensor subiendo al piso 4</p>
 
-    <!-- Landscape / Desktop Mode (PC Widescreen / Tablets in landscape: 688x768) -->
-    <div class="door-landscape w-full h-full">
-      <svg viewBox="0 0 688 768" class="w-full h-full block pointer-events-none brightness-[0.98]" preserveAspectRatio="xMaxYMid slice">
-        <image href={`${baseUrl}/images/elevator-desktop-left.webp`} x="0" y="0" width="688" height="768" />
-      </svg>
-    </div>
-
-    <!-- Left half of logo: center aligned exactly at right: 0 (the seam) -->
-    <div 
-      id="logo-half-left" 
-      class="absolute inset-y-0 w-[100vw] flex flex-col items-center justify-center pointer-events-none opacity-0"
-      style="left: calc(100% - 50vw);"
-    >
-      <div class="w-48 sm:w-64 md:w-80 lg:w-96 text-white filter drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
-        <Logo class="w-full h-auto text-white" />
-      </div>
-      <div class="mt-8 sm:mt-12 text-[10px] sm:text-xs font-semibold tracking-widest text-slate-300/80 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-        <span class="inline sm:hidden">Toca para abrir</span>
-        <span class="hidden sm:inline">Haz clic para entrar</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ════════ RIGHT ELEVATOR DOOR (Right 50% of Screen) ════════ -->
-  <div 
-    id="curtain-right" 
-    class="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden bg-[#18191B] flex justify-start"
-    style="transition: transform 700ms cubic-bezier(0.2, 1, 0.3, 1), opacity 300ms ease-out 400ms;"
-  >
-    <!-- Right door graphic container: perfectly preserves 309/1374 proportion -->
-    <div class="relative h-full aspect-[309/1374] min-w-full sm:min-w-0 max-w-none flex-shrink-0">
-      <!-- Stainless steel right door SVG with coordinate-locked LED screen & Button 4 overlay -->
-    <!-- Portrait Mode (Mobile / Vertical Viewports: 309x1374) -->
-    <div class="door-portrait w-full h-full">
-      <svg viewBox="0 0 309 1374" class="w-full h-full block pointer-events-none brightness-[0.98]" preserveAspectRatio="xMinYMid slice">
-        <image href={`${baseUrl}/images/elevator-door-right.webp`} x="0" y="0" width="309" height="1374" />
-        
-        <!-- ─── Retro LED Screen Overlay (Pinned precisely inside display bezel at x:257, y:388..448) ─── -->
-        <!-- Retro LED Screen Overlay (Mobile) -->
-        <text 
-          id="led-arrow"
-          class="led-arrow" 
-          x="257" 
-          y="412" 
-          text-anchor="middle" 
-          font-family="monospace" 
-          font-size="13" 
-          font-weight="900" 
-          fill="#34d399" 
-          style="filter: drop-shadow(0 0 6px #34d399); transition: fill 300ms ease, filter 300ms ease;"
-        >▲</text>
-        <text 
-          id="led-digit"
-          class="led-digit" 
-          x="257" 
-          y="438" 
-          text-anchor="middle" 
-          font-family="monospace" 
-          font-size="20" 
-          font-weight="900" 
-          fill="#34d399" 
-          style="filter: drop-shadow(0 0 8px #34d399); transition: fill 300ms ease, filter 300ms ease;"
-        >1</text>
-
-        <!-- ─── Button 4 Glowing Active Ring Overlay (Locked permanently to cx:259.6, cy:653.1) ─── -->
-        <!-- Button 4 Glowing Active Ring Overlay (Mobile) -->
-        <circle 
-          id="btn-4-glow"
-          class="btn-4-glow" 
-          cx="259.6" 
-          cy="653.1" 
-          r="16" 
-          fill="rgba(34,197,94,0.25)" 
-          stroke="#34d399" 
-          stroke-width="2.5" 
-          style="filter: drop-shadow(0 0 10px #22c55e); transition: all 300ms ease;"
+  <div class="intro-stage" aria-hidden="true">
+    <div id="curtain-left" class="intro-door intro-door--left">
+      <picture class="intro-picture">
+        <source
+          media="(min-aspect-ratio: 1/1)"
+          srcset={`${baseUrl}/images/elevator-desktop-left.webp`}
         />
-      </svg>
-    </div>
-
-    <!-- Landscape / Desktop Mode (PC Widescreen / Tablets in landscape: 688x768) -->
-    <div class="door-landscape w-full h-full">
-      <svg viewBox="0 0 688 768" class="w-full h-full block pointer-events-none brightness-[0.98]" preserveAspectRatio="xMinYMid slice">
-        <image href={`${baseUrl}/images/elevator-desktop-right.webp`} x="0" y="0" width="688" height="768" />
-        
-        <!-- Retro LED Screen Overlay (Desktop Widescreen) -->
-        <text 
-          class="led-arrow" 
-          x="195" 
-          y="173" 
-          text-anchor="middle" 
-          font-family="monospace" 
-          font-size="12" 
-          font-weight="900" 
-          fill="#34d399" 
-          style="filter: drop-shadow(0 0 6px #34d399); transition: fill 300ms ease, filter 300ms ease;"
-        >▲</text>
-        <text 
-          class="led-digit" 
-          x="195" 
-          y="196" 
-          text-anchor="middle" 
-          font-family="monospace" 
-          font-size="18" 
-          font-weight="900" 
-          fill="#34d399" 
-          style="filter: drop-shadow(0 0 8px #34d399); transition: fill 300ms ease, filter 300ms ease;"
-        >1</text>
-
-        <!-- Button 4 Glowing Active Ring Overlay (Desktop Widescreen) -->
-        <circle 
-          class="btn-4-glow" 
-          cx="196" 
-          cy="358" 
-          r="13" 
-          fill="rgba(34,197,94,0.25)" 
-          stroke="#34d399" 
-          stroke-width="2.5" 
-          style="filter: drop-shadow(0 0 10px #22c55e); transition: all 300ms ease;"
+        <img
+          class="intro-door-image"
+          src={`${baseUrl}/images/elevator-door-left.webp`}
+          width="309"
+          height="1374"
+          alt=""
+          decoding="async"
+          fetchpriority="high"
+          draggable="false"
+          data-intro-image
         />
-      </svg>
+      </picture>
     </div>
 
-    <!-- Right half of logo: center aligned exactly at left: 0 (the seam) -->
-    <div 
-      id="logo-half-right" 
-      class="absolute inset-y-0 w-[100vw] flex flex-col items-center justify-center pointer-events-none opacity-0"
-      style="left: -50vw;"
-    >
-      <div class="w-48 sm:w-64 md:w-80 lg:w-96 text-white filter drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
-        <Logo class="w-full h-auto text-white" />
+    <div id="curtain-right" class="intro-door intro-door--right">
+      <picture class="intro-picture">
+        <source
+          media="(min-aspect-ratio: 1/1)"
+          srcset={`${baseUrl}/images/elevator-desktop-right.webp`}
+        />
+        <img
+          class="intro-door-image"
+          src={`${baseUrl}/images/elevator-door-right.webp`}
+          width="309"
+          height="1374"
+          alt=""
+          decoding="async"
+          fetchpriority="high"
+          draggable="false"
+          data-intro-image
+        />
+      </picture>
+    </div>
+
+    <div class="intro-shade"></div>
+    <div id="intro-seam-light" class="intro-seam"></div>
+
+    <div class="intro-hud">
+      <div class="intro-floor-display">
+        <span class="intro-floor-label">Piso</span>
+        <span class="intro-floor-number">1</span>
+        <span class="intro-floor-arrow" aria-hidden="true">▲</span>
       </div>
-      <div class="mt-8 sm:mt-12 text-[10px] sm:text-xs font-semibold tracking-widest text-slate-300/80 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-        <span class="inline sm:hidden">Toca para abrir</span>
-        <span class="hidden sm:inline">Haz clic para entrar</span>
+
+      <div class="intro-brand">
+        <div class="intro-logo">
+          <Logo class="w-full h-auto text-white" />
+        </div>
+        <p class="intro-kicker">Rooftop · Roldanillo</p>
       </div>
     </div>
   </div>
 
-  <div id="intro-seam-light" class="absolute inset-y-0 left-1/2 z-10 w-px -translate-x-1/2 bg-amber-200 opacity-0 pointer-events-none"></div>
-
-  <!-- ════════ UNIFIED PRISTINE LOGO (Displayed while doors are closed: ZERO seam, ZERO gap) ════════ -->
-  <div 
-    id="curtain-logo-unified" 
-    class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20"
-  >
-    <div class="w-48 sm:w-64 md:w-80 lg:w-96 text-white filter drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
-      <Logo class="w-full h-auto text-white" />
-    </div>
-    <div class="mt-8 sm:mt-12 text-[10px] sm:text-xs font-semibold tracking-widest text-slate-300/80 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-      <span class="inline sm:hidden">Toca para abrir</span>
-      <span class="hidden sm:inline">Haz clic para entrar</span>
-    </div>
-  </div>
-</button>
+  <button id="intro-skip" class="intro-skip" type="button">
+    <span class="intro-skip-mobile">Toca para entrar</span>
+    <span class="intro-skip-desktop">Haz clic para entrar</span>
+  </button>
+</div>
 
 <style>
-  .door-portrait {
-    display: block;
+  .intro-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    overflow: hidden;
+    isolation: isolate;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    background: #0b0c0d;
+    opacity: 1;
+    visibility: visible;
+    contain: strict;
+    transition: background-color 180ms ease-out, opacity 160ms ease-out 760ms,
+      visibility 0s linear 940ms;
   }
-  .door-landscape {
+
+  .intro-curtain[hidden] {
     display: none;
   }
 
-  @media (min-aspect-ratio: 1/1) {
-    .door-portrait {
-      display: none !important;
+  .intro-stage,
+  .intro-door,
+  .intro-picture,
+  .intro-shade,
+  .intro-hud {
+    position: absolute;
+    inset-block: 0;
+  }
+
+  .intro-stage,
+  .intro-shade,
+  .intro-hud {
+    inset-inline: 0;
+  }
+
+  .intro-stage {
+    overflow: hidden;
+  }
+
+  .intro-door {
+    top: 0;
+    bottom: 0;
+    width: calc(50% + 1px);
+    overflow: hidden;
+    background: #17191b;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+    transition: transform 860ms cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .intro-door--left {
+    left: 0;
+    z-index: 1;
+  }
+
+  .intro-door--right {
+    right: 0;
+    z-index: 1;
+  }
+
+  .intro-picture {
+    inset-inline: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .intro-door-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0) scale(1.002);
+    will-change: transform, filter;
+    filter: saturate(0.78) contrast(1.08) brightness(0.8);
+  }
+
+  .intro-door--left .intro-door-image {
+    object-position: right center;
+  }
+
+  .intro-door--right .intro-door-image {
+    object-position: left center;
+  }
+
+  .intro-shade {
+    z-index: 2;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.03), transparent 34%),
+      linear-gradient(180deg, rgba(3, 4, 5, 0.04), rgba(3, 4, 5, 0.18));
+    opacity: 1;
+    transition: opacity 240ms ease-out;
+  }
+
+  .intro-seam {
+    position: absolute;
+    inset-block: 0;
+    left: 50%;
+    z-index: 3;
+    width: 1px;
+    pointer-events: none;
+    background: rgba(254, 243, 199, 0.88);
+    box-shadow: 0 0 15px 3px rgba(245, 158, 11, 0.34);
+    opacity: 0.55;
+    transform: translate3d(-50%, 0, 0) scaleX(1);
+    transform-origin: center;
+    will-change: transform, opacity;
+  }
+
+  .intro-hud {
+    z-index: 4;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    padding:
+      max(1rem, env(safe-area-inset-top))
+      max(1rem, env(safe-area-inset-right))
+      max(5rem, calc(env(safe-area-inset-bottom) + 4.25rem))
+      max(1rem, env(safe-area-inset-left));
+    pointer-events: none;
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: opacity 220ms ease-out, transform 300ms ease-out;
+  }
+
+  .intro-floor-display {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    align-items: baseline;
+    column-gap: 0.45rem;
+    min-width: 7.8rem;
+    padding: 0.62rem 1.9rem 0.62rem 0.9rem;
+    color: #86efac;
+    background: linear-gradient(180deg, rgba(1, 8, 6, 0.96), rgba(2, 15, 10, 0.92));
+    border: 1px solid rgba(226, 232, 240, 0.32);
+    border-radius: 0.75rem;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 8px 30px rgba(0, 0, 0, 0.52),
+      0 0 18px rgba(34, 197, 94, 0.14);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    text-transform: uppercase;
+  }
+
+  .intro-floor-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    opacity: 0.84;
+  }
+
+  .intro-floor-number {
+    font-size: 1.65rem;
+    line-height: 1;
+    font-weight: 900;
+    text-shadow: 0 0 12px currentColor;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .intro-floor-arrow {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    font-size: 0.68rem;
+    transform: translateY(-50%);
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+
+  .intro-brand {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(82vw, 28rem);
+    transform: translateY(-2vh);
+  }
+
+  .intro-logo {
+    width: clamp(9.5rem, 34vmin, 23rem);
+    color: #fff;
+    filter:
+      drop-shadow(0 6px 24px rgba(0, 0, 0, 0.92))
+      drop-shadow(0 0 24px rgba(255, 255, 255, 0.18));
+  }
+
+  .intro-kicker {
+    margin: clamp(1rem, 2.8vmin, 1.6rem) 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(0.65rem, 1.4vmin, 0.78rem);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
+  }
+
+  .intro-skip {
+    position: absolute;
+    left: 50%;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 5;
+    min-height: 2.75rem;
+    padding: 0.72rem 1.15rem;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(10, 10, 11, 0.66);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 8px 24px rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    font: inherit;
+    font-size: 0.69rem;
+    font-weight: 750;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0);
+    transition: opacity 180ms ease-out, transform 180ms ease-out, background-color 180ms ease-out;
+  }
+
+  .intro-skip:hover {
+    background: rgba(26, 20, 16, 0.82);
+  }
+
+  .intro-skip:focus-visible {
+    outline: 2px solid #fcd34d;
+    outline-offset: 3px;
+  }
+
+  .intro-skip-desktop {
+    display: none;
+  }
+
+  .intro-curtain.is-riding .intro-door-image {
+    animation: intro-ride 660ms cubic-bezier(0.42, 0, 0.22, 1) both;
+  }
+
+  .intro-curtain.is-arriving .intro-floor-display {
+    color: #fde68a;
+    border-color: rgba(251, 191, 36, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 8px 30px rgba(0, 0, 0, 0.56),
+      0 0 26px rgba(245, 158, 11, 0.42);
+  }
+
+  .intro-curtain.is-arriving .intro-floor-arrow {
+    animation: intro-arrival-blink 180ms ease-in-out 2;
+  }
+
+  .intro-curtain.is-arriving .intro-seam {
+    opacity: 0.95;
+    box-shadow: 0 0 24px 5px rgba(251, 191, 36, 0.55);
+  }
+
+  .intro-curtain.is-opening {
+    pointer-events: none;
+    background-color: transparent;
+  }
+
+  .intro-curtain.is-opening .intro-door--left {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  .intro-curtain.is-opening .intro-door--right {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .intro-curtain.is-opening .intro-hud {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.97);
+  }
+
+  .intro-curtain.is-opening .intro-shade {
+    opacity: 0;
+  }
+
+  .intro-curtain.is-opening .intro-skip {
+    opacity: 0;
+    transform: translate3d(-50%, 0.4rem, 0);
+  }
+
+  .intro-curtain.is-opening .intro-seam {
+    animation: intro-seam-release 720ms ease-out both;
+  }
+
+  @keyframes intro-ride {
+    0% { transform: translate3d(0, 0, 0) scale(1.002); }
+    20% { transform: translate3d(0, 1px, 0) scale(1.004); }
+    44% { transform: translate3d(0, -2px, 0) scale(1.006); }
+    68% { transform: translate3d(0, 1px, 0) scale(1.004); }
+    100% { transform: translate3d(0, 0, 0) scale(1.002); }
+  }
+
+  @keyframes intro-arrival-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.28; }
+  }
+
+  @keyframes intro-seam-release {
+    0% {
+      opacity: 0.95;
+      transform: translate3d(-50%, 0, 0) scaleX(1);
     }
-    .door-landscape {
-      display: block !important;
+    42% {
+      opacity: 1;
+      transform: translate3d(-50%, 0, 0) scaleX(30);
+      box-shadow: 0 0 44px 11px rgba(251, 191, 36, 0.64);
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(-50%, 0, 0) scaleX(72);
     }
   }
 
-  #intro-curtain.is-arriving {
-    animation: elevator-arrival 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  @media (min-width: 640px) {
+    .intro-skip-mobile {
+      display: none;
+    }
+
+    .intro-skip-desktop {
+      display: inline;
+    }
   }
 
-  #intro-curtain.is-arriving #intro-seam-light {
-    opacity: 0.85;
-    box-shadow: 0 0 18px 4px rgba(251, 191, 36, 0.55);
+  @media (max-height: 520px) {
+    .intro-hud {
+      padding-top: max(0.65rem, env(safe-area-inset-top));
+      padding-bottom: max(3.9rem, calc(env(safe-area-inset-bottom) + 3.25rem));
+    }
+
+    .intro-floor-display {
+      padding-block: 0.45rem;
+    }
+
+    .intro-brand {
+      transform: translateY(0);
+    }
+
+    .intro-logo {
+      width: clamp(7.5rem, 27vmin, 13rem);
+    }
+
+    .intro-kicker {
+      margin-top: 0.7rem;
+    }
+
+    .intro-skip {
+      min-height: 2.35rem;
+      padding-block: 0.5rem;
+    }
   }
 
-  #intro-curtain.is-opening #intro-seam-light {
-    animation: seam-release 700ms ease-out both;
-  }
-
-  @keyframes elevator-arrival {
-    0%, 100% { transform: translate3d(0, 0, 0); }
-    28% { transform: translate3d(0, 3px, 0); }
-    55% { transform: translate3d(0, -2px, 0); }
-    78% { transform: translate3d(0, 1px, 0); }
-  }
-
-  @keyframes seam-release {
-    0% { opacity: 0.9; transform: translateX(-50%) scaleX(1); }
-    45% { opacity: 1; transform: translateX(-50%) scaleX(28); box-shadow: 0 0 42px 10px rgba(251, 191, 36, 0.75); }
-    100% { opacity: 0; transform: translateX(-50%) scaleX(80); }
+  @media (prefers-reduced-motion: reduce) {
+    .intro-door,
+    .intro-door-image,
+    .intro-hud,
+    .intro-shade,
+    .intro-skip,
+    .intro-seam {
+      animation: none !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 </style>
 
 <script is:inline>
   (() => {
     const curtain = document.getElementById('intro-curtain');
-    const left = document.getElementById('curtain-left');
-    const right = document.getElementById('curtain-right');
-    const unifiedLogo = document.getElementById('curtain-logo-unified');
-    const logoHalfLeft = document.getElementById('logo-half-left');
-    const logoHalfRight = document.getElementById('logo-half-right');
-    const ledDigit = document.getElementById('led-digit');
-    const ledArrow = document.getElementById('led-arrow');
-    const btn4Glow = document.getElementById('btn-4-glow');
-    const ledDigits = document.querySelectorAll('.led-digit');
-    const ledArrows = document.querySelectorAll('.led-arrow');
-    const btn4Glows = document.querySelectorAll('.btn-4-glow');
+    const skipButton = document.getElementById('intro-skip');
+    const status = document.getElementById('intro-status');
+    const floorNumber = curtain?.querySelector('.intro-floor-number');
+    const floorArrow = curtain?.querySelector('.intro-floor-arrow');
+    const images = Array.from(curtain?.querySelectorAll('[data-intro-image]') ?? []);
 
-    if (!curtain || !left || !right) return;
+    if (!curtain || !skipButton || !floorNumber || !floorArrow) return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Show the elevator on every page load. Visitors who prefer reduced motion
-    // enter directly without the ascent or door-opening animation.
-    if (prefersReducedMotion) {
-      curtain.remove();
-      return;
-    }
-
-    // Prevent background scrolling while elevator curtain is active
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    curtain.focus({ preventScroll: true });
-
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const timers = [];
+    let runId = 0;
     let hasOpened = false;
+    let previousBodyOverflow = '';
+    let previousHtmlOverflow = '';
 
-    function openDoors() {
+    const later = (callback, delay) => {
+      const timer = window.setTimeout(callback, delay);
+      timers.push(timer);
+      return timer;
+    };
+
+    const clearTimers = () => {
+      while (timers.length) window.clearTimeout(timers.pop());
+    };
+
+    const lockScroll = () => {
+      previousBodyOverflow = document.body.style.overflow;
+      previousHtmlOverflow = document.documentElement.style.overflow;
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    };
+
+    const restoreScroll = () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+
+    const setFloor = (floor) => {
+      floorNumber.textContent = String(floor);
+      if (status) status.textContent = floor === 4
+        ? 'Piso 4. Abriendo puertas de Sexto Vento.'
+        : `Ascensor subiendo. Piso ${floor}.`;
+    };
+
+    const finishOpening = (currentRun) => {
+      if (currentRun !== runId) return;
+      curtain.hidden = true;
+      curtain.setAttribute('aria-hidden', 'true');
+      curtain.classList.remove('is-riding', 'is-arriving', 'is-opening');
+    };
+
+    const openDoors = () => {
       if (hasOpened) return;
       hasOpened = true;
-      curtain.style.pointerEvents = 'none';
-      curtain.classList.remove('is-arriving');
-      curtain.classList.add('is-opening');
-      document.documentElement.classList.add('intro-opening');
+      runId += 1;
+      clearTimers();
+      setFloor(4);
+      floorArrow.textContent = '◆';
+      curtain.classList.remove('is-riding');
+      curtain.classList.add('is-arriving', 'is-opening');
+      skipButton.disabled = true;
+      restoreScroll();
 
-      // Instantly switch from unified logo to door split halves as doors pull apart
-      if (unifiedLogo) unifiedLogo.style.display = 'none';
-      if (logoHalfLeft) logoHalfLeft.style.opacity = '1';
-      if (logoHalfRight) logoHalfRight.style.opacity = '1';
+      const currentRun = runId;
+      later(() => finishOpening(currentRun), reducedMotion.matches ? 80 : 940);
+    };
 
-      // Split open the grey metallic elevator doors to left and right
-      left.style.transform = 'translate3d(-100%, 0, 0)';
-      left.style.opacity = '0';
-      right.style.transform = 'translate3d(100%, 0, 0)';
-      right.style.opacity = '0';
+    const runSequence = (currentRun) => {
+      if (currentRun !== runId || hasOpened) return;
 
-      // Restore scroll
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-
-      // Clean up from DOM to ensure zero memory or scroll interference
-      setTimeout(() => {
-        curtain.remove();
-        document.documentElement.classList.remove('intro-opening');
-      }, 760);
-    }
-
-    // Ascent sequence of floors: 1 -> 2 -> 3 -> 4
-    setTimeout(() => {
-      if (ledDigit) ledDigit.textContent = '2';
-      ledDigits.forEach(el => el.textContent = '2');
-    }, 200);
-
-    setTimeout(() => {
-      if (ledDigit) ledDigit.textContent = '3';
-      ledDigits.forEach(el => el.textContent = '3');
-    }, 420);
-
-    // Reached Floor 4!
-    setTimeout(() => {
-      if (ledDigit) {
-        ledDigit.textContent = '4';
-        ledDigit.setAttribute('fill', '#fde047');
-        ledDigit.style.filter = 'drop-shadow(0 0 14px #f59e0b)';
+      if (reducedMotion.matches) {
+        setFloor(4);
+        floorArrow.textContent = '◆';
+        curtain.classList.add('is-arriving');
+        later(openDoors, 320);
+        return;
       }
-      if (ledArrow) {
-        ledArrow.textContent = '★';
-        ledArrow.setAttribute('fill', '#fde047');
-        ledArrow.style.filter = 'drop-shadow(0 0 14px #f59e0b)';
-      }
-      if (btn4Glow) {
-        btn4Glow.setAttribute('fill', 'rgba(245, 158, 11, 0.35)');
-        btn4Glow.setAttribute('stroke', '#fbbf24');
-        btn4Glow.style.filter = 'drop-shadow(0 0 20px #f59e0b)';
-      }
-      ledDigits.forEach(el => {
-        el.textContent = '4';
-        el.setAttribute('fill', '#fde047');
-        el.style.filter = 'drop-shadow(0 0 14px #f59e0b)';
-      });
-      ledArrows.forEach(el => {
-        el.textContent = '★';
-        el.setAttribute('fill', '#fde047');
-        el.style.filter = 'drop-shadow(0 0 14px #f59e0b)';
-      });
-      btn4Glows.forEach(el => {
-        el.setAttribute('fill', 'rgba(245, 158, 11, 0.35)');
-        el.setAttribute('stroke', '#fbbf24');
-        el.style.filter = 'drop-shadow(0 0 20px #f59e0b)';
-      });
-      curtain.classList.add('is-arriving');
-    }, 650);
 
-    // The ascent and arrival stay short; the complete reveal takes about 1.65 seconds.
-    setTimeout(openDoors, 900);
+      curtain.classList.add('is-riding');
+      later(() => setFloor(2), 180);
+      later(() => setFloor(3), 360);
+      later(() => {
+        setFloor(4);
+        floorArrow.textContent = '◆';
+        curtain.classList.remove('is-riding');
+        curtain.classList.add('is-arriving');
+      }, 560);
+      later(openDoors, 820);
+    };
 
-    // Instant skip on click, Enter/Space (native button behavior), Escape, or scroll.
-    curtain.addEventListener('click', openDoors, { once: true });
-    curtain.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') openDoors();
-    }, { once: true });
-    window.addEventListener('scroll', openDoors, { once: true, passive: true });
+    const waitForVisibleImages = () => {
+      const decodeTasks = images.map((image) => {
+        if (image.complete && image.naturalWidth > 0) return Promise.resolve();
+        if (typeof image.decode === 'function') return image.decode().catch(() => undefined);
+        return new Promise((resolve) => {
+          image.addEventListener('load', resolve, { once: true });
+          image.addEventListener('error', resolve, { once: true });
+        });
+      });
+
+      return Promise.race([
+        Promise.allSettled(decodeTasks),
+        new Promise((resolve) => window.setTimeout(resolve, 550)),
+      ]);
+    };
+
+    const beginWhenVisible = (currentRun) => {
+      const begin = async () => {
+        if (currentRun !== runId || hasOpened) return;
+        await waitForVisibleImages();
+        if (currentRun !== runId || hasOpened) return;
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => runSequence(currentRun));
+        });
+      };
+
+      if (document.visibilityState === 'visible') {
+        void begin();
+        return;
+      }
+
+      const onVisible = () => {
+        if (document.visibilityState !== 'visible') return;
+        document.removeEventListener('visibilitychange', onVisible);
+        void begin();
+      };
+      document.addEventListener('visibilitychange', onVisible);
+    };
+
+    const resetAndPlay = () => {
+      runId += 1;
+      clearTimers();
+      hasOpened = false;
+      curtain.hidden = false;
+      curtain.removeAttribute('aria-hidden');
+      curtain.classList.remove('is-riding', 'is-arriving', 'is-opening');
+      skipButton.disabled = false;
+      floorArrow.textContent = '▲';
+      setFloor(1);
+      lockScroll();
+
+      const currentRun = runId;
+      beginWhenVisible(currentRun);
+      window.requestAnimationFrame(() => skipButton.focus({ preventScroll: true }));
+    };
+
+    skipButton.addEventListener('click', openDoors);
+    curtain.addEventListener('click', (event) => {
+      if (event.target === skipButton || skipButton.contains(event.target)) return;
+      openDoors();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (!curtain.hidden && event.key === 'Escape') openDoors();
+    });
+    window.addEventListener('pagehide', restoreScroll);
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) resetAndPlay();
+    });
+    reducedMotion.addEventListener?.('change', (event) => {
+      if (event.matches && !curtain.hidden) openDoors();
+    });
+
+    resetAndPlay();
   })();
 </script>
