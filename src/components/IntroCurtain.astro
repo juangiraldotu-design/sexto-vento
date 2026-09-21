@@ -165,8 +165,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     will-change: transform;
-    -webkit-transition: -webkit-transform 1040ms cubic-bezier(0.72, 0, 0.2, 1);
-    transition: transform 1040ms cubic-bezier(0.72, 0, 0.2, 1);
+    -webkit-transition: -webkit-transform 1100ms cubic-bezier(0.72, 0, 0.2, 1);
+    transition: transform 1100ms cubic-bezier(0.72, 0, 0.2, 1);
   }
 
   .intro-door--left {
@@ -517,10 +517,12 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .intro-curtain.is-opening .intro-door--left {
     transform: translate3d(-100%, 0, 0);
+    animation: intro-door-left-open 1100ms cubic-bezier(0.72, 0, 0.2, 1) both;
   }
 
   .intro-curtain.is-opening .intro-door--right {
     transform: translate3d(100%, 0, 0);
+    animation: intro-door-right-open 1100ms cubic-bezier(0.72, 0, 0.2, 1) both;
   }
 
   .intro-curtain.is-opening .intro-hud {
@@ -547,6 +549,16 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     44% { transform: translate3d(0, -2px, 0) scale(1.006); }
     68% { transform: translate3d(0, 1px, 0) scale(1.004); }
     100% { transform: translate3d(0, 0, 0) scale(1.002); }
+  }
+
+  @keyframes intro-door-left-open {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+  }
+
+  @keyframes intro-door-right-open {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(100%, 0, 0); }
   }
 
   @keyframes intro-arrival-blink {
@@ -635,7 +647,6 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .intro-door,
     .intro-door-image,
     .intro-panel-overlay,
     .intro-panel-arrow,
@@ -650,6 +661,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     .intro-seam {
       animation: none !important;
       transition-duration: 0.01ms !important;
+    }
+
+    .intro-curtain.is-opening .intro-door--left,
+    .intro-curtain.is-opening .intro-door--right {
+      animation-duration: 650ms !important;
+      animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1) !important;
+      animation-iteration-count: 1 !important;
     }
   }
 </style>
@@ -839,11 +857,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       setFloor(4);
       setDirectionIcon('◆');
       curtain.classList.remove('is-riding', 'is-floor-step');
-      curtain.classList.add('is-arriving', 'is-opening');
+      curtain.classList.add('is-arriving');
+      void curtain.getBoundingClientRect();
+      curtain.classList.add('is-opening');
       skipButton.disabled = true;
 
       const currentRun = runId;
-      later(() => finishOpening(currentRun), reducedMotion.matches ? 100 : 1200);
+      later(() => finishOpening(currentRun), reducedMotion.matches ? 740 : 1220);
     };
 
     const runSequence = (currentRun) => {
