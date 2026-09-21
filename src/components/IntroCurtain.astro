@@ -53,6 +53,34 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           data-intro-image
         />
       </picture>
+
+      <svg
+        class="intro-panel-overlay intro-panel-overlay--portrait"
+        viewBox="0 0 309 1374"
+        preserveAspectRatio="xMinYMid slice"
+        aria-hidden="true"
+      >
+        <text class="intro-panel-arrow" x="259.5" y="412" text-anchor="middle">▲</text>
+        <text class="intro-panel-floor" x="259.5" y="440" text-anchor="middle">1</text>
+        <circle class="intro-floor-button-dimmer" cx="259.6" cy="653.1" r="14" />
+        <circle class="intro-floor-button-halo" cx="259.6" cy="653.1" r="19" />
+        <circle class="intro-floor-button-glow" cx="259.6" cy="653.1" r="13.5" />
+        <text class="intro-floor-button-label intro-floor-button-label--portrait" x="259.6" y="658.1" text-anchor="middle">4</text>
+      </svg>
+
+      <svg
+        class="intro-panel-overlay intro-panel-overlay--desktop"
+        viewBox="0 0 688 768"
+        preserveAspectRatio="xMinYMid slice"
+        aria-hidden="true"
+      >
+        <text class="intro-panel-arrow" x="196" y="174" text-anchor="middle">▲</text>
+        <text class="intro-panel-floor" x="196" y="198" text-anchor="middle">1</text>
+        <circle class="intro-floor-button-dimmer" cx="196" cy="358" r="12.5" />
+        <circle class="intro-floor-button-halo" cx="196" cy="358" r="17" />
+        <circle class="intro-floor-button-glow" cx="196" cy="358" r="12" />
+        <text class="intro-floor-button-label intro-floor-button-label--desktop" x="196" y="362.5" text-anchor="middle">4</text>
+      </svg>
     </div>
 
     <div class="intro-shade"></div>
@@ -133,7 +161,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     will-change: transform;
-    transition: transform 860ms cubic-bezier(0.76, 0, 0.24, 1);
+    transition: transform 1040ms cubic-bezier(0.72, 0, 0.2, 1);
   }
 
   .intro-door--left {
@@ -173,6 +201,97 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .intro-door--right .intro-door-image {
     object-position: left center;
+  }
+
+  .intro-panel-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  .intro-panel-overlay--desktop {
+    display: none;
+  }
+
+  .intro-panel-arrow,
+  .intro-panel-floor {
+    fill: #86efac;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 900;
+    filter: drop-shadow(0 0 7px #22c55e);
+  }
+
+  .intro-panel-overlay--portrait .intro-panel-arrow {
+    font-size: 13px;
+  }
+
+  .intro-panel-overlay--portrait .intro-panel-floor {
+    font-size: 22px;
+  }
+
+  .intro-panel-overlay--desktop .intro-panel-arrow {
+    font-size: 12px;
+  }
+
+  .intro-panel-overlay--desktop .intro-panel-floor {
+    font-size: 20px;
+  }
+
+  .intro-floor-button-dimmer,
+  .intro-floor-button-halo,
+  .intro-floor-button-glow {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .intro-floor-button-dimmer {
+    opacity: 1;
+    fill: rgba(8, 12, 10, 0.7);
+    stroke: rgba(203, 213, 225, 0.62);
+    stroke-width: 1.2;
+    transition: opacity 160ms ease-out;
+  }
+
+  .intro-floor-button-halo,
+  .intro-floor-button-glow {
+    opacity: 0;
+  }
+
+  .intro-floor-button-label {
+    fill: rgba(226, 232, 240, 0.82);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 900;
+    pointer-events: none;
+    transition: fill 160ms ease-out, filter 160ms ease-out;
+  }
+
+  .intro-floor-button-label--portrait {
+    font-size: 15px;
+  }
+
+  .intro-floor-button-label--desktop {
+    font-size: 13px;
+  }
+
+  .intro-floor-button-halo {
+    fill: rgba(251, 191, 36, 0.08);
+    stroke: rgba(253, 230, 138, 0.82);
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 9px #f59e0b);
+  }
+
+  .intro-floor-button-glow {
+    fill: rgba(245, 158, 11, 0.2);
+    stroke: #fde68a;
+    stroke-width: 2.4;
+    filter: drop-shadow(0 0 12px #f59e0b);
   }
 
   .intro-shade {
@@ -329,8 +448,14 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: none;
   }
 
-  .intro-curtain.is-riding .intro-door-image {
-    animation: intro-ride 660ms cubic-bezier(0.42, 0, 0.22, 1) both;
+  .intro-curtain.is-riding .intro-door-image,
+  .intro-curtain.is-riding .intro-panel-overlay {
+    animation: intro-ride 2300ms cubic-bezier(0.42, 0, 0.22, 1) both;
+  }
+
+  .intro-curtain.is-floor-step .intro-floor-number,
+  .intro-curtain.is-floor-step .intro-panel-floor {
+    animation: intro-floor-step 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .intro-curtain.is-arriving .intro-floor-display {
@@ -344,6 +469,31 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .intro-curtain.is-arriving .intro-floor-arrow {
     animation: intro-arrival-blink 180ms ease-in-out 2;
+  }
+
+  .intro-curtain.is-arriving .intro-panel-arrow,
+  .intro-curtain.is-arriving .intro-panel-floor {
+    fill: #fde68a;
+    filter: drop-shadow(0 0 10px #f59e0b);
+  }
+
+  .intro-curtain.is-arriving .intro-floor-button-dimmer {
+    opacity: 0;
+  }
+
+  .intro-curtain.is-arriving .intro-floor-button-label {
+    fill: #fff7d6;
+    filter: drop-shadow(0 0 7px #f59e0b);
+  }
+
+  .intro-curtain.is-arriving .intro-floor-button-halo {
+    opacity: 1;
+    animation: intro-button-halo 900ms ease-out infinite;
+  }
+
+  .intro-curtain.is-arriving .intro-floor-button-glow {
+    opacity: 1;
+    animation: intro-button-glow 720ms ease-in-out infinite alternate;
   }
 
   .intro-curtain.is-arriving .intro-seam {
@@ -395,6 +545,22 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     50% { opacity: 0.28; }
   }
 
+  @keyframes intro-floor-step {
+    0% { opacity: 0.25; transform: translate3d(0, -0.3em, 0) scale(0.9); }
+    60% { opacity: 1; transform: translate3d(0, 0.06em, 0) scale(1.08); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+
+  @keyframes intro-button-halo {
+    0% { opacity: 0.9; transform: scale(0.82); }
+    100% { opacity: 0; transform: scale(1.5); }
+  }
+
+  @keyframes intro-button-glow {
+    0% { opacity: 0.72; transform: scale(0.94); }
+    100% { opacity: 1; transform: scale(1.08); }
+  }
+
   @keyframes intro-seam-release {
     0% {
       opacity: 0.95;
@@ -418,6 +584,16 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     .intro-skip-desktop {
       display: inline;
+    }
+  }
+
+  @media (min-aspect-ratio: 1/1) {
+    .intro-panel-overlay--portrait {
+      display: none;
+    }
+
+    .intro-panel-overlay--desktop {
+      display: block;
     }
   }
 
@@ -452,6 +628,12 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   @media (prefers-reduced-motion: reduce) {
     .intro-door,
     .intro-door-image,
+    .intro-panel-arrow,
+    .intro-panel-floor,
+    .intro-floor-button-dimmer,
+    .intro-floor-button-label,
+    .intro-floor-button-halo,
+    .intro-floor-button-glow,
     .intro-hud,
     .intro-shade,
     .intro-skip,
@@ -469,6 +651,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     const status = document.getElementById('intro-status');
     const floorNumber = curtain?.querySelector('.intro-floor-number');
     const floorArrow = curtain?.querySelector('.intro-floor-arrow');
+    const panelFloors = Array.from(curtain?.querySelectorAll('.intro-panel-floor') ?? []);
+    const panelArrows = Array.from(curtain?.querySelectorAll('.intro-panel-arrow') ?? []);
     const images = Array.from(curtain?.querySelectorAll('[data-intro-image]') ?? []);
 
     if (!curtain || !skipButton || !floorNumber || !floorArrow) return;
@@ -502,18 +686,37 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       document.documentElement.style.overflow = previousHtmlOverflow;
     };
 
+    const setDirectionIcon = (icon) => {
+      floorArrow.textContent = icon;
+      panelArrows.forEach((arrow) => {
+        arrow.textContent = icon;
+      });
+    };
+
     const setFloor = (floor) => {
-      floorNumber.textContent = String(floor);
+      const value = String(floor);
+      floorNumber.textContent = value;
+      panelFloors.forEach((panelFloor) => {
+        panelFloor.textContent = value;
+      });
       if (status) status.textContent = floor === 4
         ? 'Piso 4. Abriendo puertas de Sexto Vento.'
         : `Ascensor subiendo. Piso ${floor}.`;
+    };
+
+    const advanceToFloor = (floor) => {
+      curtain.classList.remove('is-floor-step');
+      setFloor(floor);
+      void floorNumber.getBoundingClientRect();
+      curtain.classList.add('is-floor-step');
+      later(() => curtain.classList.remove('is-floor-step'), 300);
     };
 
     const finishOpening = (currentRun) => {
       if (currentRun !== runId) return;
       curtain.hidden = true;
       curtain.setAttribute('aria-hidden', 'true');
-      curtain.classList.remove('is-riding', 'is-arriving', 'is-opening');
+      curtain.classList.remove('is-riding', 'is-arriving', 'is-opening', 'is-floor-step');
     };
 
     const openDoors = () => {
@@ -522,14 +725,14 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       runId += 1;
       clearTimers();
       setFloor(4);
-      floorArrow.textContent = '◆';
-      curtain.classList.remove('is-riding');
+      setDirectionIcon('◆');
+      curtain.classList.remove('is-riding', 'is-floor-step');
       curtain.classList.add('is-arriving', 'is-opening');
       skipButton.disabled = true;
       restoreScroll();
 
       const currentRun = runId;
-      later(() => finishOpening(currentRun), reducedMotion.matches ? 80 : 940);
+      later(() => finishOpening(currentRun), reducedMotion.matches ? 80 : 1120);
     };
 
     const runSequence = (currentRun) => {
@@ -537,22 +740,22 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
       if (reducedMotion.matches) {
         setFloor(4);
-        floorArrow.textContent = '◆';
+        setDirectionIcon('◆');
         curtain.classList.add('is-arriving');
         later(openDoors, 320);
         return;
       }
 
       curtain.classList.add('is-riding');
-      later(() => setFloor(2), 180);
-      later(() => setFloor(3), 360);
+      later(() => advanceToFloor(2), 650);
+      later(() => advanceToFloor(3), 1300);
       later(() => {
-        setFloor(4);
-        floorArrow.textContent = '◆';
+        advanceToFloor(4);
+        setDirectionIcon('◆');
         curtain.classList.remove('is-riding');
         curtain.classList.add('is-arriving');
-      }, 560);
-      later(openDoors, 820);
+      }, 1950);
+      later(openDoors, 3000);
     };
 
     const waitForVisibleImages = () => {
@@ -600,9 +803,9 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       hasOpened = false;
       curtain.hidden = false;
       curtain.removeAttribute('aria-hidden');
-      curtain.classList.remove('is-riding', 'is-arriving', 'is-opening');
+      curtain.classList.remove('is-riding', 'is-arriving', 'is-opening', 'is-floor-step');
       skipButton.disabled = false;
-      floorArrow.textContent = '▲';
+      setDirectionIcon('▲');
       setFloor(1);
       lockScroll();
 
