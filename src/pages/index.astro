@@ -14,7 +14,12 @@ import FloatingDock from '../components/FloatingDock.astro';
 <BaseLayout>
   <Header />
   
-  <main class="relative z-10 flex flex-col">
+  <main class="site-main relative z-10 flex flex-col">
+    <div class="site-ambient" aria-hidden="true">
+      <span class="ambient-cloud ambient-cloud--one"></span>
+      <span class="ambient-cloud ambient-cloud--two"></span>
+      <span class="ambient-cloud ambient-cloud--three"></span>
+    </div>
     <Hero />
     <VideoShowcase />
     <LiveStatus />
@@ -26,4 +31,3 @@ import FloatingDock from '../components/FloatingDock.astro';
   <Footer />
   <FloatingDock />
 </BaseLayout>
-

@@ -4,26 +4,26 @@ import { restaurantConfig } from '../config/restaurant.config';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="video" class="max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-6 lg:py-10">
-  <div class="liquid-card rounded-[32px] p-6 sm:p-8 lg:p-12 border border-amber-400/20 relative overflow-hidden">
+<section id="video" class="site-section">
+  <div class="liquid-card section-panel relative overflow-hidden">
     <!-- Ambient Sunset Glow (Pure Radial Gradient - Zero Blur Filter) -->
-    <div class="absolute -left-16 -top-16 w-56 h-56 lg:w-80 lg:h-80 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.22)_0%,transparent_70%)] pointer-events-none"></div>
-    <div class="absolute -right-16 -bottom-16 w-60 h-60 lg:w-96 lg:h-96 rounded-full bg-[radial-gradient(circle,rgba(234,88,12,0.20)_0%,transparent_70%)] pointer-events-none"></div>
+    <div class="glass-cloud absolute -left-16 -top-16 w-56 h-56 lg:w-80 lg:h-80 rounded-full pointer-events-none"></div>
+    <div class="glass-cloud absolute -right-16 -bottom-16 w-60 h-60 lg:w-96 lg:h-96 rounded-full pointer-events-none"></div>
 
     <div class="relative z-10 flex flex-col lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
 
       <!-- Text Description Column -->
       <div class="lg:col-span-6 mb-8 lg:mb-0">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-pill text-xs sm:text-sm font-semibold text-amber-300 border border-amber-500/30 mb-3.5">
+        <div class="section-kicker rounded-full liquid-pill">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
           <span>Experiencia Audiovisual</span>
         </div>
 
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-3 lg:mb-4">
+        <h2 class="section-title mb-3 lg:mb-4">
           Conoce Sexto Vento en Video
         </h2>
 
-        <p class="text-xs sm:text-sm lg:text-base text-slate-300/90 leading-relaxed mb-6">
+        <p class="section-copy mb-6">
           Un adelanto vertical de la atmósfera que te espera en el piso 4: atardecer con vista panorámica a la cordillera, cocina italiana a la carta, coctelería de autor y la experiencia gastronómica más exclusiva de Roldanillo.
         </p>
 

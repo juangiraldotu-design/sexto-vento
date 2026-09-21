@@ -2,26 +2,26 @@
 import { restaurantConfig } from '../config/restaurant.config';
 ---
 
-<section id="ubicacion" class="max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto px-4 sm:px-6 py-8 lg:py-12">
-  <div class="liquid-card rounded-3xl p-6 sm:p-7 lg:p-10 border border-white/10 relative overflow-hidden">
+<section id="ubicacion" class="site-section">
+  <div class="liquid-card section-panel relative overflow-hidden">
     <!-- Glow (Zero Blur Filter) -->
-    <div class="absolute -left-10 bottom-0 w-36 h-36 lg:w-48 lg:h-48 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.18)_0%,transparent_70%)] pointer-events-none"></div>
+    <div class="glass-cloud absolute -left-10 bottom-0 w-36 h-36 lg:w-48 lg:h-48 rounded-full pointer-events-none"></div>
 
     <div class="relative z-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1 lg:py-1.5 rounded-full liquid-pill text-xs lg:text-sm font-semibold text-amber-300 border border-amber-500/25 mb-3 lg:mb-4">
+      <div class="section-kicker rounded-full liquid-pill">
         <span>Cómo Llegar</span>
       </div>
 
-      <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight mb-1.5 lg:mb-2">
+      <h2 class="section-title mb-1.5 lg:mb-2">
         Ubicación en Roldanillo
       </h2>
-      <p class="text-xs sm:text-sm lg:text-base text-slate-300/80 mb-6 lg:mb-8">
+      <p class="section-copy mb-6 lg:mb-8">
         En pleno corazón de Roldanillo, sobre la plaza principal.
       </p>
 
       <!-- Address Box with One-Tap Copy -->
-      <div class="p-4 rounded-2xl bg-white/[0.04] border border-amber-500/15 mb-4 sm:mb-5 flex items-center justify-between gap-3">
-        <div class="flex items-center gap-3 min-w-0">
+      <div class="glass-inset address-panel p-4 rounded-2xl mb-4 sm:mb-5 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0 flex-1">
           <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -29,7 +29,7 @@ import { restaurantConfig } from '../config/restaurant.config';
             </svg>
           </div>
           <div class="min-w-0">
-            <p class="text-xs sm:text-sm font-bold text-white truncate">
+            <p class="text-xs sm:text-sm font-bold text-white leading-snug">
               {restaurantConfig.location.address}
             </p>
             <p class="text-[11px] text-slate-400">
@@ -52,7 +52,7 @@ import { restaurantConfig } from '../config/restaurant.config';
       </div>
 
       <!-- Access Instructions Card (Hotel Casa Volga -> Elevator -> 4th Floor) -->
-      <div class="p-4 sm:p-5 rounded-2xl bg-[#140C07] border border-amber-500/25 mb-6 space-y-3 shadow-inner">
+      <div class="glass-inset p-4 sm:p-5 rounded-2xl mb-6 space-y-3">
         <div class="flex items-center gap-2">
           <span class="text-amber-400 text-sm">🛗</span>
           <h3 class="text-xs sm:text-sm font-bold text-white tracking-wide uppercase">
@@ -61,7 +61,7 @@ import { restaurantConfig } from '../config/restaurant.config';
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-0.5">
-          <div class="flex items-start gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div class="glass-inset flex items-start gap-3 p-3 rounded-xl">
             <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs shrink-0 border border-amber-500/30">
               1
             </div>
@@ -75,7 +75,7 @@ import { restaurantConfig } from '../config/restaurant.config';
             </div>
           </div>
 
-          <div class="flex items-start gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div class="glass-inset flex items-start gap-3 p-3 rounded-xl">
             <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs shrink-0 border border-amber-500/30">
               2
             </div>
@@ -98,7 +98,7 @@ import { restaurantConfig } from '../config/restaurant.config';
           href={restaurantConfig.location.googleMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-between px-4 py-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white font-semibold text-xs transition-all duration-200 group btn-press"
+          class="glass-inset flex items-center justify-between px-4 py-3 rounded-2xl text-white font-semibold text-xs transition-all duration-200 group btn-press"
         >
           <span class="flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px] font-bold">G</span>
@@ -114,7 +114,7 @@ import { restaurantConfig } from '../config/restaurant.config';
           href={restaurantConfig.location.wazeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-between px-4 py-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white font-semibold text-xs transition-all duration-200 group btn-press"
+          class="glass-inset flex items-center justify-between px-4 py-3 rounded-2xl text-white font-semibold text-xs transition-all duration-200 group btn-press"
         >
           <span class="flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px] font-bold">W</span>

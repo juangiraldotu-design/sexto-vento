@@ -5,32 +5,34 @@ import { restaurantConfig } from '../config/restaurant.config';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="hero" class="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-center pt-20 pb-8 sm:pt-28 sm:pb-16 px-4 sm:px-6 max-w-full">
+<section id="hero" class="hero-section relative flex flex-col justify-center max-w-full">
   <!-- Cinematic Rooftop Drone Background -->
-  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-    <picture>
+  <div class="hero-media absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <picture class="hero-picture">
       <source srcset={`${baseUrl}/images/hero/hero-mobile.webp`} media="(max-width: 640px)" type="image/webp" />
       <source srcset={`${baseUrl}/images/hero/hero-mobile.jpg`} media="(max-width: 640px)" type="image/jpeg" />
       <source srcset={`${baseUrl}/images/hero/hero-desktop.webp`} type="image/webp" />
       <img
         src={`${baseUrl}/images/hero/hero-desktop.jpg`}
         alt="Terraza Rooftop de Sexto Vento en Hotel Casa Volga, Roldanillo"
-        class="w-full h-full object-cover object-center brightness-[0.82]"
+        class="hero-image w-full h-full object-cover object-center"
         loading="eager"
         fetchpriority="high"
         decoding="async"
       />
     </picture>
+    <span class="hero-glass-cloud hero-glass-cloud--left" aria-hidden="true"></span>
+    <span class="hero-glass-cloud hero-glass-cloud--right" aria-hidden="true"></span>
     <!-- Multi-Layer Vignette Gradients (Seamless blend into warm espresso) -->
-    <div class="absolute inset-0 bg-gradient-to-t from-[#0B0704] via-[#0B0704]/75 to-[#0B0704]/30"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0B0704]/80 via-transparent to-[#0B0704]"></div>
+    <div class="hero-vignette absolute inset-0"></div>
+    <div class="hero-blend absolute inset-0"></div>
   </div>
 
   <!-- Hero Content Container -->
-  <div class="relative z-10 max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto w-full flex flex-col items-center text-center">
+  <div class="site-container hero-content relative z-10 w-full flex flex-col items-center text-center">
 
     <!-- Floating Eyebrow Pill -->
-    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full liquid-pill text-[11px] sm:text-xs font-semibold text-white/90 mb-3 sm:mb-5 border border-white/15 shadow-lg">
+    <div class="hero-kicker inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full liquid-pill text-[11px] sm:text-xs font-semibold text-white/90 mb-3 sm:mb-5 border border-white/15 shadow-lg">
       <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
       <span class="tracking-wide font-medium">Rooftop Piso 4 • Hotel Casa Volga</span>
     </div>
@@ -41,16 +43,16 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
 
     <!-- Main Headline with Modern Apple Contrast -->
-    <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-2.5 sm:mb-4 px-2 text-balance leading-tight max-w-lg sm:max-w-2xl">
+    <h1 class="hero-title text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-2.5 sm:mb-4 px-2 text-balance leading-tight max-w-lg sm:max-w-2xl">
       Sabor, música, vista panorámica & <span class="bg-gradient-to-r from-amber-200 via-amber-400 to-orange-400 bg-clip-text text-transparent">experiencias memorables</span>
     </h1>
 
-    <p class="text-xs sm:text-sm md:text-base text-slate-300/90 font-normal max-w-sm sm:max-w-md md:max-w-xl mx-auto mb-6 sm:mb-9 px-2 text-balance leading-relaxed">
+    <p class="hero-copy text-xs sm:text-sm md:text-base text-slate-300/90 font-normal max-w-sm sm:max-w-md md:max-w-xl mx-auto mb-6 sm:mb-9 px-2 text-balance leading-relaxed">
       {restaurantConfig.description}
     </p>
 
     <!-- Apple Signature Action Buttons (High-contrast white pill + liquid glass) -->
-    <div class="w-full max-w-[320px] sm:max-w-none flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-4 mb-2 sm:mb-4">
+    <div class="hero-actions w-full max-w-[320px] sm:max-w-none flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-4 mb-2 sm:mb-4">
 
       <!-- Primary Action: White Pill CTA with Black Arrow Circle -->
       <a
