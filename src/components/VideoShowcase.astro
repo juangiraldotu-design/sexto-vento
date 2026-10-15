@@ -2,6 +2,7 @@
 import { restaurantConfig } from '../config/restaurant.config';
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const videoBase = `${baseUrl}/video/sexto-vento`;
 ---
 
 <section id="video" class="site-section">
@@ -11,8 +12,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <!-- Text Description Column -->
       <div class="lg:col-span-6 mb-8 lg:mb-0">
         <div class="section-kicker rounded-full liquid-pill">
-          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-          <span>Experiencia Audiovisual</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Video Oficial</span>
         </div>
 
         <h2 class="section-title mb-3 lg:mb-4">
@@ -20,22 +21,22 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
         </h2>
 
         <p class="section-copy mb-6">
-          Un adelanto vertical de la atmósfera que te espera en el piso 4: atardecer con vista panorámica a la cordillera, cocina italiana a la carta, coctelería de autor y la experiencia gastronómica más exclusiva de Roldanillo.
+          Descubre la historia, la vista y la atmósfera que hacen de Sexto Vento un lugar especial en el corazón de Roldanillo.
         </p>
 
         <!-- Feature highlights -->
         <div class="space-y-3 mb-6 text-xs sm:text-sm text-slate-300">
           <div class="flex items-center gap-3">
             <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
-            <span>Formato vertical interactivo para celular</span>
+            <span>Calidad automática según tu conexión</span>
           </div>
           <div class="flex items-center gap-3">
             <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
-            <span>Tomas aéreas de la terraza sobre el Hotel Casa Volga</span>
+            <span>Reproducción optimizada para celular y computador</span>
           </div>
           <div class="flex items-center gap-3">
             <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-500/30">✓</span>
-            <span>Presentación de platos estrella y coctelería de autor</span>
+            <span>Video vertical en alta definición con sonido estéreo</span>
           </div>
         </div>
 
@@ -57,57 +58,54 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="lg:col-span-6 flex justify-center">
         <div
           id="video-player-card"
-          class="w-full max-w-[280px] sm:max-w-[310px] aspect-[9/16] rounded-[32px] overflow-hidden relative border border-amber-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.85)] group cursor-pointer select-none transform transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
+          class="video-player w-full max-w-[280px] sm:max-w-[310px] aspect-[9/16] rounded-[32px] overflow-hidden relative border border-amber-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.85)] group select-none"
         >
-          <!-- Background Poster Image (Rooftop Drone View) -->
-          <picture>
-            <source srcset={`${baseUrl}/images/hero/hero-mobile.webp`} type="image/webp" />
-            <img
-              src={`${baseUrl}/images/hero/hero-mobile.jpg`}
-              alt="Vista de la terraza de Sexto Vento en Hotel Casa Volga"
-              class="absolute inset-0 w-full h-full object-cover brightness-[0.75] group-hover:brightness-[0.85] transition duration-500 scale-105 group-hover:scale-110"
-              width="400"
-              height="710"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
+          <video
+            id="sexto-vento-video"
+            class="absolute inset-0 h-full w-full object-cover bg-black"
+            poster={`${videoBase}/poster.jpg`}
+            preload="none"
+            playsinline
+            controls
+            controlslist="nodownload"
+            data-hls-src={`${videoBase}/master.m3u8`}
+            data-fallback-src={`${videoBase}/fallback-540.mp4`}
+            aria-label="Video oficial de Sexto Vento"
+          ></video>
 
-          <!-- Dark Gradient Vignette -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/60 pointer-events-none"></div>
+          <div class="video-player-shade absolute inset-0 pointer-events-none"></div>
 
           <!-- Top Overlay Badges -->
           <div class="absolute top-4 inset-x-4 flex items-center justify-between z-10 pointer-events-none">
             <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-black/80 text-slate-200 border border-white/15">
               Piso 4 • Rooftop
             </span>
-            <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#1A0F09]/95 text-amber-300 border border-amber-400/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
-              Próximamente
+            <span class="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#1A0F09]/95 text-emerald-300 border border-emerald-400/30 shadow-[0_0_12px_rgba(52,211,153,0.2)] flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Calidad automática
             </span>
           </div>
 
-          <!-- Centered Play Button & Halo -->
-          <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+          <button
+            id="video-start-overlay"
+            type="button"
+            class="video-start-overlay absolute inset-0 z-10 flex flex-col items-center justify-center text-white"
+            aria-label="Reproducir video oficial de Sexto Vento"
+          >
             <div class="relative flex items-center justify-center">
-              <div class="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-amber-400/40 animate-ping opacity-30 pointer-events-none"></div>
+              <span class="video-play-halo absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-amber-300/45 pointer-events-none"></span>
 
-              <button
-                type="button"
-                id="play-button"
-                aria-label="Reproducir video de presentación"
-                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full liquid-pill flex items-center justify-center text-amber-300 border border-amber-400/50 shadow-[0_10px_35px_rgba(245,158,11,0.4)] group-hover:scale-110 transition-transform duration-300 relative z-20"
-              >
+              <span class="video-play-button w-16 h-16 sm:w-20 sm:h-20 rounded-full liquid-pill flex items-center justify-center text-amber-200 border border-amber-300/55 shadow-[0_10px_35px_rgba(245,158,11,0.4)] transition-transform duration-300 relative z-20">
                 <svg class="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-amber-300 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
-              </button>
+              </span>
             </div>
 
-            <span class="mt-4 text-xs font-medium text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] tracking-wide">
-              Toca para reproducir
+            <span id="video-player-status" class="mt-4 text-xs font-semibold text-white/95 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] tracking-wide">
+              Reproducir video
             </span>
-          </div>
+          </button>
 
           <!-- Bottom Overlay: Title & Duration Badge -->
           <div class="absolute bottom-4 inset-x-4 z-10 pointer-events-none">
@@ -118,11 +116,11 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
                     Sexto Vento
                   </h3>
                   <p class="text-[10px] text-amber-300/90 font-medium">
-                    Video Oficial de Presentación
+                    Una historia desde Roldanillo
                   </p>
                 </div>
                 <span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-semibold text-slate-300 border border-white/10">
-                  0:45
+                  0:51
                 </span>
               </div>
             </div>
@@ -134,91 +132,182 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   </div>
 </section>
 
-<!-- Modal: Video Próximamente -->
-<div
-  id="video-modal"
-  class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 opacity-0 pointer-events-none transition-opacity duration-300"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="modal-title"
->
-  <div class="liquid-card rounded-[28px] max-w-sm w-full p-6 sm:p-7 border border-amber-500/30 relative text-center shadow-2xl bg-[#130B07]/95">
-    <!-- Icon -->
-    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/40 text-2xl">
-      🎬
-    </div>
+<style>
+  .video-player {
+    background: #070504;
+    transform: translate3d(0, 0, 0);
+  }
 
-    <!-- Title -->
-    <h3 id="modal-title" class="text-xl font-extrabold text-white mb-2">
-      Video de Presentación
-    </h3>
+  .video-player-shade {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 35%, rgba(0, 0, 0, 0.72));
+    opacity: 1;
+    transition: opacity 280ms ease;
+  }
 
-    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500/25 text-amber-300 border border-amber-400/30 mb-4">
-      En Producción Oficial
-    </span>
+  .video-start-overlay {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: opacity 240ms ease, visibility 0s linear 240ms;
+  }
 
-    <!-- Message -->
-    <p class="text-xs sm:text-sm text-slate-300/90 leading-relaxed mb-6">
-      Estamos preparando la pieza audiovisual cinematográfica en formato vertical (Reel 4K) con los mejores momentos, cócteles y la panorámica del piso 4.
-      <br /><br />
-      <span class="text-amber-200/90 font-semibold">¡Muy pronto podrás reproducirlo directamente en esta ventana!</span>
-    </p>
+  .video-start-overlay:hover .video-play-button,
+  .video-start-overlay:focus-visible .video-play-button {
+    transform: scale(1.08);
+  }
 
-    <!-- Buttons -->
-    <div class="flex flex-col gap-2.5">
-      <a
-        href={restaurantConfig.instagramUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-espresso font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity"
-      >
-        <span>Ver Adelantos en Instagram</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-        </svg>
-      </a>
+  .video-start-overlay:focus-visible {
+    outline: 2px solid #fde68a;
+    outline-offset: -4px;
+  }
 
-      <button
-        type="button"
-        id="close-video-modal"
-        class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-semibold text-xs transition-colors border border-white/10"
-      >
-        Cerrar y Continuar
-      </button>
-    </div>
-  </div>
-</div>
+  .video-play-halo {
+    animation: video-halo 1.8s ease-out infinite;
+  }
 
-<script is:inline>
-  (() => {
-    const card = document.getElementById('video-player-card');
-    const modal = document.getElementById('video-modal');
-    const closeBtn = document.getElementById('close-video-modal');
+  .video-player.has-started .video-start-overlay,
+  .video-player.has-started > div {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 
-    if (!card || !modal || !closeBtn) return;
+  .video-player.is-loading .video-play-button {
+    animation: video-loading 900ms linear infinite;
+  }
 
-    function openModal() {
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      window.requestAnimationFrame(() => {
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        modal.classList.add('opacity-100', 'pointer-events-auto');
+  @keyframes video-halo {
+    0% { opacity: 0.5; transform: scale(0.82); }
+    100% { opacity: 0; transform: scale(1.38); }
+  }
+
+  @keyframes video-loading {
+    0% { transform: scale(0.92); opacity: 0.6; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.92); opacity: 0.6; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-play-halo,
+    .video-player.is-loading .video-play-button {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const card = document.getElementById('video-player-card');
+  const video = document.getElementById('sexto-vento-video');
+  const startButton = document.getElementById('video-start-overlay');
+  const status = document.getElementById('video-player-status');
+
+  if (card instanceof HTMLElement && video instanceof HTMLVideoElement && startButton instanceof HTMLButtonElement) {
+    const hlsSource = video.dataset.hlsSrc || '';
+    const fallbackSource = video.dataset.fallbackSrc || '';
+    let hls: any = null;
+    let prepared = false;
+    let preparing: Promise<void> | null = null;
+    let wantsToPlay = false;
+
+    const setStatus = (message: string) => {
+      if (status) status.textContent = message;
+    };
+
+    const useFallback = () => {
+      hls?.destroy();
+      hls = null;
+      if (fallbackSource && video.getAttribute('src') !== fallbackSource) {
+        video.src = fallbackSource;
+        video.load();
+      }
+    };
+
+    const preparePlayer = async () => {
+      if (preparing) return preparing;
+      if (prepared) return;
+      prepared = true;
+
+      if (hlsSource && video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = hlsSource;
+        video.load();
+        return;
+      }
+
+      preparing = import('hls.js/dist/hls.light.min.mjs')
+        .then(({ default: Hls }) => {
+          if (!hlsSource || !Hls.isSupported()) {
+            useFallback();
+            return;
+          }
+          hls = new Hls({
+            startLevel: -1,
+            capLevelToPlayerSize: true,
+            maxBufferLength: 20,
+            maxMaxBufferLength: 40,
+            backBufferLength: 12,
+          });
+          hls.loadSource(hlsSource);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.ERROR, (_event: string, data: { fatal?: boolean }) => {
+            if (!data.fatal) return;
+            useFallback();
+            if (wantsToPlay) void video.play().catch(() => setStatus('Toca para reproducir'));
+          });
+        })
+        .catch(() => useFallback())
+        .finally(() => {
+          preparing = null;
+        });
+
+      return preparing;
+    };
+
+    const playVideo = async () => {
+      wantsToPlay = true;
+      card.classList.add('is-loading');
+      setStatus('Preparando video…');
+      await preparePlayer();
+      void video.play().catch(() => {
+        card.classList.remove('is-loading');
+        setStatus('Toca para reproducir');
       });
-    }
+    };
 
-    function closeModal() {
-      modal.classList.remove('opacity-100', 'pointer-events-auto');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-      setTimeout(() => {
-        modal.classList.remove('flex');
-        modal.classList.add('hidden');
-      }, 300);
-    }
-
-    card.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
+    startButton.addEventListener('click', () => void playVideo());
+    video.addEventListener('playing', () => {
+      wantsToPlay = false;
+      card.classList.remove('is-loading');
+      card.classList.add('is-playing', 'has-started');
     });
-  })();
+    video.addEventListener('pause', () => {
+      card.classList.remove('is-playing', 'is-loading');
+      if (!video.ended && video.currentTime > 0) setStatus('Continuar video');
+    });
+    video.addEventListener('waiting', () => {
+      if (!video.paused) card.classList.add('is-loading');
+    });
+    video.addEventListener('canplay', () => {
+      card.classList.remove('is-loading');
+      if (wantsToPlay) void video.play();
+    });
+    video.addEventListener('ended', () => {
+      card.classList.remove('is-playing', 'is-loading');
+    });
+    video.addEventListener('error', () => {
+      card.classList.remove('is-playing', 'is-loading');
+      setStatus('No se pudo cargar. Reintentar');
+    });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        void preparePlayer();
+        observer.disconnect();
+      }, { rootMargin: '500px 0px' });
+      observer.observe(card);
+    } else {
+      void preparePlayer();
+    }
+
+  }
 </script>
